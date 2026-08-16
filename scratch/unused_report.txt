@@ -1,0 +1,81 @@
+
+=== UNUSED FILES REPORT ===
+[UNUSED] components\cookie-consent\ConsentGate.tsx
+[UNUSED] public\file.svg
+[UNUSED] public\globe.svg
+[UNUSED] public\navbar-logo-cropped.png
+[UNUSED] public\next.svg
+[UNUSED] public\vercel.svg
+[UNUSED] public\window.svg
+[UNUSED] public\fonts\m-fix-bold.woff2
+[UNUSED] public\fonts\New Order Light.otf
+[UNUSED] public\fonts\New Order Medium.otf
+[UNUSED] public\fonts\New Order Regular.otf
+[UNUSED] public\fonts\New Order SemiBold.otf
+[UNUSED] lib\animationUtils.ts
+
+Total unused files found: 13
+
+=== USED FILES SUMMARY ===
+[USED] components\cookie-consent\CookieConsentBanner.tsx -> USED (Referenced in 1 files: app\layout.tsx)
+[USED] components\cookie-consent\CookieConsentContext.tsx -> USED (Referenced in 5 files: app\layout.tsx, components\cookie-consent\ConsentGate.tsx, components\cookie-consent\CookieConsentBanner.tsx)
+[USED] components\cookie-consent\CookiePreferencesButton.tsx -> USED (Referenced in 2 files: app\cookies\page.tsx, components\sections\Footer.tsx)
+[USED] components\cookie-consent\CookiePreferencesModal.tsx -> USED (Referenced in 1 files: app\layout.tsx)
+[USED] components\icons\Post1Icon.tsx -> USED (Referenced in 1 files: lib\blog-data.ts)
+[USED] components\icons\Post2Icon.tsx -> USED (Referenced in 1 files: lib\blog-data.ts)
+[USED] components\icons\Post3Icon.tsx -> USED (Referenced in 1 files: lib\blog-data.ts)
+[USED] components\icons\Post4Icon.tsx -> USED (Referenced in 1 files: lib\blog-data.ts)
+[USED] components\icons\Post5Icon.tsx -> USED (Referenced in 1 files: lib\blog-data.ts)
+[USED] components\icons\Post6Icon.tsx -> USED (Referenced in 1 files: lib\blog-data.ts)
+[USED] components\providers\smooth-scroll.tsx -> USED (Referenced in 1 files: app\layout.tsx)
+[USED] components\sections\Blog.tsx -> USED (Referenced in 4 files: app\blog\page.tsx, components\sections\BlogReaderClient.tsx, components\sections\Footer.tsx)
+[USED] components\sections\BlogReaderClient.tsx -> USED (Referenced in 1 files: app\blog\[slug]\page.tsx)
+[USED] components\sections\CTA.tsx -> USED (Referenced in 2 files: app\page.tsx, components\sections\Navbar.tsx)
+[USED] components\sections\FAQ.tsx -> USED (Referenced in 2 files: app\page.tsx, lib\blog-data.ts)
+[USED] components\sections\Footer.tsx -> USED (Referenced in 5 files: app\page.tsx, app\blog\page.tsx, app\cookies\page.tsx)
+[USED] components\sections\Hero.tsx -> USED (Referenced in 2 files: app\page.tsx, components\sections\BlogReaderClient.tsx)
+[USED] components\sections\Navbar.tsx -> USED (Referenced in 2 files: app\layout.tsx, components\sections\BlogReaderClient.tsx)
+[USED] components\sections\OrbitingGlobe.tsx -> USED (Referenced in 1 files: app\page.tsx)
+[USED] components\sections\Pricing.tsx -> USED (Referenced in 6 files: app\page.tsx, components\icons\Post4Icon.tsx, components\sections\Footer.tsx)
+[USED] components\sections\Problem.tsx -> USED (Referenced in 4 files: app\page.tsx, components\sections\Footer.tsx, components\sections\Navbar.tsx)
+[USED] components\sections\Services.tsx -> USED (Referenced in 4 files: app\page.tsx, app\contact\page.tsx, components\sections\Testimonials.tsx)
+[USED] components\sections\Solution.tsx -> USED (Referenced in 1 files: app\page.tsx)
+[USED] components\sections\Testimonials.tsx -> USED (Referenced in 1 files: app\page.tsx)
+[USED] components\sections\TrustStrip.tsx -> USED (Referenced in 1 files: app\page.tsx)
+[USED] components\ui\button.tsx -> USED (Referenced in 12 files: app\contact\page.tsx, app\cookies\page.tsx, components\cookie-consent\CookieConsentBanner.tsx)
+[USED] components\ui\contact-card.tsx -> USED (Referenced in 1 files: app\contact\page.tsx)
+[USED] components\ui\scroll-text.tsx -> USED (Referenced in 8 files: components\sections\CTA.tsx, components\sections\FAQ.tsx, components\sections\Hero.tsx)
+[USED] components\ui\sticky-scroll-reveal.tsx -> USED (Referenced in 1 files: components\sections\Solution.tsx)
+[USED] components\ui\orbiting-circles-02-utils\particalsphear.tsx -> USED (Referenced in 1 files: components\sections\OrbitingGlobe.tsx)
+[USED] public\footer-logo.png -> USED (Referenced in 1 files: components\sections\Footer.tsx)
+[USED] public\logo.png -> USED (Referenced in 2 files: components\sections\Footer.tsx, components\sections\Navbar.tsx)
+[USED] public\navbar-logo.png -> USED (Referenced in 1 files: components\sections\Navbar.tsx)
+[USED] public\fonts\Grift-Bold.otf -> USED (Referenced in 1 files: app\globals.css)
+[USED] public\fonts\Grift-Bold.woff2 -> USED (Referenced in 1 files: app\layout.tsx)
+[USED] public\fonts\Grift-Medium.otf -> USED (Referenced in 1 files: app\globals.css)
+[USED] public\fonts\Grift-Medium.woff2 -> USED (Referenced in 1 files: app\layout.tsx)
+[USED] public\fonts\Grift-Regular.otf -> USED (Referenced in 1 files: app\globals.css)
+[USED] public\fonts\Grift-Regular.woff2 -> USED (Referenced in 1 files: app\layout.tsx)
+[USED] public\fonts\Grift-SemiBold.otf -> USED (Referenced in 1 files: app\globals.css)
+[USED] public\fonts\Grift-SemiBold.woff2 -> USED (Referenced in 1 files: app\layout.tsx)
+[USED] public\fonts\New Order Bold.otf -> USED (Referenced in 2 files: app\globals.css, app\layout.tsx)
+[USED] public\images\problem-1.webp -> USED (Referenced in 1 files: components\sections\Problem.tsx)
+[USED] public\images\problem-2.webp -> USED (Referenced in 1 files: components\sections\Problem.tsx)
+[USED] public\images\problem-3.webp -> USED (Referenced in 1 files: components\sections\Problem.tsx)
+[USED] public\images\project-1.webp -> USED (Referenced in 2 files: package-lock.json, components\sections\Testimonials.tsx)
+[USED] public\images\project-2.webp -> USED (Referenced in 2 files: package-lock.json, components\sections\Testimonials.tsx)
+[USED] public\images\project-3.webp -> USED (Referenced in 2 files: package-lock.json, components\sections\Testimonials.tsx)
+[USED] public\images\project-4.webp -> USED (Referenced in 2 files: package-lock.json, components\sections\Testimonials.tsx)
+[USED] public\images\step1.webp -> USED (Referenced in 4 files: components\sections\Problem.tsx, components\sections\Solution.tsx, components\ui\sticky-scroll-reveal.tsx)
+[USED] public\images\step2.webp -> USED (Referenced in 4 files: components\sections\Problem.tsx, components\sections\Solution.tsx, components\ui\sticky-scroll-reveal.tsx)
+[USED] public\images\step3.webp -> USED (Referenced in 4 files: components\sections\Problem.tsx, components\sections\Solution.tsx, components\ui\sticky-scroll-reveal.tsx)
+[USED] public\images\step4.webp -> USED (Referenced in 4 files: components\sections\Problem.tsx, components\sections\Solution.tsx, components\ui\sticky-scroll-reveal.tsx)
+[USED] public\images\step5.webp -> USED (Referenced in 4 files: components\sections\Problem.tsx, components\sections\Solution.tsx, components\ui\sticky-scroll-reveal.tsx)
+[USED] public\images\website-and-auto.webp -> USED (Referenced in 1 files: components\sections\Services.tsx)
+[USED] public\images\website-laptop.webp -> USED (Referenced in 1 files: components\sections\Services.tsx)
+[USED] public\videos\custom_20260812174233.mp4 -> USED (Referenced in 1 files: components\sections\Services.tsx)
+[USED] public\videos\Integrations_Staggered_202608131740_gwr_video_mvp.mp4 -> USED (Referenced in 1 files: components\sections\Services.tsx)
+[USED] public\videos\search_(1)_20260813101855.mp4 -> USED (Referenced in 1 files: components\sections\Services.tsx)
+[USED] lib\blog-data.ts -> USED (Referenced in 3 files: app\blog\[slug]\page.tsx, components\sections\Blog.tsx, components\sections\BlogReaderClient.tsx)
+[USED] lib\cookie-consent.ts -> USED (Referenced in 5 files: app\layout.tsx, app\cookies\page.tsx, components\cookie-consent\ConsentGate.tsx)
+[USED] lib\utils.ts -> USED (Referenced in 13 files: components.json, package-lock.json, app\contact\page.tsx)
