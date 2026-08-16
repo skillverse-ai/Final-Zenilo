@@ -104,6 +104,10 @@ export function Footer() {
               <p className="text-sm text-neutral-400 max-w-sm font-sans leading-relaxed">
                 Empowering businesses with custom websites, intelligent AI automation, and scalable systems designed for growth.
               </p>
+              <p className="text-xs text-neutral-500 font-sans leading-relaxed border-t border-neutral-900 pt-2 w-full">
+                Grievance Officer (India): Mr. Rajesh Kumar<br />
+                Email: <a href="mailto:grievance@zenlio.io" className="underline hover:text-white transition-colors">grievance@zenlio.io</a>
+              </p>
             </div>
             
             {/* Link Columns (Right Pane) - Spans 8 cols on large screens */}
@@ -144,6 +148,7 @@ export function Footer() {
                 <ul className="space-y-2 text-sm">
                   <li><Link href="/privacy" className="hover:text-white text-neutral-400 transition-colors">Privacy Policy</Link></li>
                   <li><Link href="/cookies" className="hover:text-white text-neutral-400 transition-colors">Cookie Policy</Link></li>
+                  <li><Link href="/data-rights" className="hover:text-white text-neutral-400 transition-colors">Data Rights Portal</Link></li>
                   <li><CookiePreferencesButton className="hover:text-white text-neutral-400 transition-colors text-left" /></li>
                 </ul>
               </div>

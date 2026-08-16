@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Basic email validation regex
+// // LEGAL REVIEW REQUIRED: Audit trail and consent logs captured here form the legal basis for processing data-rights requests.
+
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Simple input sanitization function to prevent XSS/HTML injection
 function sanitizeInput(str: string): string {
   return str
     .replace(/&/g, '&amp;')
@@ -18,7 +18,7 @@ function sanitizeInput(str: string): string {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, message, consent } = body;
+    const { name, email, requestType, details, consent } = body;
 
     // 1. Validation
     if (!name || typeof name !== 'string' || name.trim() === '') {
@@ -35,45 +35,49 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!message || typeof message !== 'string' || message.trim() === '') {
+    if (!details || typeof details !== 'string' || details.trim() === '') {
       return NextResponse.json(
-        { success: false, message: 'Message is required' },
+        { success: false, message: 'Request details are required' },
         { status: 400 }
       );
     }
 
-    // 1b. DPDP Consent Validation
+    const validRequestTypes = ['access', 'correction', 'erasure', 'withdrawal'];
+    if (!requestType || !validRequestTypes.includes(requestType)) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid request type' },
+        { status: 400 }
+      );
+    }
+
+    // DPDP Consent check for processing request
     if (!consent || typeof consent !== 'object' || consent.given !== true) {
       return NextResponse.json(
-        { success: false, message: 'Explicit consent is required to process your personal data.' },
+        { success: false, message: 'Explicit consent is required to process your rights request.' },
         { status: 400 }
       );
     }
 
     const sanitizedName = sanitizeInput(name.trim());
     const sanitizedEmail = sanitizeInput(email.trim());
-    const sanitizedPhone = phone && typeof phone === 'string' && phone.trim() !== '' 
-      ? sanitizeInput(phone.trim()) 
-      : 'Not provided';
-    const sanitizedMessage = sanitizeInput(message.trim());
+    const sanitizedDetails = sanitizeInput(details.trim());
+    const sanitizedType = sanitizeInput(requestType.trim());
 
-    // 2. Environment Configuration
+    // 2. Resend Setup
     const apiKey = process.env.RESEND_API_KEY;
     const contactEmail = process.env.CONTACT_EMAIL || 'skillverse0109@gmail.com';
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
 
     if (!apiKey) {
       const errorMsg = 'RESEND_API_KEY is not defined in environment variables';
-      console.error("CONTACT FORM ERROR:", new Error(errorMsg));
+      console.error("DATA RIGHTS PORTAL ERROR:", new Error(errorMsg));
       return NextResponse.json(
-        { success: false, message: 'Unable to send message due to missing configuration' },
+        { success: false, message: 'Unable to submit request due to server misconfiguration' },
         { status: 500 }
       );
     }
 
     const resend = new Resend(apiKey);
-    
-    // Formatting date/time for UTC and a local readable format
     const submissionDate = new Date().toLocaleString('en-US', { 
       timeZone: 'UTC',
       dateStyle: 'full',
@@ -81,43 +85,49 @@ export async function POST(request: Request) {
     });
 
     const consentTimestamp = new Date().toISOString();
-    const consentPurpose = sanitizeInput(consent.purpose || 'To respond to user inquiry submitted via contact form');
+    const consentPurpose = sanitizeInput(consent.purpose || 'To process and fulfill Data Principal rights requests under DPDP Act 2023');
     const consentVersion = sanitizeInput(consent.version || '1.0-August-2026');
 
-    const emailText = `New contact form submission from the Zenlio website.
+    // Human-readable request type mapping
+    const typeMapping: { [key: string]: string } = {
+      access: 'Access my personal data (Summary of Processing)',
+      correction: 'Correct inaccurate or outdated personal data',
+      erasure: 'Erase my personal data (Right to be Forgotten)',
+      withdrawal: 'Withdraw my previously given consent',
+    };
 
-Name:
-${sanitizedName}
+    const emailText = `ZENLIO — NEW DATA RIGHTS REQUEST (DPDP Act 2023 Compliance)
 
-Email:
-${sanitizedEmail}
+A new statutory request has been submitted by a Data Principal from India.
 
-Phone:
-${sanitizedPhone}
+1. REQUEST DETAILS
+- Name: ${sanitizedName}
+- Registered Email: ${sanitizedEmail}
+- Request Type: ${typeMapping[sanitizedType] || sanitizedType}
+- Details:
+${sanitizedDetails}
 
-Message:
-${sanitizedMessage}
-
-Submitted:
-${submissionDate}
+- Submitted At: ${submissionDate}
 
 --------------------------------------------------
 [DPDP Act 2023 Consent Audit Record]
-- Explicit Consent Given: YES (Opt-In Checkbox)
+- Explicit Consent Given to Process Request: YES (Opt-In Checkbox)
 - Consent Purpose: ${consentPurpose}
 - Consent Version: ${consentVersion}
-- Server Logging Timestamp (UTC): ${consentTimestamp}`;
+- Server Logging Timestamp (UTC): ${consentTimestamp}
+
+ACTION REQUIRED: This request must be acknowledged within 48 hours and resolved within 30 days under Zenlio's DPDP policy.`;
 
     // 3. Send Email
     let response = await resend.emails.send({
       from: senderEmail,
       to: contactEmail,
-      subject: 'New Contact Form Submission — Zenlio',
+      subject: `[DPDP Request] ${typeMapping[sanitizedType] || 'Rights Request'} — Zenlio`,
       text: emailText,
       replyTo: sanitizedEmail,
     });
 
-    // Sandbox fallback: If Resend restricts sending to the registered account email only
+    // Sandbox fallback
     if (response.error) {
       const errorMsg = response.error.message;
       if (
@@ -132,7 +142,7 @@ ${submissionDate}
           response = await resend.emails.send({
             from: senderEmail,
             to: fallbackEmail,
-            subject: 'New Contact Form Submission — Zenlio (Sandbox Mode)',
+            subject: `[DPDP Request] ${typeMapping[sanitizedType] || 'Rights Request'} — Zenlio (Sandbox Mode)`,
             text: emailText,
             replyTo: sanitizedEmail,
           });
@@ -141,47 +151,17 @@ ${submissionDate}
     }
 
     if (response.error) {
-      console.error("CONTACT FORM ERROR:", response.error);
+      console.error("DATA RIGHTS PORTAL ERROR:", response.error);
       return NextResponse.json(
-        { success: false, message: 'Unable to send message' },
+        { success: false, message: 'Unable to submit request' },
         { status: 500 }
       );
     }
 
-    // 4. Send Confirmation Copy to the Visitor (Auto-Responder)
-    try {
-      const visitorEmailText = `Hi ${sanitizedName},
-
-Thank you for reaching out to Zenlio! We have received your message and our team will get back to you soon.
-
-Here is a copy of your submission:
-
-Name: ${sanitizedName}
-Email: ${sanitizedEmail}
-Phone: ${sanitizedPhone}
-Message:
-${sanitizedMessage}
-
-Best regards,
-The Zenlio Team`;
-
-      const visitorResponse = await resend.emails.send({
-        from: senderEmail,
-        to: sanitizedEmail,
-        subject: 'Thank you for contacting Zenlio',
-        text: visitorEmailText,
-      });
-
-      if (visitorResponse.error) {
-        console.warn('[Resend Warning]: Could not send auto-response email to visitor:', visitorResponse.error.message);
-      }
-    } catch (visitorErr) {
-      console.warn('[Resend Error]: Failed to send auto-response email to visitor:', visitorErr);
-    }
-
-    // Log the consent audit record to server stdout
-    console.log('[DPDP Consent Record Saved]:', {
+    // Log the audit trail
+    console.log('[DPDP Rights Request Consent Saved]:', {
       email: sanitizedEmail,
+      requestType: sanitizedType,
       purpose: consentPurpose,
       version: consentVersion,
       timestamp: consentTimestamp
@@ -189,12 +169,13 @@ The Zenlio Team`;
 
     return NextResponse.json({
       success: true,
-      message: 'Message sent successfully',
+      message: 'Request submitted successfully',
     });
+
   } catch (err) {
-    console.error("CONTACT FORM ERROR:", err);
+    console.error("DATA RIGHTS PORTAL ERROR:", err);
     return NextResponse.json(
-      { success: false, message: 'Unable to send message' },
+      { success: false, message: 'Unable to submit request' },
       { status: 500 }
     );
   }

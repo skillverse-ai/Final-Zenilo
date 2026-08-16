@@ -16,6 +16,7 @@ export default function ContactPage() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [consentGiven, setConsentGiven] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [status, setStatus] = useState<{
     type: "success" | "error" | null;
@@ -44,6 +45,9 @@ export default function ContactPage() {
       newErrors.email = "Please enter a valid email address.";
     }
     if (!formData.message.trim()) newErrors.message = "Message is required.";
+    if (!consentGiven) {
+      newErrors.consent = "You must consent to the processing of your data to submit.";
+    }
     
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -60,7 +64,14 @@ export default function ContactPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          consent: {
+            given: true,
+            purpose: "To respond to user inquiry submitted via contact form",
+            version: "1.0-August-2026"
+          }
+        }),
       });
 
       const data = await response.json();
@@ -71,6 +82,7 @@ export default function ContactPage() {
           message: "Thank you! Your message has been sent successfully. We'll get back to you soon.",
         });
         setFormData({ name: "", email: "", phone: "", message: "" });
+        setConsentGiven(false);
       } else {
         setStatus({
           type: "error",
@@ -212,6 +224,28 @@ export default function ContactPage() {
               {errors.message && (
                 <motion.span initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-xs text-red-400 font-medium ml-1">
                   {errors.message}
+                </motion.span>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-1.5 pt-2">
+              <label className="flex items-start gap-3 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={consentGiven}
+                  onChange={(e) => setConsentGiven(e.target.checked)}
+                  className="mt-1 rounded border-white/10 bg-white/5 text-primary focus:ring-primary/50 focus:ring-offset-0 focus:ring-1"
+                />
+                <span className="text-xs text-neutral-300 leading-normal">
+                  I consent to Zenlio processing this personal information to respond to my inquiry. I have read and agree to the{" "}
+                  <Link href="/privacy" className="text-white underline hover:text-[#ccff00]">
+                    Privacy Policy
+                  </Link>.
+                </span>
+              </label>
+              {errors.consent && (
+                <motion.span initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-xs text-red-400 font-medium ml-1">
+                  {errors.consent}
                 </motion.span>
               )}
             </div>
