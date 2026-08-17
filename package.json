@@ -41,7 +41,15 @@
     "typescript": "^5"
   },
   "overrides": {
-    "react": "$react",
-    "react-dom": "$react-dom"
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "@studio-freight/react-lenis": {
+      "react": "19.2.8",
+      "react-dom": "19.2.8",
+      "@studio-freight/hamo": {
+        "react": "19.2.8",
+        "react-dom": "19.2.8"
+      }
+    }
   }
 }
