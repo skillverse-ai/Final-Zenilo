@@ -1,7 +1,22 @@
 import React from "react";
+import type { Metadata } from "next";
 import { Footer } from "@/components/sections/Footer";
 import { CookiePreferencesButton } from "@/components/cookie-consent/CookiePreferencesButton";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Cookie Policy",
+  description: "Learn about how Zenlio uses cookies and local storage to manage your privacy, choices, and consent preferences.",
+  alternates: {
+    canonical: "https://zenlio.io/cookies",
+  },
+  openGraph: {
+    title: "Cookie Policy | Zenlio",
+    description: "Learn about how Zenlio uses cookies and local storage to manage your privacy, choices, and consent preferences.",
+    url: "https://zenlio.io/cookies",
+    type: "website",
+  }
+};
 
 export default function CookiesPage() {
   return (

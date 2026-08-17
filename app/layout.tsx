@@ -25,9 +25,29 @@ const newOrder = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Zenlio | Scale Your Business With Us",
-  description: "Website + Automation Agency",
+  title: {
+    default: "Zenlio | AI Automation & Web Design Agency",
+    template: "%s | Zenlio",
+  },
+  description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
+  metadataBase: new URL("https://zenlio.io"),
+  alternates: {
+    canonical: "/",
+  },
   manifest: "/site.webmanifest",
+  openGraph: {
+    title: "Zenlio | AI Automation & Web Design Agency",
+    description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
+    url: "https://zenlio.io",
+    siteName: "Zenlio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zenlio | AI Automation & Web Design Agency",
+    description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
+  }
 };
 
 export default function RootLayout({

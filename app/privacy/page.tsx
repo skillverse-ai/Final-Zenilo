@@ -1,5 +1,20 @@
 import React from "react";
+import type { Metadata } from "next";
 import { Footer } from "@/components/sections/Footer";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read Zenlio's Privacy Policy to understand how we collect, use, and process your personal data in accordance with the India DPDP Act 2023.",
+  alternates: {
+    canonical: "https://zenlio.io/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | Zenlio",
+    description: "Read Zenlio's Privacy Policy to understand how we collect, use, and process your personal data in accordance with the India DPDP Act 2023.",
+    url: "https://zenlio.io/privacy",
+    type: "website",
+  }
+};
 
 export default function PrivacyPage() {
   return (

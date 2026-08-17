@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 // Basic email validation regex
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -18,7 +19,29 @@ function sanitizeInput(str: string): string {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, message, consent } = body;
+    const { name, email, phone, message, consent, website } = body;
+
+    // Honeypot bot protection
+    if (website && typeof website === 'string' && website.trim() !== '') {
+      console.warn('[Bot Prevention]: Honeypot field filled by bot. Silently dropping request.');
+      return NextResponse.json({
+        success: true,
+        message: 'Message sent successfully',
+      });
+    }
+
+    // Rate Limiting (5 requests per minute per IP)
+    const ip = request.headers.get('x-forwarded-for') || 
+               request.headers.get('x-real-ip') || 
+               '127.0.0.1';
+    const rateLimitCheck = checkRateLimit(ip, 5, 60000);
+    if (!rateLimitCheck.success) {
+      console.warn(`[Rate Limiting]: Too many requests from IP: ${ip}`);
+      return NextResponse.json(
+        { success: false, message: 'Too many requests. Please try again after some time.' },
+        { status: 429 }
+      );
+    }
 
     // 1. Validation
     if (!name || typeof name !== 'string' || name.trim() === '') {

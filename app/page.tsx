@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Hero } from "@/components/sections/Hero";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { Problem } from "@/components/sections/Problem";
@@ -10,20 +11,130 @@ import { OrbitingCirclesGlobeSection } from "@/components/sections/OrbitingGlobe
 import { CTA } from "@/components/sections/CTA";
 import { Footer } from "@/components/sections/Footer";
 
+export const metadata: Metadata = {
+  title: "Zenlio | AI Automation & Web Design Agency",
+  description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
+  alternates: {
+    canonical: "https://zenlio.io",
+  },
+  openGraph: {
+    title: "Zenlio | AI Automation & Web Design Agency",
+    description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
+    url: "https://zenlio.io",
+    type: "website",
+  }
+};
+
 export default function Home() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Zenlio",
+    "url": "https://zenlio.io",
+    "logo": "https://zenlio.io/logo.png",
+    "description": "Outcome-focused automation and high-performance web systems for small teams ready to scale without expanding headcount.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@zenlio.io",
+      "contactType": "Grievance & Customer Support"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "addressCountry": "IN"
+    }
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zenlio",
+    "url": "https://zenlio.io"
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the pricing work for international vs Indian clients?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer transparent package pricing with an easy toggle to view rates in USD ($) or INR (₹). Billing will be processed in your local or preferred currency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are maintenance and optimization included?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Basic deployment and performance optimization are included in all packages. Recurring monthly maintenance, workflow monitoring, and AI agent upgrades are available as flexible monthly add-ons."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a typical project take to deploy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most standard website and automation projects take between 2 to 4 weeks to launch. Complex AI agent systems or enterprise integrations may take 6 to 8 weeks depending on the bespoke architecture required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide training on how to use the automated workflows?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. We hand over the systems with comprehensive documentation and a live walk-through session to ensure your team is confident using the new automations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can we request custom integrations or AI features?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Our 'Custom Solutions' tier is built specifically for bespoke web platforms, specialized RAG systems, voice agents, and complex multi-tool enterprise automation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What tech stack do you use for custom development?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We specialize in modern, high-performance stacks like Next.js, React, and Tailwind CSS for the frontend, powered by specialized AI tools, n8n for workflow automation, and robust scalable backends tailored to your needs."
+        }
+      }
+    ]
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center w-full">
-      <Hero />
-      <TrustStrip />
-      <Problem />
-      <Services />
-      <Solution />
-      <Testimonials />
-      <Pricing />
-      <FAQ />
-      <OrbitingCirclesGlobeSection />
-      <CTA />
-      <Footer />
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <main className="flex min-h-screen flex-col items-center w-full">
+        <Hero />
+        <TrustStrip />
+        <Problem />
+        <Services />
+        <Solution />
+        <Testimonials />
+        <Pricing />
+        <FAQ />
+        <OrbitingCirclesGlobeSection />
+        <CTA />
+        <Footer />
+      </main>
+    </>
   );
 }

@@ -3,31 +3,54 @@
 import React, { useRef } from "react";
 import { useInView } from "framer-motion";
 import ParticleSphereAnimation from "@/components/ui/orbiting-circles-02-utils/particalsphear";
-import { SiZapier, SiN8N } from "react-icons/si";
+import { 
+  SiZapier, 
+  SiN8N, 
+  SiSupabase, 
+  SiGooglegemini, 
+  SiMake, 
+  SiFigma, 
+  SiClaude 
+} from "react-icons/si";
+import { FaSlack } from "react-icons/fa6";
 
-const orbits = [
+interface OrbitIcon {
+  component?: React.ComponentType<any>;
+  src?: string;
+  color?: string;
+  alt: string;
+  angle: number;
+}
+
+interface Orbit {
+  size: string;
+  duration: number;
+  icons: OrbitIcon[];
+}
+
+const orbits: Orbit[] = [
   {
     size: "w-110 h-110 md:w-180 md:h-180",
     duration: 18,
     icons: [
-      { src: "https://images.shadcnspace.com/assets/svgs/supabase.svg", alt: "Supabase", angle: -60 },
-      { src: "https://images.shadcnspace.com/assets/svgs/gemini.svg", alt: "gemini", angle: 0 },
-      { src: "https://images.shadcnspace.com/assets/svgs/make.svg", alt: "Make", angle: 60 },
+      { component: SiSupabase, color: "#3ECF8E", alt: "Supabase", angle: -60 },
+      { component: SiGooglegemini, color: "#8E75FF", alt: "Gemini", angle: 0 },
+      { component: SiMake, color: "#EA157A", alt: "Make", angle: 60 },
     ],
   },
   {
     size: "w-150 h-150 md:w-220 md:h-220",
     duration: 24,
     icons: [
-      { src: "https://images.shadcnspace.com/assets/svgs/figma.svg", alt: "Figma", angle: 0 },
-      { src: "https://images.shadcnspace.com/assets/svgs/slack.svg", alt: "Slack", angle: -90 },
+      { component: SiFigma, color: "#F24E1E", alt: "Figma", angle: 0 },
+      { component: FaSlack, color: "#4A154B", alt: "Slack", angle: -90 },
     ],
   },
   {
     size: "w-180 h-180 md:w-265 md:h-265",
     duration: 30,
     icons: [
-      { src: "https://images.shadcnspace.com/assets/svgs/clude.svg", alt: "Claude", angle: -60 },
+      { component: SiClaude, color: "#CC785C", alt: "Claude", angle: -60 },
       { component: SiZapier, color: "#FF4A00", alt: "Zapier", angle: 0 },
       { component: SiN8N, color: "#FF6D5A", alt: "n8n", angle: 60 },
     ],
