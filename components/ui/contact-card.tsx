@@ -82,7 +82,13 @@ function ContactInfo({
       </div>
       <div>
         <p className="font-semibold text-sm text-neutral-200">{label}</p>
-        <p className="text-neutral-400 text-xs mt-0.5">{value}</p>
+        {label.toLowerCase() === "email" ? (
+          <a href={`mailto:${value}`} className="text-neutral-400 text-xs mt-0.5 hover:text-primary underline transition-colors">
+            {value}
+          </a>
+        ) : (
+          <p className="text-neutral-400 text-xs mt-0.5">{value}</p>
+        )}
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ graph TD
     H --> J[Send Email to Affected Users]
 ```
 
-1. **Detection & Containment**: Identify how the breach occurred (e.g. Resend account compromise, SMTP interception, unauthorized access to target inbox `skillverse0109@gmail.com`). Revoke compromised API keys/tokens and secure the inbox.
+1. **Detection & Containment**: Identify how the breach occurred (e.g. Resend account compromise, SMTP interception, unauthorized access to target inbox `zenlio.agency@gmail.com`). Revoke compromised API keys/tokens and secure the inbox.
 2. **Assessment**: Audit the Resend logs to determine the number of affected Data Principals and the types of personal data exposed (Names, Emails, Phone numbers, Message texts).
 3. **Notification**:
    - Notify the **DPBI** using the template in Section 3.

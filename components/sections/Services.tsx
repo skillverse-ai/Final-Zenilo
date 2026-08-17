@@ -13,7 +13,7 @@ const services = [
     features: [
       "Turn traffic into booked calls instantly with load speeds that eliminate bounce rates."
     ],
-    className: "md:col-span-3 min-h-[300px] lg:min-h-[400px]",
+    className: "col-span-1 md:col-span-3 min-h-[300px] lg:min-h-[400px]",
     visual: (
       <img 
         src="/images/website-laptop.webp" 
@@ -30,7 +30,7 @@ const services = [
     features: [
       "Never miss a lead again with instant routing, recovering lost hours every single week."
     ],
-    className: "md:col-span-3 min-h-[300px] lg:min-h-[400px]",
+    className: "col-span-1 md:col-span-3 min-h-[300px] lg:min-h-[400px]",
     visual: (
       <video
         autoPlay
@@ -49,7 +49,7 @@ const services = [
     features: [
       "Create a single source of truth for client data while automating onboarding and fulfillment."
     ],
-    className: "md:col-span-2 min-h-[400px] lg:min-h-[450px]",
+    className: "col-span-1 md:col-span-3 lg:col-span-2 min-h-[400px] lg:min-h-[450px]",
     visual: (
       <img 
         src="/images/website-and-auto.webp" 
@@ -66,7 +66,7 @@ const services = [
     features: [
       "Dominate search rankings and capture high-intent leads passively."
     ],
-    className: "md:col-span-2 min-h-[400px] lg:min-h-[450px]",
+    className: "col-span-1 md:col-span-3 lg:col-span-2 min-h-[400px] lg:min-h-[450px]",
     visual: (
       <video
         autoPlay
@@ -85,7 +85,7 @@ const services = [
     features: [
       "Solve highly specific bottlenecks with scalable architecture built for rapid growth."
     ],
-    className: "md:col-span-2 min-h-[400px] lg:min-h-[450px]",
+    className: "col-span-1 md:col-span-3 lg:col-span-2 min-h-[400px] lg:min-h-[450px]",
     visual: (
       <video
         autoPlay
@@ -136,7 +136,7 @@ function ServiceCard({
       className={cn(
         "group relative flex flex-col justify-end overflow-hidden rounded-[24px] border border-white/5 bg-[#0a0a0a] transition-all duration-700 ease-out cursor-pointer",
         service.className,
-        isDimmed ? "opacity-30 blur-[2px] scale-[0.98]" : "opacity-100 blur-0 scale-100"
+        isDimmed ? "md:opacity-30 md:blur-[2px] md:scale-[0.98]" : "opacity-100 blur-0 scale-100"
       )}
     >
       {/* 2026 Spatial Dynamic Spotlight */}

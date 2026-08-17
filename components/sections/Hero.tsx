@@ -40,7 +40,7 @@ export function Hero() {
   const iconsPerOrbit = Math.ceil(iconConfigs.length / orbitCount);
 
   return (
-    <section ref={sectionRef} className="relative w-full overflow-hidden bg-background text-foreground pt-20 lg:pt-32 pb-10 min-h-[800px]">
+    <section ref={sectionRef} className="relative w-full overflow-hidden bg-background text-foreground pt-28 lg:pt-32 pb-12 lg:pb-10 min-h-0 lg:min-h-[800px]">
       <div className="container px-4 md:px-6 mx-auto flex flex-col lg:flex-row justify-between relative z-10">
 
         {/* Left side: Heading and Text */}
@@ -130,9 +130,9 @@ export function Hero() {
       </div>
 
       {/* Right side: Orbit animation (Absolute to right edge of page) */}
-      <div className="absolute right-0 top-0 lg:-top-16 w-full lg:w-[65rem] h-[500px] lg:h-[900px] flex items-center justify-end overflow-hidden opacity-50 lg:opacity-100 z-0 pointer-events-none">
+      <div className="absolute right-0 top-0 lg:-top-16 w-full lg:w-[65rem] h-[500px] lg:h-[900px] flex items-center justify-end overflow-hidden opacity-30 lg:opacity-100 z-0 pointer-events-none">
         {/* translate-x to crop exactly at the edge */}
-        <div className="relative w-[50rem] h-[50rem] lg:w-[65rem] lg:h-[65rem] translate-x-[25%] lg:translate-x-[50%] flex items-center justify-center">
+        <div className="relative w-[32rem] h-[32rem] md:w-[45rem] md:h-[45rem] lg:w-[65rem] lg:h-[65rem] translate-x-[20%] md:translate-x-[25%] lg:translate-x-[50%] flex items-center justify-center">
 
           {/* Center Circle */}
           <div className="relative z-10 flex h-36 w-36 flex-col items-center justify-center rounded-full bg-primary text-primary-foreground shadow-2xl overflow-hidden">

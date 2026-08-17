@@ -40,6 +40,7 @@ export function Footer() {
   const giantTextRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [footerHeight, setFooterHeight] = useState("auto");
+  const [isDesktop, setIsDesktop] = useState(false);
 
   const lenis = useLenis();
   const pathname = usePathname();
@@ -68,11 +69,13 @@ export function Footer() {
     if (footerRef.current) {
       setFooterHeight(`${footerRef.current.offsetHeight}px`);
     }
+    setIsDesktop(window.innerWidth >= 1024);
 
     const handleResize = () => {
       if (footerRef.current) {
         setFooterHeight(`${footerRef.current.offsetHeight}px`);
       }
+      setIsDesktop(window.innerWidth >= 1024);
     };
 
     window.addEventListener("resize", handleResize);
@@ -87,9 +90,12 @@ export function Footer() {
     <div
       ref={wrapperRef}
       className="relative w-full"
-      style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)", height: footerHeight }}
+      style={{
+        clipPath: isDesktop ? "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" : "none",
+        height: isDesktop ? footerHeight : "auto"
+      }}
     >
-      <footer ref={footerRef} className="fixed bottom-0 left-0 w-full bg-black text-foreground border-t border-neutral-900 pt-6 pb-4 font-[family-name:var(--font-grift)] flex flex-col justify-end">
+      <footer ref={footerRef} className={`${isDesktop ? "fixed bottom-0 left-0" : "relative"} w-full bg-black text-foreground border-t border-neutral-900 pt-6 pb-4 font-[family-name:var(--font-grift)] flex flex-col justify-end`}>
         <div ref={contentRef} className="container px-4 md:px-6 mx-auto">
           {/* Top Section: Brand Info + 4 Link Columns */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-2">
@@ -103,10 +109,6 @@ export function Footer() {
               </Link>
               <p className="text-sm text-neutral-400 max-w-sm font-sans leading-relaxed">
                 Empowering businesses with custom websites, intelligent AI automation, and scalable systems designed for growth.
-              </p>
-              <p className="text-xs text-neutral-500 font-sans leading-relaxed border-t border-neutral-900 pt-2 w-full">
-                Grievance Officer (India): Mr. Rajesh Kumar<br />
-                Email: <a href="mailto:grievance@zenlio.io" className="underline hover:text-white transition-colors">grievance@zenlio.io</a>
               </p>
             </div>
             
@@ -167,7 +169,7 @@ export function Footer() {
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-8 h-8 rounded-full border border-[#ccff00] flex items-center justify-center overflow-hidden shrink-0 bg-[#171717]">
-                 <img src="/footer-logo.png" alt="Zenlio" className="w-full h-full object-cover scale-[1.05]" />
+                 <img src="/footer-logo.png" alt="Zenlio brand emblem" className="w-full h-full object-cover scale-[1.05]" />
               </div>
             </div>
             <p className="text-xs text-neutral-500">

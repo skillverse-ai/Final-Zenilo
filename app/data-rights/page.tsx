@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 import DataRightsClient from './DataRightsClient';
 
 export const metadata: Metadata = {
-  title: "Data Principal Rights Portal",
-  description: "Exercise your statutory data privacy rights (Access, Correction, Erasure, or Consent Withdrawal) under India's Digital Personal Data Protection (DPDP) Act 2023.",
+  title: "DPDP Data Rights Request Portal | Zenlio",
+  description: "Manage your privacy choices or exercise your statutory data principal rights (access, erasure, correction) under the DPDP Act 2023 with Zenlio.",
   alternates: {
     canonical: "https://zenlio.io/data-rights",
   },
   openGraph: {
-    title: "Data Principal Rights Portal | Zenlio",
-    description: "Exercise your statutory data privacy rights (Access, Correction, Erasure, or Consent Withdrawal) under India's Digital Personal Data Protection (DPDP) Act 2023.",
+    title: "DPDP Data Rights Request Portal | Zenlio",
+    description: "Manage your privacy choices or exercise your statutory data principal rights (access, erasure, correction) under the DPDP Act 2023 with Zenlio.",
     url: "https://zenlio.io/data-rights",
     type: "website",
   }

@@ -19,7 +19,7 @@ function sanitizeInput(str: string): string {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, message, consent, website } = body;
+    const { name, email, phone, message, consent, website, selectedPlan, buildPrice, monthlyPrice, selectedAddOns } = body;
 
     // Honeypot bot protection
     if (website && typeof website === 'string' && website.trim() !== '') {
@@ -80,9 +80,25 @@ export async function POST(request: Request) {
       : 'Not provided';
     const sanitizedMessage = sanitizeInput(message.trim());
 
+    const sanitizedPlan = selectedPlan && typeof selectedPlan === 'string' ? sanitizeInput(selectedPlan.trim()) : '';
+    const sanitizedBuild = buildPrice && typeof buildPrice === 'string' ? sanitizeInput(buildPrice.trim()) : '';
+    const sanitizedRecurring = monthlyPrice && typeof monthlyPrice === 'string' ? sanitizeInput(monthlyPrice.trim()) : '';
+    const sanitizedAddons = selectedAddOns && Array.isArray(selectedAddOns)
+      ? selectedAddOns.map((a: any) => typeof a === 'string' ? sanitizeInput(a.trim()) : '').filter(Boolean)
+      : [];
+
+    let selectionDetails = '';
+    if (sanitizedPlan) {
+      selectionDetails = `Selected Plan: ${sanitizedPlan}
+Build Price Range: ${sanitizedBuild}
+Monthly Recurring Price: ${sanitizedRecurring}
+Selected Add-ons: ${sanitizedAddons.length > 0 ? sanitizedAddons.join(', ') : 'None'}
+`;
+    }
+
     // 2. Environment Configuration
     const apiKey = process.env.RESEND_API_KEY;
-    const contactEmail = process.env.CONTACT_EMAIL || 'skillverse0109@gmail.com';
+    const contactEmail = process.env.CONTACT_EMAIL || 'zenlio.agency@gmail.com';
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
 
     if (!apiKey) {
@@ -117,7 +133,7 @@ ${sanitizedEmail}
 
 Phone:
 ${sanitizedPhone}
-
+${sanitizedPlan ? `\nSelection Details:\n${selectionDetails}` : ''}
 Message:
 ${sanitizedMessage}
 
@@ -182,6 +198,7 @@ Here is a copy of your submission:
 Name: ${sanitizedName}
 Email: ${sanitizedEmail}
 Phone: ${sanitizedPhone}
+${sanitizedPlan ? `\nSelection Details:\n${selectionDetails}` : ''}
 Message:
 ${sanitizedMessage}
 

@@ -12,14 +12,14 @@ import { CTA } from "@/components/sections/CTA";
 import { Footer } from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
-  title: "Zenlio | AI Automation & Web Design Agency",
-  description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
+  title: "AI Automation & Custom Web Systems | Zenlio",
+  description: "Scale your business with custom AI workflows, autonomous systems, and high-performance web design. Book a free automation systems audit with Zenlio today.",
   alternates: {
     canonical: "https://zenlio.io",
   },
   openGraph: {
-    title: "Zenlio | AI Automation & Web Design Agency",
-    description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
+    title: "AI Automation & Custom Web Systems | Zenlio",
+    description: "Scale your business with custom AI workflows, autonomous systems, and high-performance web design. Book a free automation systems audit with Zenlio today.",
     url: "https://zenlio.io",
     type: "website",
   }
@@ -29,13 +29,14 @@ export default function Home() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://zenlio.io/#organization",
     "name": "Zenlio",
     "url": "https://zenlio.io",
     "logo": "https://zenlio.io/logo.png",
     "description": "Outcome-focused automation and high-performance web systems for small teams ready to scale without expanding headcount.",
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "hello@zenlio.io",
+      "email": "zenlio.agency@gmail.com",
       "contactType": "Grievance & Customer Support"
     },
     "address": {
@@ -49,8 +50,48 @@ export default function Home() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "https://zenlio.io/#website",
     "name": "Zenlio",
     "url": "https://zenlio.io"
+  };
+
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://zenlio.io/#service-web",
+        "name": "Custom Website Development",
+        "description": "High-performance custom Next.js web systems built to maximize conversion rates and speed.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://zenlio.io/#organization"
+        },
+        "areaServed": "Worldwide"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://zenlio.io/#service-automation",
+        "name": "AI Lead Capture & Workflow Automation",
+        "description": "Custom n8n and Make workflow integrations, automated lead routing, and customer support databases.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://zenlio.io/#organization"
+        },
+        "areaServed": "Worldwide"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://zenlio.io/#service-crm",
+        "name": "Connected CRM Systems & Onboarding",
+        "description": "Automatic form-to-CRM syncing, client onboarding sequence pipelines, and pipeline dashboard tracking.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://zenlio.io/#organization"
+        },
+        "areaServed": "Worldwide"
+      }
+    ]
   };
 
   const faqSchema = {
@@ -117,6 +158,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
       />
       <script
         type="application/ld+json"

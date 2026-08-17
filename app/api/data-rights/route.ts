@@ -88,7 +88,7 @@ export async function POST(request: Request) {
 
     // 2. Resend Setup
     const apiKey = process.env.RESEND_API_KEY;
-    const contactEmail = process.env.CONTACT_EMAIL || 'skillverse0109@gmail.com';
+    const contactEmail = process.env.CONTACT_EMAIL || 'zenlio.agency@gmail.com';
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
 
     if (!apiKey) {

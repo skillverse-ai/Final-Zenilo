@@ -50,6 +50,16 @@ const projects = [
 
 function ProjectCard({ project, index, containerRef, setHovered, isReady }: { project: any, index: number, containerRef: React.RefObject<HTMLDivElement | null>, setHovered: (v: boolean) => void, isReady: boolean }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 1024);
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   
   const { scrollXProgress } = useScroll({
     container: containerRef,
@@ -79,10 +89,10 @@ function ProjectCard({ project, index, containerRef, setHovered, isReady }: { pr
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        rotateY,
-        scale,
-        z,
-        transformStyle: "preserve-3d",
+        rotateY: isDesktop ? rotateY : 0,
+        scale: isDesktop ? scale : 1,
+        z: isDesktop ? z : 0,
+        transformStyle: isDesktop ? "preserve-3d" : "flat",
         willChange: "transform"
       }}
       className="flex-shrink-0 w-[90vw] md:w-[75vw] lg:w-[55vw] flex flex-col gap-4 relative group cursor-pointer"

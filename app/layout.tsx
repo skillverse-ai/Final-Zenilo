@@ -55,12 +55,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://zenlio.io/#organization",
+    "name": "Zenlio",
+    "url": "https://zenlio.io",
+    "logo": "https://zenlio.io/logo.png",
+    "description": "Outcome-focused automation and high-performance web systems for small teams ready to scale without expanding headcount.",
+    "email": "zenlio.agency@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "addressCountry": "IN"
+    }
+  };
+
   return (
     <html
       lang="en"
       className={`${grift.variable} ${newOrder.variable} dark antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>
         <SmoothScrollProvider>
           <CookieConsentProvider>
@@ -74,3 +97,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+

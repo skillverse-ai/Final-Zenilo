@@ -3,14 +3,14 @@ import { Blog } from "@/components/sections/Blog";
 import { Footer } from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
-  title: "Insights & Perspectives",
-  description: "Read the latest articles on workflow automation, CRM integration, n8n automation, and custom digital systems from the Zenlio team.",
+  title: "AI Automation & Operations Blog | Zenlio",
+  description: "Discover how to scale operations using AI agents, n8n workflows, and custom CRM systems. Read the Zenlio automation blog for expert insights.",
   alternates: {
     canonical: "https://zenlio.io/blog",
   },
   openGraph: {
-    title: "Insights & Perspectives | Zenlio Blog",
-    description: "Read the latest articles on workflow automation, CRM integration, n8n automation, and custom digital systems from the Zenlio team.",
+    title: "AI Automation & Operations Blog | Zenlio Blog",
+    description: "Discover how to scale operations using AI agents, n8n workflows, and custom CRM systems. Read the Zenlio automation blog for expert insights.",
     url: "https://zenlio.io/blog",
     type: "website",
   }

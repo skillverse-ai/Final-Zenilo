@@ -1,0 +1,14 @@
+# Zenlio - AI Automation & Custom Web Systems
+
+Outcome-focused automation and high-performance web systems for small teams ready to scale without expanding headcount.
+
+## Core Capabilities
+- **AI Automation & Workflows**: n8n custom integrations, automated lead routing, and customer support agent databases.
+- **Custom Web Systems**: High-performance Next.js architectures, modern web designs, and database integrations.
+- **CRM Integrations**: Automatic form-to-CRM syncing, client onboarding sequence pipelines, and pipeline dashboard tracking.
+
+## Key Resources
+- [Homepage](https://zenlio.io)
+- [Pricing Plans](https://zenlio.io/#pricing)
+- [Insights & Blog](https://zenlio.io/blog)
+- [Contact & Audits](https://zenlio.io/contact)

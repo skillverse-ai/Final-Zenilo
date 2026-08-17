@@ -85,8 +85,38 @@ export function Solution() {
           />
         </div>
 
-        <div className="w-full">
+        {/* Desktop Sticky Scroll */}
+        <div className="hidden lg:block w-full">
           <StickyScroll content={stickyScrollContent} />
+        </div>
+
+        {/* Mobile/Tablet Vertical Timeline */}
+        <div className="lg:hidden w-full space-y-12 max-w-xl mx-auto px-4">
+          {features.map((feature) => (
+            <div key={feature.id} className="flex flex-col space-y-4 border-l border-white/10 pl-6 relative">
+              {/* Timeline Bullet Node */}
+              <div className="absolute -left-[5px] top-1.5 w-[9px] h-[9px] rounded-full bg-primary" />
+              
+              <span className="text-xs font-bold tracking-widest text-primary uppercase">
+                {feature.step}
+              </span>
+              <h3 className="text-2xl font-bold text-white">
+                {feature.title}
+              </h3>
+              <p className="text-neutral-400 text-sm leading-relaxed">
+                {feature.description}
+              </p>
+              {feature.image && (
+                <div className="rounded-[15px] overflow-hidden border border-white/5 bg-[#0a0a0a] mt-4 aspect-video w-full">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
       </div>

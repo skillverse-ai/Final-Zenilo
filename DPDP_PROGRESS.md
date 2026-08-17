@@ -7,11 +7,11 @@ This document tracks decisions, assumptions, security gaps identified, and files
 ### Personal Data Collection Points
 - **Contact Form (`app/contact/page.tsx`)**:
   - Data collected: Name, Email, Phone (optional), Message.
-  - Storage: No database is used. Submissions are processed server-side via `app/api/contact/route.ts` and dispatched as emails via Resend to the inbox `skillverse0109@gmail.com`.
+  - Storage: No database is used. Submissions are processed server-side via `app/api/contact/route.ts` and dispatched as emails via Resend to the inbox `zenlio.agency@gmail.com`.
   - Auto-response copies are sent back to visitors via Resend.
 - **Data Rights Request Form (`app/data-rights/page.tsx` - NEW)**:
   - Data collected: Name, Email, Request Type (Access, Correction, Erasure, Withdrawal of Consent), and Details.
-  - Storage: No database. Routed via `app/api/data-rights/route.ts` and sent as an email via Resend to the inbox `skillverse0109@gmail.com`.
+  - Storage: No database. Routed via `app/api/data-rights/route.ts` and sent as an email via Resend to the inbox `zenlio.agency@gmail.com`.
 
 ### Cookies & Tracking Technologies
 - Scanned codebase: No analytics, marketing, or advertising trackers are installed.
@@ -40,7 +40,7 @@ This document tracks decisions, assumptions, security gaps identified, and files
 
 3. **Plaintext Email Transmission**
    - *Gap*: Personal data (name, email, phone, message) is sent via Resend over SMTP/API in transactional emails.
-   - *Risk*: If the admin's inbox (`skillverse0109@gmail.com`) is compromised, all historical personal data is exposed.
+   - *Risk*: If the admin's inbox (`zenlio.agency@gmail.com`) is compromised, all historical personal data is exposed.
    - *Recommendation*: Enforce Multi-Factor Authentication (MFA) on the inbox and set a strict email retention/deletion policy (e.g. archiving or deleting resolved emails after 30 days).
 
 4. **Cross-Border Data Transfer**
@@ -81,4 +81,4 @@ This document tracks decisions, assumptions, security gaps identified, and files
 - **CAPTCHA Bot Protection**: The contact and data rights forms do not have CAPTCHA protection, leaving them open to automated bot submissions. Adding a privacy-preserving CAPTCHA (e.g. Cloudflare Turnstile) is recommended.
 - **HTTPS Enforcement**: Platform-level configuration (e.g. Vercel headers) should be set to redirect all HTTP traffic to HTTPS to safeguard personal data in transit.
 - **Terms of Service (`/terms`)**: The website currently does not have a `/terms` page. A data-protection and limitation of liability clause should be added to the Terms of Service when that page is created.
-- **Email Retention Policy**: Establish an internal administrative rule to delete or archive emails in `skillverse0109@gmail.com` after a request or inquiry is fully resolved (supporting DPDP's storage limitation principle).
+- **Email Retention Policy**: Establish an internal administrative rule to delete or archive emails in `zenlio.agency@gmail.com` after a request or inquiry is fully resolved (supporting DPDP's storage limitation principle).

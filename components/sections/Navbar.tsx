@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ const navItems = [
 ];
 
 export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const pathname = usePathname();
   const lenis = useLenis();
@@ -29,6 +31,17 @@ export function Navbar() {
     damping: 30,
     restDelta: 0.001
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (pathname === "/" && href.startsWith("/#")) {
@@ -68,7 +81,7 @@ export function Navbar() {
 
         {/* Logo */}
         <Link href="/" onClick={handleLogoClick} className="relative z-10 flex items-center pl-2">
-          <img src="/navbar-logo.png" alt="Zenlio" className="h-8 w-auto object-contain shrink-0 scale-[1.8] translate-x-[-14px] translate-y-[18px]" />
+          <img src="/navbar-logo.png" alt="Zenlio Agency logo wordmark" className="h-8 w-auto object-contain shrink-0 scale-[1.8] translate-x-[-14px] translate-y-[18px]" />
           <span className="font-[family-name:var(--font-new-order)] font-bold text-3xl leading-none tracking-normal bg-clip-text text-transparent bg-gradient-to-b from-[#F4F4EC] to-neutral-400 translate-y-[0px] -ml-1">Zenlio</span>
         </Link>
 
@@ -98,8 +111,8 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <div className="flex items-center gap-4 relative z-10">
+        {/* Desktop CTA */}
+        <div className="hidden md:flex items-center gap-4 relative z-10">
           <Link href="/contact">
             <Button size="sm" className="rounded-full px-6 font-semibold font-sans">
               Contact Us
@@ -107,7 +120,52 @@ export function Navbar() {
           </Link>
         </div>
 
+        {/* Mobile/Tablet Hamburger Toggle Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex md:hidden p-2 text-foreground/80 hover:text-white transition-colors relative z-50 rounded-full bg-white/5 border border-white/10"
+          aria-label="Toggle navigation menu"
+        >
+          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+
       </div>
+
+      {/* Mobile/Tablet Dropdown Navigation Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -20 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden mt-2 w-full rounded-3xl border border-border/40 bg-background/95 backdrop-blur-xl shadow-2xl overflow-hidden flex flex-col p-6 z-40 relative"
+          >
+            <nav className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => {
+                    setIsOpen(false);
+                    handleSmoothScroll(e, item.href);
+                  }}
+                  className="px-4 py-3 text-base font-semibold text-foreground/80 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <div className="border-t border-white/5 pt-4 mt-2">
+                <Link href="/contact" onClick={() => setIsOpen(false)} className="w-full block">
+                  <Button size="lg" className="w-full rounded-xl font-bold font-sans">
+                    Contact Us
+                  </Button>
+                </Link>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

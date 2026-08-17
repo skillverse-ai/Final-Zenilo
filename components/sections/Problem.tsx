@@ -13,7 +13,7 @@ const problems = [
     visual: (
       <img 
         src="/images/problem-1.webp" 
-        alt="Conversion Rates Dashboard" 
+        alt="Graph showing a conversion rates drop-off dashboard on a standard non-optimized website" 
         className="w-full h-full object-cover object-center opacity-80" 
       />
     )
@@ -25,7 +25,7 @@ const problems = [
     visual: (
       <img 
         src="/images/problem-2.webp" 
-        alt="Manual Bottlenecks Dashboard" 
+        alt="Task checklist dashboard demonstrating manual team bottlenecks and task delays" 
         className="w-full h-full object-cover object-center opacity-80" 
       />
     )
@@ -37,7 +37,7 @@ const problems = [
     visual: (
       <img 
         src="/images/problem-3.webp" 
-        alt="Disconnected Systems Dashboard" 
+        alt="UI mockups of multiple disconnected software tools showing data silos" 
         className="w-full h-full object-contain scale-[1.25] translate-x-12 translate-y-8 opacity-80" 
       />
     )
@@ -78,7 +78,7 @@ function ProblemCard({
       className={cn(
         "group relative flex flex-col justify-end overflow-hidden rounded-[24px] border border-white/5 bg-[#0a0a0a] transition-all duration-700 ease-out",
         problem.className,
-        isDimmed ? "opacity-30 blur-[2px] scale-[0.98]" : "opacity-100 blur-0 scale-100"
+        isDimmed ? "md:opacity-30 md:blur-[2px] md:scale-[0.98]" : "opacity-100 blur-0 scale-100"
       )}
     >
       {/* 2026 Spatial Dynamic Spotlight */}

@@ -6,97 +6,204 @@ import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from "fram
 import { Button } from "@/components/ui/button";
 import TextAnimation from "@/components/ui/scroll-text";
 
-const plans = [
+const usdPlans = [
   {
-    id: "website",
-    title: "Website &\nDevelopment",
-    description: "Custom websites designed, developed and deployed for your business.",
-    priceUSD: 1000,
-    priceINR: 40000,
+    id: "core-os",
+    title: "Core OS",
+    description: "Custom-designed high-performance presence with essential features and smart integrations.",
+    priceBuildUSD: "$1,200",
+    priceMonthlyUSD: "$89/mo",
     recommended: false,
-    initialFeaturesCount: 4,
+    initialFeaturesCount: 5,
     features: [
-      "Custom Website Design",
-      "Responsive Development",
-      "Frontend & Backend Integration",
-      "Deployment & Hosting Setup",
-      "Performance Optimization",
-      "Basic SEO & Analytics Setup",
+      "Up to 6 custom-designed pages (not a template reskin)",
+      "Mobile-first responsive design",
+      "On-page SEO foundations (meta tags, headings, sitemap)",
+      "CMS setup so the client can edit content themselves",
+      "Contact form with spam protection",
+      "SSL/security setup, hosting + domain setup assistance",
+      "2 rounds of design revisions",
+      "30 days post-launch support (bug fixes, small tweaks)",
+      "Basic Google Analytics setup",
+      "Smart Lead Capture Engine",
+      "Smart Appointment System (basic booking + reminders)",
+      "Website Intelligence Report — Lite (free first 3 months)",
     ],
     addons: [
-      { id: "seo", name: "Advanced SEO Setup", priceUSD: 300, priceINR: 12000 },
-      { id: "aeo", name: "AEO Optimization", priceUSD: 200, priceINR: 8000 },
-      { id: "geo", name: "GEO Location Strategy", priceUSD: 150, priceINR: 6000 }
+      { id: "whatsapp", name: "WhatsApp" },
+      { id: "ai-lead", name: "AI Lead Qualification" }
     ],
-    addonNoteUSD: "Monthly Maintenance & Optimization — $250 / mo",
-    addonNoteINR: "Monthly Maintenance & Optimization — ₹10,000 / mo",
+    addonNoteUSD: "Any item from the full add-on menu is available, including WhatsApp, AI Lead Qualification, etc.",
   },
   {
-    id: "ai",
-    title: "Website + AI\nAutomations",
-    description: "Digital presence combined with intelligent AI-powered business automation.",
-    priceUSD: 1500,
-    priceINR: 60000,
+    id: "growth-os",
+    title: "Growth OS",
+    description: "Scale your operations with conversion optimization, blogs, and advanced lead automation.",
+    priceBuildUSD: "$2,800",
+    priceMonthlyUSD: "$229/mo",
     recommended: true,
     badge: "RECOMMENDED",
     initialFeaturesCount: 5,
     features: [
-      "Custom Website & Responsive Dev",
-      "AI Chatbot / Assistant Integration",
-      "AI Workflow & n8n Automation",
-      "Lead Capture & CRM Integration",
-      "Deployment & System Integration",
-      "Performance & Security Tuning",
+      "Up to 12 pages",
+      "Everything in Core OS features & automations",
+      "Conversion-focused layout and copy structure",
+      "Blog / content section capability",
+      "Local SEO (Google Business Profile integration, schema markup)",
+      "Custom graphics/icons, not stock-only",
+      "3 rounds of revisions",
+      "60 days post-launch support",
+      "WhatsApp Instant Response",
+      "Lead Follow-Up Sequence",
+      "Review & Testimonial Engine",
+      "Website Intelligence Report — full monthly version",
+      "One premium add-on at 30% off in year one",
     ],
     addons: [
-      { id: "rag", name: "RAG Vector DB Setup", priceUSD: 500, priceINR: 20000 },
-      { id: "voice", name: "Voice AI Agent", priceUSD: 400, priceINR: 16000 },
-      { id: "seo", name: "Advanced SEO Setup", priceUSD: 300, priceINR: 12000 }
-    ],
-    addonNoteUSD: "Monthly Maintenance & AI Upgrades • $375 / mo",
-    addonNoteINR: "Monthly Maintenance & AI Upgrades • ₹15,000 / mo",
+      { id: "ai-lead", name: "AI Lead Qualification" },
+      { id: "ai-router", name: "AI Inquiry Router" },
+      { id: "abandoned-form", name: "Abandoned Form Recovery" },
+      { id: "personalized-exp", name: "Personalized Website Experience" },
+      { id: "sales-agent", name: "AI Website Sales Agent" },
+      { id: "quote-gen", name: "Dynamic Quote Generator" },
+      { id: "onboarding", name: "Customer Onboarding Automation" },
+      { id: "support-handoff", name: "AI Support + Handoff" },
+      { id: "lost-lead", name: "Lost Lead Reactivation" }
+    ]
   },
   {
-    id: "automation",
-    title: "Automation &\nWorkflows",
-    description: "Automate repetitive business processes and connect your existing tools.",
-    priceUSD: 750,
-    priceINR: 30000,
+    id: "authority-os",
+    title: "Authority OS",
+    description: "Fully custom, unlimited digital presence with elite integrations and dedicated support.",
+    priceBuildUSD: "$6,000",
+    priceMonthlyUSD: "$499/mo",
     recommended: false,
-    initialFeaturesCount: 4,
+    initialFeaturesCount: 5,
     features: [
-      "n8n Workflow Automation",
-      "API & Webhook Integrations",
-      "Business Process Automation",
-      "Lead & Form Automation",
-      "Notifications & Alerts",
-      "Data Sync & Custom Logic",
-    ],
-    recurring: [
-      "Workflow Monitoring",
-      "Maintenance & Optimization",
-      "New Workflow Development",
+      "Fully custom, unlimited pages/sections",
+      "Everything in Growth OS features & automations",
+      "Advanced on-page + technical SEO",
+      "Structured data for AI search engines",
+      "Custom illustrations/animation where relevant",
+      "E-commerce or booking-system integration if needed",
+      "Unlimited revisions during the build",
+      "90 days post-launch support + priority-response SLA",
+      "Dedicated project lead",
+      "AI Lead Qualification",
+      "AI Inquiry Router",
+      "Abandoned Form Recovery",
+      "Personalized Website Experience",
+      "Website Intelligence Report — full weekly version",
+      "Premium automation FREE (Choose 1): AI Website Sales Agent",
+      "Premium automation FREE (Choose 1): Dynamic Quote Generator",
+      "Premium automation FREE (Choose 1): Customer Onboarding Automation",
     ],
     addons: [
-      { id: "custom-api", name: "Custom API Dev", priceUSD: 250, priceINR: 10000 },
-      { id: "slack-bot", name: "Slack/Discord Bot", priceUSD: 150, priceINR: 6000 }
+      { id: "remaining-premium", name: "Any remaining premium automation" },
+      { id: "lost-lead-campaigns", name: "Lost Lead Reactivation campaigns" }
+    ]
+  }
+];
+
+const inrPlans = [
+  {
+    id: "core-local",
+    title: "Core Local",
+    description: "Custom presence designed specifically for Indian SMBs seeking growth.",
+    priceBuildINR: "₹18,000",
+    priceMonthlyINR: "₹799/mo",
+    recommended: false,
+    initialFeaturesCount: 5,
+    features: [
+      "Up to 5 custom-designed pages",
+      "Mobile-first responsive design",
+      "Basic on-page SEO",
+      "Simple CMS (edit text/images yourself)",
+      "Contact form",
+      "Hosting + domain setup assistance",
+      "2 rounds of revisions",
+      "15 days post-launch support",
+      "Smart Lead Capture Engine",
+    ],
+    addons: [
+      { id: "whatsapp", name: "WhatsApp" },
+      { id: "appointment-up", name: "Appointment upgrade" },
+      { id: "reviews", name: "Reviews" }
+    ],
+    addonNoteINR: "Any item from the India Local add-on menu is available, including WhatsApp, Appointment upgrade, etc.",
+  },
+  {
+    id: "growth-local",
+    title: "Growth Local",
+    description: "Grow your local customer base with GBP setup, blogging capability, and booking.",
+    priceBuildINR: "₹40,000",
+    priceMonthlyINR: "₹1,499/mo",
+    recommended: true,
+    badge: "RECOMMENDED",
+    initialFeaturesCount: 5,
+    features: [
+      "Up to 8 pages",
+      "Everything in Core Local features & automations",
+      "Local SEO / Google Business Profile setup",
+      "Basic blog or updates section",
+      "3 rounds of revisions",
+      "30 days post-launch support",
+      "WhatsApp Instant Response",
+      "Smart Appointment System (booking + reminders)",
+      "Review & Testimonial Engine",
+    ],
+    addons: [
+      { id: "lead-followup", name: "Lead Follow-Up Sequence" },
+      { id: "ai-lead-capped", name: "AI Lead Qualification (capped)" },
+      { id: "quote-gen", name: "Dynamic Quote Generator" },
+      { id: "sales-agent", name: "AI Website Sales Agent" }
+    ]
+  },
+  {
+    id: "authority-local",
+    title: "Authority Local",
+    description: "Dominant local presence with multi-location pages, advanced SEO, and smart routing.",
+    priceBuildINR: "₹85,000",
+    priceMonthlyINR: "₹2,999/mo",
+    recommended: false,
+    initialFeaturesCount: 5,
+    features: [
+      "Fully custom pages/sections",
+      "Everything in Growth Local features & automations",
+      "Stronger SEO + Google Business optimization",
+      "Multi-location page support where relevant",
+      "Unlimited revisions during the build",
+      "45 days post-launch support",
+      "Lead Follow-Up Sequence",
+      "AI Inquiry Router",
+      "Website Intelligence Report — monthly, lite",
+    ],
+    addons: [
+      { id: "ai-lead", name: "AI Lead Qualification" },
+      { id: "quote-gen", name: "Dynamic Quote Generator" },
+      { id: "sales-agent-capped", name: "AI Website Sales Agent (capped)" }
     ]
   }
 ];
 
 const customPlan = {
   id: "custom",
-  title: "Custom Solutions",
-  description: "Bespoke software, AI agents and automation systems for unique requirements.",
-  priceUSD: "Custom Quote",
-  priceINR: "Custom Quote",
+  title: "Zenlio Enterprise OS",
+  description: "Fully bespoke scope, multi-site / multi-brand builds, and custom integrations.",
+  priceUSD: "$10,000–$30,000+ build + $800–$2,500+/mo",
+  priceINR: "$10,000–$30,000+ build + $800–$2,500+/mo",
   features: [
-    "Complex Web Applications",
-    "AI Agents & Voice Assistant Systems",
-    "RAG Systems & Vector DBs",
-    "Enterprise Multi-Tool Automation",
-    "Custom APIs & Admin Dashboards",
-    "Bespoke Architecture & CRM Sync",
+    "Fully bespoke scope",
+    "Multi-site / multi-brand builds",
+    "Custom integrations",
+    "E-commerce/SaaS-grade functionality",
+    "Dedicated success manager",
+    "Custom reporting cadence",
+    "Full automation menu available (scoped per client)",
+    "AI Website Sales Agent at higher usage caps",
+    "Customer Onboarding Automation",
+    "AI Support + Handoff",
+    "Lost Lead Reactivation campaigns",
   ],
 };
 
@@ -130,18 +237,8 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
     );
   };
 
-  const basePrice = currency === "USD" ? pkg.priceUSD : pkg.priceINR;
-  const addonTotal = pkg.addons?.reduce((sum: number, addon: any) => {
-    if (selectedAddons.includes(addon.id)) {
-      return sum + (currency === "USD" ? addon.priceUSD : addon.priceINR);
-    }
-    return sum;
-  }, 0) || 0;
-
-  const finalPrice = basePrice + addonTotal;
-  const formattedPrice = currency === "USD" 
-    ? `$${finalPrice.toLocaleString()}`
-    : `₹${finalPrice.toLocaleString()}`;
+  const priceBuild = currency === "USD" ? pkg.priceBuildUSD : pkg.priceBuildINR;
+  const priceMonthly = currency === "USD" ? pkg.priceMonthlyUSD : pkg.priceMonthlyINR;
 
   return (
     <motion.div
@@ -191,17 +288,19 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
           <div className={`py-4 mb-6 border-b ${isRecommended ? 'border-primary/20' : 'border-white/5'}`}>
             <AnimatePresence mode="wait">
               <motion.div
-                key={formattedPrice}
+                key={priceBuild}
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-baseline gap-2"
+                className="flex items-baseline gap-x-2 gap-y-1 flex-wrap"
               >
-                <span className="text-4xl font-extrabold text-white tracking-tight">
-                  {formattedPrice}
+                <span className="text-3xl font-extrabold text-white tracking-tight leading-none">
+                  {priceBuild}
                 </span>
-                <span className="text-sm text-neutral-500 font-medium">/project</span>
+                <span className="text-xs text-neutral-500 font-medium whitespace-nowrap">
+                  build + {priceMonthly}
+                </span>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -290,26 +389,26 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                       >
-                        <div className="flex flex-col gap-2 pt-2 pb-1">
+                        <div className="flex flex-col gap-3 md:gap-2 pt-2 pb-1">
                           {pkg.addons.map((addon: any) => {
                             const isSelected = selectedAddons.includes(addon.id);
-                            const addonPrice = currency === "USD" ? `+$${addon.priceUSD}` : `+₹${addon.priceINR.toLocaleString()}`;
+                            const addonPrice = "Available";
                             return (
                               <label 
                                 key={addon.id} 
-                                className={`flex items-start gap-3 p-3 rounded-[16px] border cursor-pointer transition-colors ${
+                                className={`flex items-start gap-3 p-4 md:p-3 rounded-[16px] border cursor-pointer transition-colors ${
                                   isSelected ? "bg-primary/10 border-primary/30" : "bg-black/50 border-white/5 hover:border-white/10"
                                 }`}
                               >
                                 <div className="mt-0.5">
-                                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${
+                                  <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
                                     isSelected ? "bg-primary border-primary" : "border-white/30"
                                   }`}>
-                                    {isSelected && <Check className="w-3 h-3 text-black" strokeWidth={3} />}
+                                    {isSelected && <Check className="w-3.5 h-3.5 text-black" strokeWidth={3} />}
                                   </div>
                                 </div>
                                 <div className="flex-1 flex justify-between items-center text-sm">
-                                  <span className={isSelected ? "text-white font-medium" : "text-neutral-300"}>{addon.name}</span>
+                                  <span className={isSelected ? "text-white font-semibold text-sm" : "text-neutral-300 text-sm"}>{addon.name}</span>
                                   <span className="text-neutral-500 text-xs font-medium shrink-0 ml-2">{addonPrice}</span>
                                 </div>
                                 <input 
@@ -326,7 +425,7 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
                     )}
                   </AnimatePresence>
                   {(pkg.addonNoteUSD || pkg.addonNoteINR) && (
-                    <p className="text-[11px] text-neutral-400 leading-snug pt-2 whitespace-pre-line border-t border-white/5 mt-3 relative h-6 overflow-hidden">
+                    <p className="text-[11px] text-neutral-400 leading-snug pt-2 whitespace-pre-line border-t border-white/5 mt-3">
                       <AnimatePresence mode="wait">
                         <motion.span 
                           key={currency}
@@ -334,7 +433,7 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute inset-0"
+                          className="block"
                         >
                           {currency === "USD" ? pkg.addonNoteUSD : pkg.addonNoteINR}
                         </motion.span>
@@ -349,14 +448,13 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
 
         <Button
           onClick={() => {
-            const contactElem = document.getElementById("contact") || document.getElementById("cta");
-            if (contactElem) contactElem.scrollIntoView({ behavior: "smooth" });
-            else window.location.href = "#contact";
+            const url = `/contact?plan=${pkg.id}${selectedAddons.length > 0 ? `&addons=${selectedAddons.join(",")}` : ""}`;
+            window.location.href = url;
           }}
           variant={isRecommended ? "default" : "outline"}
           className={`w-full mt-auto transition-transform ${isRecommended ? 'shadow-lg shadow-primary/20 hover:scale-[1.02]' : ''}`}
         >
-          Get Started
+          Contact Us
         </Button>
       </div>
     </motion.div>
@@ -422,28 +520,10 @@ function CustomBanner({ currency }: { currency: "USD" | "INR" }) {
         </div>
       </div>
       
-      <div className="relative z-20 w-full lg:w-auto shrink-0 flex flex-col items-start lg:items-end gap-4 border-t lg:border-t-0 border-white/10 pt-6 lg:pt-0">
-        <div className="text-left lg:text-right h-[40px] relative w-[200px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currency}
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -5 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-0 right-0 w-full lg:w-auto lg:text-right text-left"
-            >
-              <div className="text-2xl font-bold text-white">
-                {currency === "USD" ? customPlan.priceUSD : customPlan.priceINR}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+      <div className="relative z-20 w-full lg:w-auto shrink-0 flex flex-col items-start lg:items-end border-t lg:border-t-0 border-white/10 pt-6 lg:pt-0">
         <Button
           onClick={() => {
-            const contactElem = document.getElementById("contact") || document.getElementById("cta");
-            if (contactElem) contactElem.scrollIntoView({ behavior: "smooth" });
-            else window.location.href = "#contact";
+            window.location.href = "/contact?plan=custom";
           }}
           className="w-full lg:w-auto hover:scale-[1.02] transition-transform"
         >
@@ -507,9 +587,11 @@ export function Pricing() {
         </motion.div>
 
         {/* 3-Tier Core Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8 mb-12">
-          {plans.map((pkg, idx) => (
-            <PricingCard key={pkg.id} pkg={pkg} index={idx} currency={currency} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8 mb-12">
+          {(currency === "USD" ? usdPlans : inrPlans).map((pkg, idx) => (
+            <div key={pkg.id} className={idx === 2 ? "md:col-span-2 lg:col-span-1" : ""}>
+              <PricingCard pkg={pkg} index={idx} currency={currency} />
+            </div>
           ))}
         </div>
 

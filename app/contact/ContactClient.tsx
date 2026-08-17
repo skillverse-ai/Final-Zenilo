@@ -1,12 +1,108 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ContactCard } from "@/components/ui/contact-card";
-import { MailIcon, PhoneIcon, MapPinIcon, ArrowLeft } from "lucide-react";
+import { MailIcon, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+
+const planTemplates: Record<string, {
+  name: string;
+  build: string;
+  recurring: string;
+  addonsMap?: Record<string, string>;
+}> = {
+  "core-os": {
+    name: "Core OS",
+    build: "$1,200",
+    recurring: "$89/mo",
+    addonsMap: {
+      "whatsapp": "WhatsApp",
+      "ai-lead": "AI Lead Qualification",
+    }
+  },
+  "growth-os": {
+    name: "Growth OS",
+    build: "$2,800",
+    recurring: "$229/mo",
+    addonsMap: {
+      "ai-lead": "AI Lead Qualification",
+      "ai-router": "AI Inquiry Router",
+      "abandoned-form": "Abandoned Form Recovery",
+      "personalized-exp": "Personalized Website Experience",
+      "sales-agent": "AI Website Sales Agent",
+      "quote-gen": "Dynamic Quote Generator",
+      "onboarding": "Customer Onboarding Automation",
+      "support-handoff": "AI Support + Handoff",
+      "lost-lead": "Lost Lead Reactivation",
+    }
+  },
+  "authority-os": {
+    name: "Authority OS",
+    build: "$6,000",
+    recurring: "$499/mo",
+    addonsMap: {
+      "remaining-premium": "Any remaining premium automation",
+      "lost-lead-campaigns": "Lost Lead Reactivation campaigns",
+    }
+  },
+  "core-local": {
+    name: "Core Local",
+    build: "₹18,000",
+    recurring: "₹799/mo",
+    addonsMap: {
+      "whatsapp": "WhatsApp",
+      "appointment-up": "Appointment upgrade",
+      "reviews": "Reviews",
+    }
+  },
+  "growth-local": {
+    name: "Growth Local",
+    build: "₹40,000",
+    recurring: "₹1,499/mo",
+    addonsMap: {
+      "lead-followup": "Lead Follow-Up Sequence",
+      "ai-lead-capped": "AI Lead Qualification (capped)",
+      "quote-gen": "Dynamic Quote Generator",
+      "sales-agent": "AI Website Sales Agent",
+    }
+  },
+  "authority-local": {
+    name: "Authority Local",
+    build: "₹85,000",
+    recurring: "₹2,999/mo",
+    addonsMap: {
+      "ai-lead": "AI Lead Qualification",
+      "quote-gen": "Dynamic Quote Generator",
+      "sales-agent-capped": "AI Website Sales Agent (capped)",
+    }
+  },
+  "custom": {
+    name: "Zenlio Enterprise OS",
+    build: "$10,000–$30,000+",
+    recurring: "$800–$2,500+/mo",
+  }
+};
+
+const generatePrefilledMessage = (
+  plan: typeof planTemplates[string],
+  selectedAddonsList: string[]
+) => {
+  const addonsSection = selectedAddonsList.length > 0
+    ? `\n\nSelected add-ons:\n${selectedAddonsList.map(a => `* ${a}`).join("\n")}`
+    : "";
+
+  return `Hi Zenlio,
+
+I'm interested in the ${plan.name} plan.
+
+Build: ${plan.build}
+Recurring: ${plan.recurring}${addonsSection}
+
+I'd like to discuss the project and next steps.`;
+};
 
 export default function ContactClient() {
   const [formData, setFormData] = useState({
@@ -22,6 +118,81 @@ export default function ContactClient() {
     type: "success" | "error" | null;
     message: string | null;
   }>({ type: null, message: null });
+
+  const [selectedPlanKey, setSelectedPlanKey] = useState<string | null>(null);
+  const [selectedAddonKeys, setSelectedAddonKeys] = useState<string[]>([]);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const planId = searchParams.get("plan");
+    const addonsParam = searchParams.get("addons");
+
+    if (planId && planTemplates[planId]) {
+      setSelectedPlanKey(planId);
+      const addonKeys = addonsParam ? addonsParam.split(",") : [];
+      setSelectedAddonKeys(addonKeys);
+
+      const planInfo = planTemplates[planId];
+      const resolvedAddonsList = planInfo.addonsMap
+        ? addonKeys.map(key => planInfo.addonsMap![key]).filter(Boolean)
+        : [];
+
+      const prefilled = generatePrefilledMessage(planInfo, resolvedAddonsList);
+      setFormData(prev => ({
+        ...prev,
+        message: prefilled
+      }));
+    }
+  }, []);
+
+  const selectedPlanInfo = selectedPlanKey ? planTemplates[selectedPlanKey] : null;
+  const resolvedAddons = selectedPlanInfo && selectedPlanInfo.addonsMap
+    ? selectedAddonKeys
+        .map(key => selectedPlanInfo.addonsMap![key])
+        .filter(Boolean)
+    : [];
+
+  const getDropdownValue = (key: string | null): string => {
+    if (!key) return "";
+    if (key === "core-os" || key === "core-local") return "core-os";
+    if (key === "growth-os" || key === "growth-local") return "growth-os";
+    if (key === "authority-os" || key === "authority-local") return "authority-os";
+    if (key === "custom") return "custom";
+    return "";
+  };
+
+  const handlePlanChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    if (value === "") {
+      setSelectedPlanKey(null);
+      setSelectedAddonKeys([]);
+    } else {
+      setSelectedPlanKey(value);
+      setSelectedAddonKeys([]);
+      
+      const currentPrefill = selectedPlanKey 
+        ? generatePrefilledMessage(
+            planTemplates[selectedPlanKey], 
+            selectedAddonKeys.map(k => planTemplates[selectedPlanKey].addonsMap?.[k] || "").filter(Boolean)
+          ) 
+        : "";
+      if (!formData.message.trim() || formData.message === currentPrefill) {
+        const nextPrefill = generatePrefilledMessage(planTemplates[value], []);
+        setFormData(prev => ({
+          ...prev,
+          message: nextPrefill
+        }));
+      }
+    }
+
+    if (value !== "") {
+      setErrors(prev => {
+        const next = { ...prev };
+        delete next.selectedPlan;
+        return next;
+      });
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,6 +214,9 @@ export default function ContactClient() {
       newErrors.email = "Email is required.";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address.";
+    }
+    if (!selectedPlanKey) {
+      newErrors.selectedPlan = "Please select a plan.";
     }
     if (!formData.message.trim()) newErrors.message = "Message is required.";
     if (!consentGiven) {
@@ -67,6 +241,11 @@ export default function ContactClient() {
         body: JSON.stringify({
           ...formData,
           website: websiteHoneypot,
+          selectedPlan: selectedPlanInfo ? selectedPlanInfo.name : "",
+          buildPrice: selectedPlanInfo ? selectedPlanInfo.build : "",
+          monthlyPrice: selectedPlanInfo ? selectedPlanInfo.recurring : "",
+          selectedAddOns: resolvedAddons,
+          timestamp: new Date().toISOString(),
           consent: {
             given: true,
             purpose: "To respond to user inquiry submitted via contact form",
@@ -85,6 +264,11 @@ export default function ContactClient() {
         setFormData({ name: "", email: "", message: "" });
         setWebsiteHoneypot("");
         setConsentGiven(false);
+        setSelectedPlanKey(null);
+        setSelectedAddonKeys([]);
+        if (typeof window !== "undefined") {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
       } else {
         setStatus({
           type: "error",
@@ -136,18 +320,7 @@ export default function ContactClient() {
             {
               icon: MailIcon,
               label: "Email",
-              value: "hello@zenlio.io",
-            },
-            {
-              icon: PhoneIcon,
-              label: "Phone",
-              value: "+1 (555) 019-2834",
-            },
-            {
-              icon: MapPinIcon,
-              label: "Address",
-              value: "San Francisco, CA",
-              className: "col-span-1 md:col-span-2 lg:col-span-1",
+              value: "zenlio.agency@gmail.com",
             },
           ]}
         >
@@ -196,6 +369,75 @@ export default function ContactClient() {
               )}
             </div>
 
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">Select Your Plan</label>
+              <select
+                name="selectedPlan"
+                value={getDropdownValue(selectedPlanKey)}
+                onChange={handlePlanChange}
+                className={cn(
+                  "bg-white/5 border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 transition-colors w-full backdrop-blur-md cursor-pointer appearance-none pr-10",
+                  errors.selectedPlan 
+                    ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
+                    : "border-white/10 focus:border-primary/50 focus:ring-primary/50"
+                )}
+                style={{
+                  backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`,
+                  backgroundPosition: "right 1rem center",
+                  backgroundSize: "1.25rem",
+                  backgroundRepeat: "no-repeat"
+                }}
+              >
+                <option value="" className="bg-[#1f1f23] text-neutral-400">Select a plan</option>
+                <option value="core-os" className="bg-[#1f1f23] text-white">Core OS</option>
+                <option value="growth-os" className="bg-[#1f1f23] text-white">Growth OS</option>
+                <option value="authority-os" className="bg-[#1f1f23] text-white">Authority OS</option>
+                <option value="custom" className="bg-[#1f1f23] text-white">Enterprise OS</option>
+              </select>
+              {errors.selectedPlan && (
+                <motion.span initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-xs text-red-400 font-medium ml-1">
+                  {errors.selectedPlan}
+                </motion.span>
+              )}
+            </div>
+
+
+            {selectedPlanInfo && (
+              <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-2.5 text-sm text-neutral-300 backdrop-blur-md">
+                <div className="text-xs font-bold uppercase tracking-wider text-primary">
+                  Your Selection
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 border-b border-white/5 pb-2.5 mb-1">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">Plan</span>
+                    <span className="font-semibold text-white">{selectedPlanInfo.name}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">Build</span>
+                    <span className="font-semibold text-white">{selectedPlanInfo.build}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">Recurring</span>
+                    <span className="font-semibold text-white">{selectedPlanInfo.recurring}</span>
+                  </div>
+                </div>
+                {resolvedAddons.length > 0 && (
+                  <div className="space-y-1.5">
+                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">Add-ons</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                      {resolvedAddons.map((addon, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-xs text-slate-200">
+                          <svg className="w-3.5 h-3.5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>{addon}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">Message</label>
