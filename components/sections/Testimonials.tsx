@@ -114,9 +114,9 @@ function ProjectCard({ project, index, containerRef, setHovered, isReady }: { pr
 
       {/* Text Container Below */}
       <div className="px-2 flex flex-col items-start text-left">
-         <h3 className="text-white font-bold text-xl md:text-2xl tracking-tight flex items-center gap-2">
+         <p className="text-white font-bold text-xl md:text-2xl tracking-tight flex items-center gap-2">
             {project.title} <span className="text-primary opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all">&rarr;</span>
-         </h3>
+         </p>
          <p className="text-neutral-400 text-sm md:text-base mt-1 line-clamp-2">
             {project.description}
          </p>

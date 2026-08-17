@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Cookie Policy & User Consent Preferences | Zenlio",
   description: "Learn how Zenlio uses cookies and local variables to protect your privacy and manage cookie preferences in compliance with data privacy regulations.",
   alternates: {
-    canonical: "https://zenlio.io/cookies",
+    canonical: "https://zenlio.agency/cookies",
   },
   openGraph: {
     title: "Cookie Policy & User Consent Preferences | Zenlio",
     description: "Learn how Zenlio uses cookies and local variables to protect your privacy and manage cookie preferences in compliance with data privacy regulations.",
-    url: "https://zenlio.io/cookies",
+    url: "https://zenlio.agency/cookies",
     type: "website",
   }
 };

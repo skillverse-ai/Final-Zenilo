@@ -51,7 +51,7 @@ Pursuant to Section 8(6) of the Digital Personal Data Protection Act 2023, we, Z
 1. DATA FIDUCIARY DETAILS
 - Name of Entity: Zenlio
 - Address: San Francisco, CA (Website operation globally, catering to users in India)
-- Grievance / Compliance Officer: Mr. Rajesh Kumar (grievance@zenlio.io)
+- Grievance / Compliance Officer: Mr. Rajesh Kumar (grievance@zenlio.agency)
 
 2. DESCRIPTION OF THE BREACH
 - Date and Time of Detection: [Insert Date & Time, e.g., 2026-08-16T14:00:00Z]
@@ -70,7 +70,7 @@ Pursuant to Section 8(6) of the Digital Personal Data Protection Act 2023, we, Z
 5. CONTACT POINT FOR FURTHER DETAILS
 - Name: Mr. Rajesh Kumar
 - Role: Grievance Officer
-- Email: grievance@zenlio.io
+- Email: grievance@zenlio.agency
 ```
 
 ---
@@ -108,12 +108,12 @@ What You Can Do:
 While we have no evidence that your information has been misused, we recommend that you remain vigilant against unsolicited communications, spam, or phishing attempts that reference your inquiry with Zenlio.
 
 Your Rights:
-Under the DPDP Act, you have the right to request the erasure of your contact submission data or withdraw your consent for further communication. To exercise these rights, please visit our Data Rights portal at: https://zenlio.io/data-rights or contact our Grievance Officer.
+Under the DPDP Act, you have the right to request the erasure of your contact submission data or withdraw your consent for further communication. To exercise these rights, please visit our Data Rights portal at: https://zenlio.agency/data-rights or contact our Grievance Officer.
 
 Grievance Redressal:
 If you have any questions or require assistance regarding this incident, you can reach our Grievance Officer:
 - Name: Mr. Rajesh Kumar
-- Email: grievance@zenlio.io
+- Email: grievance@zenlio.agency
 
 Sincerely,
 The Zenlio Team

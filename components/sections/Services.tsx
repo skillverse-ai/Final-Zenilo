@@ -170,7 +170,7 @@ function ServiceCard({
 
       {/* Content Area */}
       <div className="relative p-6 md:p-8 z-20 mt-auto flex flex-col">
-        <h3 className="text-2xl font-bold text-neutral-100 mb-4 transition-all duration-500">{service.title}</h3>
+        <p className="text-2xl font-bold text-neutral-100 mb-4 transition-all duration-500">{service.title}</p>
 
         {service.features.length > 0 && (
           <ul className="space-y-2 mb-6">

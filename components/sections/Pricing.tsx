@@ -33,7 +33,6 @@ const usdPlans = [
       { id: "whatsapp", name: "WhatsApp" },
       { id: "ai-lead", name: "AI Lead Qualification" }
     ],
-    addonNoteUSD: "Any item from the full add-on menu is available, including WhatsApp, AI Lead Qualification, etc.",
   },
   {
     id: "growth-os",
@@ -130,7 +129,6 @@ const inrPlans = [
       { id: "appointment-up", name: "Appointment upgrade" },
       { id: "reviews", name: "Reviews" }
     ],
-    addonNoteINR: "Any item from the India Local add-on menu is available, including WhatsApp, Appointment upgrade, etc.",
   },
   {
     id: "growth-local",
@@ -243,7 +241,7 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
   return (
     <motion.div
       onMouseMove={handleMouseMove}
-      className={`group relative rounded-[24px] p-6 md:p-8 flex flex-col justify-between transition-all duration-500 ease-out ${
+      className={`group relative rounded-[24px] p-6 md:p-8 flex flex-col justify-between transition-all duration-500 ease-out h-full ${
         isRecommended
           ? "bg-[#0a0a0a] border border-primary/30 shadow-[0_0_40px_rgba(204,255,0,0.08)]"
           : "bg-[#0a0a0a] border border-white/5 hover:border-white/10"
@@ -354,16 +352,16 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
               )}
 
               {pkg.addons && (
-                <div className="space-y-0">
+                <div className="space-y-0 relative">
                   <button 
                     onClick={() => setAddonsExpanded(!addonsExpanded)}
-                    className={`w-full flex items-center justify-between text-left group p-3 rounded-[16px] transition-all ${
-                      addonsExpanded || selectedAddons.length > 0 ? "bg-primary/5" : "hover:bg-white/5"
+                    className={`w-full flex items-center justify-between text-left group p-3 rounded-[12px] transition-all border ${
+                      addonsExpanded || selectedAddons.length > 0 ? "bg-primary/5 border-primary/30" : "hover:bg-white/5 border-white/10 bg-[#121212]"
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <Zap className={`w-4 h-4 ${addonsExpanded || selectedAddons.length > 0 ? "text-primary fill-primary/20" : "text-neutral-500 group-hover:text-primary transition-colors"}`} />
-                      <span className={`text-xs font-bold uppercase tracking-wider ${addonsExpanded || selectedAddons.length > 0 ? "text-primary" : "text-neutral-400 group-hover:text-primary transition-colors"}`}>
+                      <span className={`text-xs font-bold uppercase tracking-wider ${addonsExpanded || selectedAddons.length > 0 ? "text-primary" : "text-neutral-400 group-hover:text-white transition-colors"}`}>
                         Customize Add-ons
                       </span>
                       {selectedAddons.length > 0 && (
@@ -372,8 +370,8 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
                         </span>
                       )}
                     </div>
-                    <div className={`p-1.5 rounded-full transition-colors ${
-                      addonsExpanded || selectedAddons.length > 0 ? "bg-primary text-black shadow-[0_0_15px_rgba(204,255,0,0.4)]" : "bg-white/10 text-white group-hover:bg-primary/20 group-hover:text-primary"
+                    <div className={`transition-colors ${
+                      addonsExpanded || selectedAddons.length > 0 ? "text-primary" : "text-white group-hover:text-primary"
                     }`}>
                       <motion.div animate={{ rotate: addonsExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
                         <ChevronDown className="w-4 h-4" />
@@ -383,45 +381,49 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
                   
                   <AnimatePresence>
                     {addonsExpanded && (
-                      <motion.div 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="flex flex-col gap-3 md:gap-2 pt-2 pb-1">
-                          {pkg.addons.map((addon: any) => {
-                            const isSelected = selectedAddons.includes(addon.id);
-                            const addonPrice = "Available";
-                            return (
-                              <label 
-                                key={addon.id} 
-                                className={`flex items-start gap-3 p-4 md:p-3 rounded-[16px] border cursor-pointer transition-colors ${
-                                  isSelected ? "bg-primary/10 border-primary/30" : "bg-black/50 border-white/5 hover:border-white/10"
-                                }`}
-                              >
-                                <div className="mt-0.5">
-                                  <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
-                                    isSelected ? "bg-primary border-primary" : "border-white/30"
-                                  }`}>
-                                    {isSelected && <Check className="w-3.5 h-3.5 text-black" strokeWidth={3} />}
-                                  </div>
-                                </div>
-                                <div className="flex-1 flex justify-between items-center text-sm">
-                                  <span className={isSelected ? "text-white font-semibold text-sm" : "text-neutral-300 text-sm"}>{addon.name}</span>
-                                  <span className="text-neutral-500 text-xs font-medium shrink-0 ml-2">{addonPrice}</span>
-                                </div>
-                                <input 
-                                  type="checkbox" 
-                                  className="hidden" 
-                                  checked={isSelected}
-                                  onChange={() => toggleAddon(addon.id)}
-                                />
-                              </label>
-                            );
-                          })}
-                        </div>
-                      </motion.div>
+                      <>
+                        {/* Invisible overlay for click-outside to close */}
+                        <div 
+                          className="fixed inset-0 z-40" 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setAddonsExpanded(false);
+                          }}
+                        />
+                        
+                        <motion.div 
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute left-0 right-0 top-[110%] z-[60] bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-[12px] shadow-[0_8px_32px_rgba(0,0,0,0.8)] max-h-56 overflow-y-auto custom-scrollbar py-1"
+                        >
+                          <div className="flex flex-col">
+                            {pkg.addons.map((addon: any) => {
+                              const isSelected = selectedAddons.includes(addon.id);
+                              return (
+                                <label 
+                                  key={addon.id} 
+                                  className={`flex items-center justify-between px-4 py-3 cursor-pointer transition-colors ${
+                                    isSelected ? "bg-white/5" : "hover:bg-white/5"
+                                  }`}
+                                >
+                                  <span className={`text-sm truncate ${isSelected ? "text-white font-medium" : "text-neutral-300"}`}>
+                                    {addon.name}
+                                  </span>
+                                  {isSelected && <Check className="w-4 h-4 text-primary shrink-0 ml-3" />}
+                                  <input 
+                                    type="checkbox" 
+                                    className="hidden" 
+                                    checked={isSelected}
+                                    onChange={() => toggleAddon(addon.id)}
+                                  />
+                                </label>
+                              );
+                            })}
+                          </div>
+                        </motion.div>
+                      </>
                     )}
                   </AnimatePresence>
                   {(pkg.addonNoteUSD || pkg.addonNoteINR) && (

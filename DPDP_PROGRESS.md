@@ -22,7 +22,7 @@ This document tracks decisions, assumptions, security gaps identified, and files
 ## 2. Key Decisions & Assumptions
 - **Consent Isolation**: DPDP consent for contact form processing is separate from cookie consent. A dedicated checkbox has been added to the contact form. Consent records are processed server-side and bundled alongside the contact email to maintain records "alongside/near" the submission.
 - **Data Rights Interface**: Data Principals in India have rights to access, correct, erase, and withdraw consent. A dedicated page `/data-rights` is added to facilitate these requests, reusing the Resend integration to email them directly to the compliance team.
-- **Grievance Redressal**: Mr. Rajesh Kumar is nominated as the Grievance Officer, with contact details (`grievance@zenlio.io`) published in both the Privacy Policy and Footer.
+- **Grievance Redressal**: Mr. Rajesh Kumar is nominated as the Grievance Officer, with contact details (`grievance@zenlio.agency`) published in both the Privacy Policy and Footer.
 
 ---
 

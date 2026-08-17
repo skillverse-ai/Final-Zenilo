@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import TextAnimation from "@/components/ui/scroll-text";
 
@@ -34,9 +35,11 @@ export function CTA() {
             classname="text-xl text-black/80 max-w-xl mx-auto font-medium normal-case"
             direction="up"
           />
-          <Button size="lg" className="mt-4 rounded-full px-8 font-semibold bg-black text-white hover:bg-neutral-900 shadow-xl border-none">
-            Book Your Strategy Call
-          </Button>
+          <Link href="/contact" className="inline-block mt-4">
+            <Button size="lg" className="rounded-full px-8 font-semibold bg-black text-white hover:bg-neutral-900 shadow-xl border-none">
+              Contact Us
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -26,27 +26,33 @@ const newOrder = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Zenlio | AI Automation & Web Design Agency",
-    template: "%s | Zenlio",
+    default: "Zenlio - Web Design & Automation Agency",
+    template: "%s - Zenlio",
   },
   description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
-  metadataBase: new URL("https://zenlio.io"),
-  alternates: {
-    canonical: "/",
-  },
+  metadataBase: new URL("https://zenlio.agency"),
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "Zenlio | AI Automation & Web Design Agency",
+    title: "Zenlio - Web Design & Automation Agency",
     description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
-    url: "https://zenlio.io",
+    url: "https://zenlio.agency",
     siteName: "Zenlio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Zenlio Logo",
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zenlio | AI Automation & Web Design Agency",
+    title: "Zenlio - Web Design & Automation Agency",
     description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
+    images: ["https://zenlio.agency/logo.png"],
   }
 };
 
@@ -58,10 +64,10 @@ export default function RootLayout({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://zenlio.io/#organization",
+    "@id": "https://zenlio.agency/#organization",
     "name": "Zenlio",
-    "url": "https://zenlio.io",
-    "logo": "https://zenlio.io/logo.png",
+    "url": "https://zenlio.agency",
+    "logo": "https://zenlio.agency/logo.png",
     "description": "Outcome-focused automation and high-performance web systems for small teams ready to scale without expanding headcount.",
     "email": "zenlio.agency@gmail.com",
     "address": {

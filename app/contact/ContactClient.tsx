@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { ContactCard } from "@/components/ui/contact-card";
-import { MailIcon, ArrowLeft } from "lucide-react";
+import { MailIcon, ArrowLeft, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -161,37 +161,31 @@ export default function ContactClient() {
     return "";
   };
 
-  const handlePlanChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    if (value === "") {
-      setSelectedPlanKey(null);
-      setSelectedAddonKeys([]);
-    } else {
-      setSelectedPlanKey(value);
-      setSelectedAddonKeys([]);
-      
-      const currentPrefill = selectedPlanKey 
-        ? generatePrefilledMessage(
-            planTemplates[selectedPlanKey], 
-            selectedAddonKeys.map(k => planTemplates[selectedPlanKey].addonsMap?.[k] || "").filter(Boolean)
-          ) 
-        : "";
-      if (!formData.message.trim() || formData.message === currentPrefill) {
-        const nextPrefill = generatePrefilledMessage(planTemplates[value], []);
-        setFormData(prev => ({
-          ...prev,
-          message: nextPrefill
-        }));
-      }
+  const handlePlanSelect = (value: string) => {
+    if (value === selectedPlanKey) return; // Prevent unnecessary updates
+
+    setSelectedPlanKey(value);
+    setSelectedAddonKeys([]);
+    
+    const currentPrefill = selectedPlanKey 
+      ? generatePrefilledMessage(
+          planTemplates[selectedPlanKey], 
+          selectedAddonKeys.map(k => planTemplates[selectedPlanKey].addonsMap?.[k] || "").filter(Boolean)
+        ) 
+      : "";
+    if (!formData.message.trim() || formData.message === currentPrefill) {
+      const nextPrefill = generatePrefilledMessage(planTemplates[value], []);
+      setFormData(prev => ({
+        ...prev,
+        message: nextPrefill
+      }));
     }
 
-    if (value !== "") {
-      setErrors(prev => {
-        const next = { ...prev };
-        delete next.selectedPlan;
-        return next;
-      });
-    }
+    setErrors(prev => {
+      const next = { ...prev };
+      delete next.selectedPlan;
+      return next;
+    });
   };
 
   const handleChange = (
@@ -371,29 +365,40 @@ export default function ContactClient() {
 
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">Select Your Plan</label>
-              <select
-                name="selectedPlan"
-                value={getDropdownValue(selectedPlanKey)}
-                onChange={handlePlanChange}
-                className={cn(
-                  "bg-white/5 border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 transition-colors w-full backdrop-blur-md cursor-pointer appearance-none pr-10",
-                  errors.selectedPlan 
-                    ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
-                    : "border-white/10 focus:border-primary/50 focus:ring-primary/50"
-                )}
-                style={{
-                  backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`,
-                  backgroundPosition: "right 1rem center",
-                  backgroundSize: "1.25rem",
-                  backgroundRepeat: "no-repeat"
-                }}
-              >
-                <option value="" className="bg-[#1f1f23] text-neutral-400">Select a plan</option>
-                <option value="core-os" className="bg-[#1f1f23] text-white">Core OS</option>
-                <option value="growth-os" className="bg-[#1f1f23] text-white">Growth OS</option>
-                <option value="authority-os" className="bg-[#1f1f23] text-white">Authority OS</option>
-                <option value="custom" className="bg-[#1f1f23] text-white">Enterprise OS</option>
-              </select>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  { id: 'core-os', label: 'Core OS' },
+                  { id: 'growth-os', label: 'Growth OS' },
+                  { id: 'authority-os', label: 'Authority OS' },
+                  { id: 'custom', label: 'Enterprise OS' }
+                ].map((plan) => {
+                  const isSelected = getDropdownValue(selectedPlanKey) === plan.id;
+                  return (
+                    <button
+                      key={plan.id}
+                      type="button"
+                      onClick={() => handlePlanSelect(plan.id)}
+                      className={cn(
+                        "flex items-center gap-3 p-4 md:p-3 rounded-[16px] border cursor-pointer transition-colors text-left",
+                        isSelected ? "bg-primary/10 border-primary/30" : "bg-black/50 border-white/5 hover:border-white/10"
+                      )}
+                    >
+                      <div className={cn(
+                        "w-5 h-5 rounded-[6px] border flex items-center justify-center shrink-0 transition-colors",
+                        isSelected ? "bg-primary border-primary" : "border-neutral-600 bg-black/50"
+                      )}>
+                        {isSelected && <Check className="w-3.5 h-3.5 text-black" />}
+                      </div>
+                      <div className={cn(
+                        "text-sm md:text-sm font-medium transition-colors",
+                        isSelected ? "text-white" : "text-neutral-300"
+                      )}>
+                        {plan.label}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
               {errors.selectedPlan && (
                 <motion.span initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-xs text-red-400 font-medium ml-1">
                   {errors.selectedPlan}

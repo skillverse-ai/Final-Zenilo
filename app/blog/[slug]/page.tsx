@@ -21,12 +21,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: post.title,
     description: post.snippet,
     alternates: {
-      canonical: `https://zenlio.io/blog/${post.slug}`,
+      canonical: `https://zenlio.agency/blog/${post.slug}`,
     },
     openGraph: {
       title: `${post.title} | Zenlio`,
       description: post.snippet,
-      url: `https://zenlio.io/blog/${post.slug}`,
+      url: `https://zenlio.agency/blog/${post.slug}`,
       type: "article",
       publishedTime: "2026-08-16T12:00:00Z",
       authors: ["Zenlio"],
@@ -49,24 +49,52 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "NewsArticle",
+    "@type": "BlogPosting",
     "headline": post.title,
     "description": post.snippet,
-    "image": "https://zenlio.io/logo.png",
+    "image": "https://zenlio.agency/logo.png",
     "datePublished": "2026-08-16T12:00:00Z",
+    "dateModified": "2026-08-16T12:00:00Z",
     "author": {
       "@type": "Organization",
+      "@id": "https://zenlio.agency/#organization",
       "name": "Zenlio",
-      "url": "https://zenlio.io"
+      "url": "https://zenlio.agency"
     },
     "publisher": {
       "@type": "Organization",
+      "@id": "https://zenlio.agency/#organization",
       "name": "Zenlio",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://zenlio.io/logo.png"
+        "url": "https://zenlio.agency/logo.png"
       }
     }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://zenlio.agency"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://zenlio.agency/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.title,
+        "item": `https://zenlio.agency/blog/${slug}`
+      }
+    ]
   };
 
   const faqSchema = post.faqs && post.faqs.length > 0 ? {
@@ -87,6 +115,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {faqSchema && (
         <script

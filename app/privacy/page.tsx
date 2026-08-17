@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   title: "Privacy Policy & DPDP Data Rights | Zenlio",
   description: "Understand how Zenlio processes your data in compliance with the DPDP Act 2023. Read our privacy policy and manage your data principal rights.",
   alternates: {
-    canonical: "https://zenlio.io/privacy",
+    canonical: "https://zenlio.agency/privacy",
   },
   openGraph: {
     title: "Privacy Policy & DPDP Data Rights | Zenlio",
     description: "Understand how Zenlio processes your data in compliance with the DPDP Act 2023. Read our privacy policy and manage your data principal rights.",
-    url: "https://zenlio.io/privacy",
+    url: "https://zenlio.agency/privacy",
     type: "website",
   }
 };

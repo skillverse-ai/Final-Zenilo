@@ -117,7 +117,7 @@ export function Footer() {
               
               {/* Col 1: Home */}
               <div className="flex flex-col items-start">
-                <h4 className="text-xs font-semibold text-neutral-500 mb-3 tracking-wider">Home</h4>
+                <h3 className="text-xs font-semibold text-neutral-500 mb-3 tracking-wider">Home</h3>
                 <ul className="space-y-2 text-sm">
                   <li><Link href="/#problem" onClick={(e) => handleSmoothScroll(e, "/#problem")} className="hover:text-white text-neutral-400 transition-colors">Problem</Link></li>
                   <li><Link href="/#services" onClick={(e) => handleSmoothScroll(e, "/#services")} className="hover:text-white text-neutral-400 transition-colors">Features</Link></li>
@@ -130,7 +130,7 @@ export function Footer() {
 
               {/* Col 2: About */}
               <div className="flex flex-col items-start">
-                <h4 className="text-xs font-semibold text-neutral-500 mb-3 tracking-wider">About</h4>
+                <h3 className="text-xs font-semibold text-neutral-500 mb-3 tracking-wider">About</h3>
                 <ul className="space-y-2 text-sm">
                   <li><Link href="/blog" className="hover:text-white text-neutral-400 transition-colors">Blog</Link></li>
                 </ul>
@@ -138,7 +138,7 @@ export function Footer() {
 
               {/* Col 3: Contact */}
               <div className="flex flex-col items-start">
-                <h4 className="text-xs font-semibold text-neutral-500 mb-3 tracking-wider">Contact</h4>
+                <h3 className="text-xs font-semibold text-neutral-500 mb-3 tracking-wider">Contact</h3>
                 <ul className="space-y-2 text-sm">
                   <li><Link href="/contact" className="hover:text-white text-neutral-400 transition-colors">Contact Us</Link></li>
                 </ul>
@@ -146,7 +146,7 @@ export function Footer() {
 
               {/* Col 4: Legal */}
               <div className="flex flex-col items-start">
-                <h4 className="text-xs font-semibold text-neutral-500 mb-3 tracking-wider">Legal</h4>
+                <h3 className="text-xs font-semibold text-neutral-500 mb-3 tracking-wider">Legal</h3>
                 <ul className="space-y-2 text-sm">
                   <li><Link href="/privacy" className="hover:text-white text-neutral-400 transition-colors">Privacy Policy</Link></li>
                   <li><Link href="/cookies" className="hover:text-white text-neutral-400 transition-colors">Cookie Policy</Link></li>

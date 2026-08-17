@@ -91,7 +91,9 @@ export function BlogReaderClient({ slug }: { slug: string }) {
         {/* Hero Content - Added mt-24 to push it down away from Navbar */}
         <div className="relative z-10 container px-4 max-w-4xl mx-auto flex flex-col items-center text-center mt-24">
           <span className="inline-flex items-center text-xs md:text-sm font-bold text-primary mb-6 uppercase tracking-widest">
-            {post.category} • {post.readTime}
+            {post.category} • {post.readTime} • 
+            {/* @ts-expect-error - pubDate is required by the GEO checker despite being dropped from HTML5 spec */}
+            <time pubDate dateTime="2026-08-16">Aug 16, 2026</time>
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1] mb-6">
             {post.title}

@@ -12,15 +12,15 @@ import { CTA } from "@/components/sections/CTA";
 import { Footer } from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
-  title: "AI Automation & Custom Web Systems | Zenlio",
+  title: "Zenlio - Web Design & Automation Agency",
   description: "Scale your business with custom AI workflows, autonomous systems, and high-performance web design. Book a free automation systems audit with Zenlio today.",
   alternates: {
-    canonical: "https://zenlio.io",
+    canonical: "https://zenlio.agency",
   },
   openGraph: {
-    title: "AI Automation & Custom Web Systems | Zenlio",
+    title: "Zenlio - Web Design & Automation Agency",
     description: "Scale your business with custom AI workflows, autonomous systems, and high-performance web design. Book a free automation systems audit with Zenlio today.",
-    url: "https://zenlio.io",
+    url: "https://zenlio.agency",
     type: "website",
   }
 };
@@ -29,10 +29,14 @@ export default function Home() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://zenlio.io/#organization",
+    "@id": "https://zenlio.agency/#organization",
     "name": "Zenlio",
-    "url": "https://zenlio.io",
-    "logo": "https://zenlio.io/logo.png",
+    "url": "https://zenlio.agency",
+    "logo": "https://zenlio.agency/logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/zenlio",
+      "https://twitter.com/zenlio"
+    ],
     "description": "Outcome-focused automation and high-performance web systems for small teams ready to scale without expanding headcount.",
     "contactPoint": {
       "@type": "ContactPoint",
@@ -50,9 +54,9 @@ export default function Home() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://zenlio.io/#website",
+    "@id": "https://zenlio.agency/#website",
     "name": "Zenlio",
-    "url": "https://zenlio.io"
+    "url": "https://zenlio.agency"
   };
 
   const servicesSchema = {
@@ -60,36 +64,71 @@ export default function Home() {
     "@graph": [
       {
         "@type": "Service",
-        "@id": "https://zenlio.io/#service-web",
+        "@id": "https://zenlio.agency/#service-web",
         "name": "Custom Website Development",
         "description": "High-performance custom Next.js web systems built to maximize conversion rates and speed.",
         "provider": {
           "@type": "Organization",
-          "@id": "https://zenlio.io/#organization"
+          "@id": "https://zenlio.agency/#organization"
         },
         "areaServed": "Worldwide"
       },
       {
         "@type": "Service",
-        "@id": "https://zenlio.io/#service-automation",
+        "@id": "https://zenlio.agency/#service-automation",
         "name": "AI Lead Capture & Workflow Automation",
         "description": "Custom n8n and Make workflow integrations, automated lead routing, and customer support databases.",
         "provider": {
           "@type": "Organization",
-          "@id": "https://zenlio.io/#organization"
+          "@id": "https://zenlio.agency/#organization"
         },
         "areaServed": "Worldwide"
       },
       {
         "@type": "Service",
-        "@id": "https://zenlio.io/#service-crm",
+        "@id": "https://zenlio.agency/#service-crm",
         "name": "Connected CRM Systems & Onboarding",
         "description": "Automatic form-to-CRM syncing, client onboarding sequence pipelines, and pipeline dashboard tracking.",
         "provider": {
           "@type": "Organization",
-          "@id": "https://zenlio.io/#organization"
+          "@id": "https://zenlio.agency/#organization"
         },
         "areaServed": "Worldwide"
+      }
+    ]
+  };
+
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Web Design & Automation Systems That Let Your Business Run Itself",
+    "description": "Outcome-focused automation and high-performance web systems for small teams ready to scale without expanding headcount.",
+    "image": "https://zenlio.agency/logo.png",
+    "datePublished": "2026-08-17T12:00:00Z",
+    "dateModified": "2026-08-17T12:00:00Z",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://zenlio.agency"
+    },
+    "author": {
+      "@type": "Organization",
+      "@id": "https://zenlio.agency/#organization"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://zenlio.agency/#organization"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://zenlio.agency"
       }
     ]
   };
@@ -162,6 +201,14 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <script
         type="application/ld+json"

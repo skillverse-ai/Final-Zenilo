@@ -20,7 +20,11 @@ const problems = [
   },
   {
     title: "Manual Bottlenecks",
-    description: "Growth is constrained when every lead and follow-up requires your direct involvement.",
+    description: (
+      <>
+        Growth is constrained when every lead and follow-up requires your direct involvement. According to <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">HBR</a>, manual delays drastically reduce conversion.
+      </>
+    ),
     className: "md:col-span-1 min-h-[250px] lg:min-h-[280px]",
     visual: (
       <img 

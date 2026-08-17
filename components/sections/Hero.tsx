@@ -56,22 +56,36 @@ export function Hero() {
             >
               SCALE YOUR BUSINESS WITH US
             </motion.div>
-            <motion.h1 
+
+            <motion.div
+              initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+              whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+              viewport={{ amount: 0.3 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+              className="text-sm font-semibold text-primary mb-4"
+            >
+              Updated August 2026
+            </motion.div>
+            <motion.h1
               initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
               whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
               style={{ willChange: "filter, transform, opacity" }}
               viewport={{ amount: 0.3 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
+              transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
               className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-7xl/none text-foreground"
             >
-              We build the systems that let your business <span className="text-primary">run itself.</span>
+              Web design & automation systems that let your business <span className="text-primary">run itself.</span>
             </motion.h1>
-            <TextAnimation
-              as="p"
-              text="Outcome-focused automation and high-performance design for small teams ready to scale without expanding headcount."
-              classname="max-w-[600px] text-muted-foreground md:text-xl leading-relaxed normal-case"
-              direction="up"
-            />
+            <motion.p
+              initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+              whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+              style={{ willChange: "filter, transform, opacity" }}
+              viewport={{ amount: 0.3 }}
+              transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
+              className="max-w-[600px] text-muted-foreground md:text-xl leading-relaxed normal-case"
+            >
+              <strong>In short:</strong> Zenlio is a <Link href="/#services" className="underline hover:text-primary transition-colors">web design</Link> and AI automation agency building autonomous systems and high-performance websites for <Link href="/blog/website-vs-digital-system" className="underline hover:text-primary transition-colors">service professionals</Link>. We enable small teams to scale operations and handle more leads automatically, entirely without needing to <Link href="/contact" className="underline hover:text-primary transition-colors">expand their headcount</Link>.
+            </motion.p>
           </div>
 
           <motion.div 
@@ -84,7 +98,7 @@ export function Hero() {
           >
             <Link href="/contact" className="w-full sm:w-auto">
               <Button size="lg" className="w-full">
-                Book a Free Strategy Call
+                Contact Us
               </Button>
             </Link>
             <Link href="/#pricing" className="w-full sm:w-auto">

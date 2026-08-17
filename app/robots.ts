@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://zenlio.io';
+  const baseUrl = 'https://zenlio.agency';
   return {
     rules: [
       {

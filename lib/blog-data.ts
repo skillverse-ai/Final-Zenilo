@@ -22,7 +22,7 @@ export const blogPosts = [
 
 <h2>What is the actual cost of operating a website without automation?</h2>
 <p><strong>Direct Answer:</strong> Operating a website without backend automation costs your business valuable revenue by delaying follow-up times and letting high-intent leads go cold. Without automated systems, response times rely entirely on manual effort, leading to missed opportunities and inconsistent client onboarding that directly impacts your bottom line.</p>
-<p>Every hour a lead waits for a response, your odds of converting them drop. Manual follow-up means inconsistent follow-up — some leads get a same-day reply, others get missed entirely because your team was busy with something else. None of that shows up as a line item anywhere, but it's the quiet reason marketing spend doesn't translate into revenue the way it should.</p>
+<p>Every hour a lead waits for a response, your odds of converting them drop. According to a <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Harvard Business Review study</a>, waiting just one hour to respond to an online lead decreases your chances of qualifying them by 7 times compared to responding within an hour. Manual follow-up means inconsistent follow-up — some leads get a same-day reply, others get missed entirely because your team was busy with something else. None of that shows up as a line item anywhere, but it's the quiet reason marketing spend doesn't translate into revenue the way it should.</p>
 
 <p>Break it down and the pattern is usually the same across industries:</p>
 <ul>

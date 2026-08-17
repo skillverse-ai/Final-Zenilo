@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { blogPosts } from '@/lib/blog-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://zenlio.io';
+  const baseUrl = 'https://zenlio.agency';
 
   // Base routes
   const baseRoutes = ['', '/blog', '/contact', '/privacy', '/cookies', '/data-rights'].map((route) => ({

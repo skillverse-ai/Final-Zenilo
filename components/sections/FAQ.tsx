@@ -87,23 +87,25 @@ export function FAQ() {
 
                 return (
                   <div key={index} className="border-b border-white/5 group">
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className={`w-full flex items-center justify-between py-8 text-left transition-colors duration-300 ${
-                        isOpen ? "text-primary" : "text-white hover:text-primary/80"
-                      }`}
-                    >
-                      <span className="text-lg md:text-xl font-semibold pr-8 leading-snug">
-                        {faq.question}
-                      </span>
-                      <div className={`p-2 rounded-full border transition-all duration-300 shrink-0 ${
-                        isOpen ? "border-primary bg-primary/10 text-primary" : "border-white/10 text-white group-hover:border-primary/50 group-hover:text-primary group-hover:bg-primary/5"
-                      }`}>
-                        <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.3, ease: "easeInOut" }}>
-                          <Plus className="w-5 h-5" />
-                        </motion.div>
-                      </div>
-                    </button>
+                    <h3 className="w-full m-0 p-0">
+                      <button
+                        onClick={() => toggleFaq(index)}
+                        className={`w-full flex items-center justify-between py-8 text-left transition-colors duration-300 ${
+                          isOpen ? "text-primary" : "text-white hover:text-primary/80"
+                        }`}
+                      >
+                        <span className="text-lg md:text-xl font-semibold pr-8 leading-snug">
+                          {faq.question}
+                        </span>
+                        <div className={`p-2 rounded-full border transition-all duration-300 shrink-0 ${
+                          isOpen ? "border-primary bg-primary/10 text-primary" : "border-white/10 text-white group-hover:border-primary/50 group-hover:text-primary group-hover:bg-primary/5"
+                        }`}>
+                          <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.3, ease: "easeInOut" }}>
+                            <Plus className="w-5 h-5" />
+                          </motion.div>
+                        </div>
+                      </button>
+                    </h3>
                     
                     <AnimatePresence>
                       {isOpen && (

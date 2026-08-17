@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: "DPDP Data Rights Request Portal | Zenlio",
   description: "Manage your privacy choices or exercise your statutory data principal rights (access, erasure, correction) under the DPDP Act 2023 with Zenlio.",
   alternates: {
-    canonical: "https://zenlio.io/data-rights",
+    canonical: "https://zenlio.agency/data-rights",
   },
   openGraph: {
     title: "DPDP Data Rights Request Portal | Zenlio",
     description: "Manage your privacy choices or exercise your statutory data principal rights (access, erasure, correction) under the DPDP Act 2023 with Zenlio.",
-    url: "https://zenlio.io/data-rights",
+    url: "https://zenlio.agency/data-rights",
     type: "website",
   }
 };

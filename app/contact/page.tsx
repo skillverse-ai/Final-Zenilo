@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: "Book a Free AI Strategy Call & Systems Audit | Zenlio",
   description: "Get in touch with Zenlio to build custom websites, CRM integrations, and n8n workflow automations. Book your free systems audit today.",
   alternates: {
-    canonical: "https://zenlio.io/contact",
+    canonical: "https://zenlio.agency/contact",
   },
   openGraph: {
     title: "Book a Free AI Strategy Call & Systems Audit | Zenlio",
     description: "Get in touch with Zenlio to build custom websites, CRM integrations, and n8n workflow automations. Book your free systems audit today.",
-    url: "https://zenlio.io/contact",
+    url: "https://zenlio.agency/contact",
     type: "website",
   }
 };
