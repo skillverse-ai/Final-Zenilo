@@ -18,6 +18,9 @@
   - **Fix (Scroll & Style):** Tweaked `.custom-scrollbar` to perfectly match the sleek dark design (4px thin, transparent track, faint thumb). Updated the dropdown container background to `bg-[#0a0a0a]/95 backdrop-blur-xl` to perfectly match the Zenlio site aesthetic instead of a flat grey box.
   - **Fix (Content):** Removed the extra `addonNoteUSD` / `addonNoteINR` text that was lingering under the Core OS plan.
   - **Verification:** Ran `npm run build` successfully. The layout mimics standard select dropdown components perfectly and matches the site's dark theme.
+- **File:** `.npmrc`
+  - **Change:** Created this configuration file and added `legacy-peer-deps=true`.
+  - **Verification:** Pushed directly to `main` on GitHub. This forces Vercel's NPM execution to bypass strict peer-dependency checks and successfully install dependencies (like `react-lenis` and `@studio-freight/hamo`), fixing the `ERESOLVE` React 19 conflict blocking the deployment.
 
 ## Previous Session (2026-08-17). Architecture Check
 **Finding:** The homepage does **not** contain a large FAQ/blog-style content block. It consists of lean sections (Hero, TrustStrip, Problem, Solution, Services, Testimonials, Pricing, FAQ, OrbitingGlobe, CTA). 
