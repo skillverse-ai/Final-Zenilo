@@ -397,6 +397,8 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
                           exit={{ opacity: 0, y: -5 }}
                           transition={{ duration: 0.15 }}
                           className="absolute left-0 right-0 top-[110%] z-[60] bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-[12px] shadow-[0_8px_32px_rgba(0,0,0,0.8)] max-h-56 overflow-y-auto custom-scrollbar py-1"
+                          data-lenis-prevent="true"
+                          data-lenis-prevent-wheel="true"
                         >
                           <div className="flex flex-col">
                             {pkg.addons.map((addon: any) => {
