@@ -185,11 +185,6 @@ function ServiceCard({
           </ul>
         )}
 
-        {service.features.length > 0 && (
-          <div className="inline-flex items-center text-xs font-bold tracking-widest text-primary uppercase group/button hover:text-white transition-colors cursor-pointer w-fit">
-            EXPLORE SPECS <AnimatedArrow className="ml-2" />
-          </div>
-        )}
       </div>
     </motion.div>
   );
