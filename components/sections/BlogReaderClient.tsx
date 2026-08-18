@@ -109,7 +109,7 @@ export function BlogReaderClient({ slug }: { slug: string }) {
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 items-start">
           
           {/* Left Sidebar TOC - Minimalist Typography UI */}
-          <aside className="hidden lg:block sticky top-[120px] pr-8 pb-12 max-h-[calc(100vh-140px)] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <aside className="hidden lg:block sticky top-[120px] pr-8 pb-12 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar" data-lenis-prevent="true" data-lenis-prevent-wheel="true">
             <h4 className="text-[12px] font-bold text-white uppercase tracking-[0.15em] mb-10">
               TABLE OF CONTENTS
             </h4>
