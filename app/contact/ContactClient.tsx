@@ -336,7 +336,7 @@ export default function ContactClient() {
                 onChange={handleChange}
                 placeholder="John Doe"
                 className={cn(
-                  "bg-white/5 border rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-colors w-full backdrop-blur-md",
+                  "bg-white/5 border rounded-[12px] px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-colors w-full backdrop-blur-md",
                   errors.name 
                     ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
                     : "border-white/10 focus:border-primary/50 focus:ring-primary/50"
@@ -358,7 +358,7 @@ export default function ContactClient() {
                 onChange={handleChange}
                 placeholder="john@example.com"
                 className={cn(
-                  "bg-white/5 border rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-colors w-full backdrop-blur-md",
+                  "bg-white/5 border rounded-[12px] px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-colors w-full backdrop-blur-md",
                   errors.email 
                     ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
                     : "border-white/10 focus:border-primary/50 focus:ring-primary/50"
@@ -449,7 +449,7 @@ export default function ContactClient() {
 
 
             {selectedPlanInfo && (
-              <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-2.5 text-sm text-neutral-300 backdrop-blur-md">
+              <div className="bg-white/5 border border-white/10 rounded-[12px] p-4 space-y-2.5 text-sm text-neutral-300 backdrop-blur-md">
                 <div className="text-xs font-bold uppercase tracking-wider text-primary">
                   Your Selection
                 </div>
@@ -494,7 +494,7 @@ export default function ContactClient() {
                 rows={4}
                 placeholder="How can we help systemize your growth?"
                 className={cn(
-                  "bg-white/5 border rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-colors w-full h-24 resize-none backdrop-blur-md",
+                  "bg-white/5 border rounded-[12px] px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-colors w-full h-24 resize-none backdrop-blur-md",
                   errors.message 
                     ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
                     : "border-white/10 focus:border-primary/50 focus:ring-primary/50"
