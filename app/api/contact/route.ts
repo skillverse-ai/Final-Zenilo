@@ -99,7 +99,7 @@ Selected Add-ons: ${sanitizedAddons.length > 0 ? sanitizedAddons.join(', ') : 'N
     // 2. Environment Configuration
     const apiKey = process.env.RESEND_API_KEY;
     const contactEmail = process.env.CONTACT_EMAIL || 'zenlio.agency@gmail.com';
-    const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+    const senderEmail = process.env.SENDER_EMAIL || 'Zenlio <no-reply@zenlio.agency>';
 
     if (!apiKey) {
       const errorMsg = 'RESEND_API_KEY is not defined in environment variables';
@@ -156,28 +156,7 @@ ${submissionDate}
       replyTo: sanitizedEmail,
     });
 
-    // Sandbox fallback: If Resend restricts sending to the registered account email only
-    if (response.error) {
-      const errorMsg = response.error.message;
-      if (
-        response.error.name === 'validation_error' &&
-        errorMsg.includes('You can only send testing emails to your own email address')
-      ) {
-        const match = errorMsg.match(/\(([^)]+)\)/);
-        if (match && match[1]) {
-          const fallbackEmail = match[1];
-          console.warn(`[Resend Sandbox Fallback]: Re-routing email to registered address: ${fallbackEmail}`);
-          
-          response = await resend.emails.send({
-            from: 'onboarding@resend.dev', // MUST use sandbox sender to bypass unverified domain error
-            to: fallbackEmail,
-            subject: 'New Contact Form Submission — Zenlio (Sandbox Mode)',
-            text: emailText,
-            replyTo: sanitizedEmail,
-          });
-        }
-      }
-    }
+
 
     if (response.error) {
       console.error("CONTACT FORM ERROR:", response.error);
