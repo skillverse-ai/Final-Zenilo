@@ -417,24 +417,26 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -5 }}
                           transition={{ duration: 0.15 }}
-                          className="absolute left-0 right-0 top-[110%] z-[60] bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-[12px] shadow-[0_8px_32px_rgba(0,0,0,0.8)] max-h-56 overflow-y-auto custom-scrollbar py-1"
+                          className="absolute left-0 right-0 top-[110%] z-[60] bg-[#0a0a0a]/80 backdrop-blur-2xl border border-white/10 rounded-[12px] shadow-[0_16px_40px_rgba(0,0,0,0.9)] max-h-60 overflow-y-auto custom-scrollbar p-1.5"
                           data-lenis-prevent="true"
                           data-lenis-prevent-wheel="true"
                         >
-                          <div className="flex flex-col">
+                          <div className="flex flex-col gap-0.5">
                             {pkg.addons.map((addon: any) => {
                               const isSelected = selectedAddons.includes(addon.id);
                               return (
                                 <label 
                                   key={addon.id} 
-                                  className={`flex items-center justify-between px-4 py-3 cursor-pointer transition-colors ${
-                                    isSelected ? "bg-white/5" : "hover:bg-white/5"
+                                  className={`flex items-center justify-between px-3 py-2.5 rounded-md cursor-pointer transition-all duration-200 ${
+                                    isSelected 
+                                      ? "bg-[#ccff00]/10 text-[#ccff00]" 
+                                      : "text-neutral-300 hover:bg-white/5 hover:text-white"
                                   }`}
                                 >
-                                  <span className={`text-sm truncate ${isSelected ? "text-white font-medium" : "text-neutral-300"}`}>
+                                  <span className="text-[13px] font-medium truncate">
                                     {addon.name}
                                   </span>
-                                  {isSelected && <Check className="w-4 h-4 text-primary shrink-0 ml-3" />}
+                                  {isSelected && <Check className="w-4 h-4 text-[#ccff00] shrink-0 ml-3" />}
                                   <input 
                                     type="checkbox" 
                                     className="hidden" 
