@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { ContactCard } from "@/components/ui/contact-card";
-import { MailIcon, ArrowLeft, Check } from "lucide-react";
+import { MailIcon, ArrowLeft, Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -121,6 +121,14 @@ export default function ContactClient() {
 
   const [selectedPlanKey, setSelectedPlanKey] = useState<string | null>(null);
   const [selectedAddonKeys, setSelectedAddonKeys] = useState<string[]>([]);
+  const [planDropdownOpen, setPlanDropdownOpen] = useState(false);
+
+  const planOptions = [
+    { id: 'core-os', label: 'Core OS' },
+    { id: 'growth-os', label: 'Growth OS' },
+    { id: 'authority-os', label: 'Authority OS' },
+    { id: 'custom', label: 'Zenlio Enterprise OS' }
+  ];
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -363,42 +371,75 @@ export default function ContactClient() {
               )}
             </div>
 
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1.5 relative z-50">
               <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">Select Your Plan</label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  { id: 'core-os', label: 'Core OS' },
-                  { id: 'growth-os', label: 'Growth OS' },
-                  { id: 'authority-os', label: 'Authority OS' },
-                  { id: 'custom', label: 'Enterprise OS' }
-                ].map((plan) => {
-                  const isSelected = getDropdownValue(selectedPlanKey) === plan.id;
-                  return (
-                    <button
-                      key={plan.id}
-                      type="button"
-                      onClick={() => handlePlanSelect(plan.id)}
-                      className={cn(
-                        "flex items-center gap-3 p-4 md:p-3 rounded-[16px] border cursor-pointer transition-colors text-left",
-                        isSelected ? "bg-primary/10 border-primary/30" : "bg-black/50 border-white/5 hover:border-white/10"
-                      )}
+              
+              <button 
+                type="button"
+                onClick={() => setPlanDropdownOpen(!planDropdownOpen)}
+                className={`w-full flex items-center justify-between text-left group p-3.5 rounded-[12px] transition-all border ${
+                  planDropdownOpen || selectedPlanKey ? "bg-primary/5 border-primary/30" : "bg-white/5 border-white/10 hover:border-white/20"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <span className={`text-[13px] font-medium ${selectedPlanKey ? "text-white" : "text-neutral-400"}`}>
+                    {selectedPlanKey ? planOptions.find(p => p.id === getDropdownValue(selectedPlanKey))?.label || "Select Plan" : "Select a Plan"}
+                  </span>
+                </div>
+                <div className={`transition-colors ${planDropdownOpen ? "text-primary" : "text-neutral-500"}`}>
+                  <motion.div animate={{ rotate: planDropdownOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                    <ChevronDown className="w-4 h-4" />
+                  </motion.div>
+                </div>
+              </button>
+
+              <AnimatePresence>
+                {planDropdownOpen && (
+                  <>
+                    <div 
+                      className="fixed inset-0 z-40" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setPlanDropdownOpen(false);
+                      }}
+                    />
+                    <motion.div 
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute left-0 right-0 top-[calc(100%+8px)] z-[60] bg-[#0a0a0a]/80 backdrop-blur-2xl border border-white/10 rounded-[12px] shadow-[0_16px_40px_rgba(0,0,0,0.9)] p-1.5"
                     >
-                      <div className={cn(
-                        "w-5 h-5 rounded-[6px] border flex items-center justify-center shrink-0 transition-colors",
-                        isSelected ? "bg-primary border-primary" : "border-neutral-600 bg-black/50"
-                      )}>
-                        {isSelected && <Check className="w-3.5 h-3.5 text-black" />}
+                      <div className="flex flex-col gap-0.5">
+                        {planOptions.map((plan) => {
+                          const isSelected = getDropdownValue(selectedPlanKey) === plan.id;
+                          return (
+                            <button
+                              key={plan.id}
+                              type="button"
+                              onClick={() => {
+                                handlePlanSelect(plan.id);
+                                setPlanDropdownOpen(false);
+                              }}
+                              className={`flex items-center justify-between px-3 py-2.5 rounded-md cursor-pointer transition-all duration-200 text-left ${
+                                isSelected 
+                                  ? "bg-[#ccff00]/10 text-[#ccff00]" 
+                                  : "text-neutral-300 hover:bg-white/5 hover:text-white"
+                              }`}
+                            >
+                              <span className="text-[13px] font-medium truncate">
+                                {plan.label}
+                              </span>
+                              {isSelected && <Check className="w-4 h-4 text-[#ccff00] shrink-0 ml-3" />}
+                            </button>
+                          );
+                        })}
                       </div>
-                      <div className={cn(
-                        "text-sm md:text-sm font-medium transition-colors",
-                        isSelected ? "text-white" : "text-neutral-300"
-                      )}>
-                        {plan.label}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+
               {errors.selectedPlan && (
                 <motion.span initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-xs text-red-400 font-medium ml-1">
                   {errors.selectedPlan}
