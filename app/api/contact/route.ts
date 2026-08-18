@@ -98,7 +98,8 @@ Selected Add-ons: ${sanitizedAddons.length > 0 ? sanitizedAddons.join(', ') : 'N
 
     // 2. Environment Configuration
     const apiKey = process.env.RESEND_API_KEY;
-    const contactEmail = process.env.CONTACT_EMAIL || 'zenlio.agency@gmail.com';
+    const contactEmailRaw = process.env.CONTACT_EMAIL || 'zenlio.agency@gmail.com';
+    const contactEmail = contactEmailRaw.split(',').map(email => email.trim()).filter(Boolean);
     const senderEmail = process.env.SENDER_EMAIL || 'Zenlio <no-reply@zenlio.agency>';
 
     if (!apiKey) {
