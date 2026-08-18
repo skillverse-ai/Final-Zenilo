@@ -83,7 +83,7 @@ function ContactInfo({
       <div className="min-w-0 flex-1">
         <p className="font-semibold text-[13px] uppercase tracking-wider text-neutral-300">{label}</p>
         {label.toLowerCase() === "email" ? (
-          <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${value}`} target="_blank" rel="noopener noreferrer" className="text-white text-sm font-medium mt-1 hover:text-primary transition-colors block break-all">
+          <a href={`mailto:${value}`} className="text-white text-sm font-medium mt-1 hover:text-primary transition-colors block break-all">
             {value}
           </a>
         ) : (
