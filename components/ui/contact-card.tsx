@@ -76,18 +76,18 @@ function ContactInfo({
   ...props
 }: ContactInfoProps) {
   return (
-    <div className={cn("flex items-center gap-3.5 py-2.5 px-4 rounded-full bg-neutral-900/40 border border-white/5", className)} {...props}>
-      <div className="bg-primary/10 border border-primary/20 rounded-full p-2.5 text-primary">
+    <div className={cn("flex items-center gap-3.5 py-3 px-4 rounded-2xl bg-neutral-900/40 border border-white/5", className)} {...props}>
+      <div className="bg-primary/10 border border-primary/20 rounded-full p-2.5 text-primary shrink-0">
         <Icon className="h-5 w-5" />
       </div>
-      <div>
+      <div className="min-w-0 overflow-hidden">
         <p className="font-semibold text-sm text-neutral-200">{label}</p>
         {label.toLowerCase() === "email" ? (
-          <a href={`mailto:${value}`} className="text-neutral-400 text-xs mt-0.5 hover:text-primary underline transition-colors">
+          <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${value}`} target="_blank" rel="noopener noreferrer" className="text-neutral-400 text-xs mt-0.5 hover:text-primary transition-colors block truncate">
             {value}
           </a>
         ) : (
-          <p className="text-neutral-400 text-xs mt-0.5">{value}</p>
+          <p className="text-neutral-400 text-xs mt-0.5 truncate">{value}</p>
         )}
       </div>
     </div>
