@@ -178,9 +178,11 @@ export function Footer() {
                  <img src="/footer-logo.png" alt="Zenlio brand emblem" className="w-full h-full object-cover scale-[1.05]" />
               </div>
             </div>
-            <p className="text-xs text-neutral-500">
-              © {new Date().getFullYear()} Zenlio. All rights reserved.
-            </p>
+            <div className="flex flex-col sm:flex-row items-center sm:gap-2 text-xs text-neutral-500 gap-1 text-center sm:text-left">
+              <span>© {new Date().getFullYear()} Zenlio. All rights reserved.</span>
+              <span className="hidden sm:inline">•</span>
+              <span>Updated: August 2026</span>
+            </div>
           </div>
 
         </div>
