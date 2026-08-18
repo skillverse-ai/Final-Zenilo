@@ -30,8 +30,18 @@ const usdPlans = [
       "Website Intelligence Report — Lite (free first 3 months)",
     ],
     addons: [
-      { id: "whatsapp", name: "WhatsApp" },
-      { id: "ai-lead", name: "AI Lead Qualification" }
+      { id: "whatsapp", name: "WhatsApp Instant Response" },
+      { id: "lead-follow-up", name: "Lead Follow-Up Sequence" },
+      { id: "review-engine", name: "Review & Testimonial Engine" },
+      { id: "ai-lead", name: "AI Lead Qualification" },
+      { id: "ai-router", name: "AI Inquiry Router" },
+      { id: "abandoned-form", name: "Abandoned Form Recovery" },
+      { id: "personalized-exp", name: "Personalized Website Experience" },
+      { id: "sales-agent", name: "AI Website Sales Agent" },
+      { id: "quote-gen", name: "Dynamic Quote Generator" },
+      { id: "onboarding", name: "Customer Onboarding Automation" },
+      { id: "ai-support", name: "AI Support + Human Handoff (Custom quote)" },
+      { id: "lost-lead", name: "Lost Lead Reactivation" }
     ],
   },
   {
@@ -66,7 +76,7 @@ const usdPlans = [
       { id: "sales-agent", name: "AI Website Sales Agent" },
       { id: "quote-gen", name: "Dynamic Quote Generator" },
       { id: "onboarding", name: "Customer Onboarding Automation" },
-      { id: "support-handoff", name: "AI Support + Handoff" },
+      { id: "ai-support", name: "AI Support + Human Handoff (Custom quote)" },
       { id: "lost-lead", name: "Lost Lead Reactivation" }
     ]
   },
@@ -98,8 +108,11 @@ const usdPlans = [
       "Premium automation FREE (Choose 1): Customer Onboarding Automation",
     ],
     addons: [
-      { id: "remaining-premium", name: "Any remaining premium automation" },
-      { id: "lost-lead-campaigns", name: "Lost Lead Reactivation campaigns" }
+      { id: "sales-agent", name: "AI Website Sales Agent" },
+      { id: "quote-gen", name: "Dynamic Quote Generator" },
+      { id: "onboarding", name: "Customer Onboarding Automation" },
+      { id: "ai-support", name: "AI Support + Human Handoff" },
+      { id: "lost-lead", name: "Lost Lead Reactivation" }
     ]
   }
 ];
