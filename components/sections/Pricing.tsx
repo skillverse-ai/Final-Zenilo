@@ -227,10 +227,10 @@ const customPlan = {
 };
 
 
-function PricingCard({ pkg, index, currency }: { pkg: any, index: number, currency: "USD" | "INR" }) {
+function PricingCard({ pkg, index, currency, openDropdownId, setOpenDropdownId }: { pkg: any, index: number, currency: "USD" | "INR", openDropdownId: string | null, setOpenDropdownId: (id: string | null) => void }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
-  const [addonsExpanded, setAddonsExpanded] = useState(false);
+  const addonsExpanded = openDropdownId === pkg.id;
   const isRecommended = pkg.recommended;
 
   const visibleFeatures = isExpanded
@@ -375,7 +375,7 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
               {pkg.addons && (
                 <div className="space-y-0 relative">
                   <button 
-                    onClick={() => setAddonsExpanded(!addonsExpanded)}
+                    onClick={() => setOpenDropdownId(addonsExpanded ? null : pkg.id)}
                     className={`w-full flex items-center justify-between text-left group p-3 rounded-[12px] transition-all border ${
                       addonsExpanded || selectedAddons.length > 0 ? "bg-primary/5 border-primary/30" : "hover:bg-white/5 border-white/10 bg-[#121212]"
                     }`}
@@ -408,7 +408,7 @@ function PricingCard({ pkg, index, currency }: { pkg: any, index: number, curren
                           className="fixed inset-0 z-40" 
                           onClick={(e) => {
                             e.stopPropagation();
-                            setAddonsExpanded(false);
+                            setOpenDropdownId(null);
                           }}
                         />
                         
@@ -563,6 +563,7 @@ function CustomBanner({ currency }: { currency: "USD" | "INR" }) {
 
 export function Pricing() {
   const [currency, setCurrency] = useState<"USD" | "INR">("USD");
+  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
   return (
     <section id="pricing" className="w-full bg-[#0c0c0c] py-24 relative border-b border-white/5">
@@ -616,8 +617,8 @@ export function Pricing() {
         {/* 3-Tier Core Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8 mb-12">
           {(currency === "USD" ? usdPlans : inrPlans).map((pkg, idx) => (
-            <div key={pkg.id} className={idx === 2 ? "md:col-span-2 lg:col-span-1" : ""}>
-              <PricingCard pkg={pkg} index={idx} currency={currency} />
+            <div key={pkg.id} className={`${idx === 2 ? "md:col-span-2 lg:col-span-1" : ""} relative ${openDropdownId === pkg.id ? "z-50" : "z-10"}`}>
+              <PricingCard pkg={pkg} index={idx} currency={currency} openDropdownId={openDropdownId} setOpenDropdownId={setOpenDropdownId} />
             </div>
           ))}
         </div>
