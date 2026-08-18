@@ -57,15 +57,6 @@ export function Hero() {
               SCALE YOUR BUSINESS WITH US
             </motion.div>
 
-            <motion.div
-              initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
-              whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-              viewport={{ amount: 0.3 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="text-sm font-semibold text-primary mb-4"
-            >
-              Updated August 2026
-            </motion.div>
             <motion.h1
               initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
               whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
@@ -84,7 +75,7 @@ export function Hero() {
               transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
               className="max-w-[600px] text-muted-foreground md:text-xl leading-relaxed normal-case"
             >
-              <strong>In short:</strong> Zenlio is a <Link href="/#services" className="underline hover:text-primary transition-colors">web design</Link> and AI automation agency building autonomous systems and high-performance websites for <Link href="/blog/website-vs-digital-system" className="underline hover:text-primary transition-colors">service professionals</Link>. We enable small teams to scale operations and handle more leads automatically, entirely without needing to <Link href="/contact" className="underline hover:text-primary transition-colors">expand their headcount</Link>.
+              <strong>In short:</strong> Zenlio is a <Link href="/#services" className="underline hover:text-primary transition-colors">web design</Link> and AI automation agency building high-performance websites and autonomous systems for <Link href="/blog/website-vs-digital-system" className="underline hover:text-primary transition-colors">service professionals</Link>. We help you scale operations and handle leads automatically—without <Link href="/contact" className="underline hover:text-primary transition-colors">expanding your headcount</Link>.
             </motion.p>
           </div>
 
