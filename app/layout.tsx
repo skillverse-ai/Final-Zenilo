@@ -69,7 +69,7 @@ export default function RootLayout({
     "url": "https://zenlio.agency",
     "logo": "https://zenlio.agency/logo.png",
     "description": "Outcome-focused automation and high-performance web systems for small teams ready to scale without expanding headcount.",
-    "email": "zenlio.agency@gmail.com",
+    "email": "contact@zenlio.agency",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Hyderabad",

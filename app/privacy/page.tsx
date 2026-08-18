@@ -73,7 +73,7 @@ export default function PrivacyPage() {
               </p>
               <ul className="list-disc pl-6 space-y-2 text-xs text-neutral-400">
                 <li><strong>Purpose</strong>: To respond to your service inquiries, coordinate consultations, and communicate about our offerings.</li>
-                <li><strong>Third-Party Processors</strong>: We use <strong>Resend</strong> (a secure, transactional email service) to route contact submissions and data rights requests directly to our compliance inbox (<strong>zenlio.agency@gmail.com</strong>). Personal data is processed on Resend's secure cloud servers (which may be located outside of India, such as in the United States).</li>
+                <li><strong>Third-Party Processors</strong>: We use <strong>Resend</strong> (a secure, transactional email service) to route contact submissions and data rights requests directly to our compliance inbox (<strong>contact@zenlio.agency</strong>). Personal data is processed on Resend's secure cloud servers (which may be located outside of India, such as in the United States).</li>
                 <li>We do <strong>not</strong> sell, rent, share, or trade your personal data with third parties for marketing or analytical purposes.</li>
                 <li>We do <strong>not</strong> store your form submissions in a persistent database; they exist solely as transactional emails in our inbox and Resend logs.</li>
               </ul>
@@ -139,14 +139,14 @@ export default function PrivacyPage() {
             <section className="space-y-3">
               <h2 className="text-2xl font-bold text-white border-b border-white/5 pb-2">8. How can you file a grievance or contact us?</h2>
               <p className="text-sm">
-                <strong>Direct Answer:</strong> You can file a grievance or contact our compliance team directly by emailing zenlio.agency@gmail.com. We commit to acknowledging your request within forty-eight hours and fully resolving any data processing queries or complaints within thirty days.
+                <strong>Direct Answer:</strong> You can file a grievance or contact our compliance team directly by emailing contact@zenlio.agency. We commit to acknowledging your request within forty-eight hours and fully resolving any data processing queries or complaints within thirty days.
               </p>
               <p className="text-sm text-neutral-400">
                 If you have any questions, feedback, or complaints regarding the processing of your personal data, please contact us:
               </p>
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-2 backdrop-blur-md">
                 <p className="text-sm font-semibold text-white">Contact Information:</p>
-                <p className="text-sm"><span className="text-neutral-400">Email:</span> <a href="mailto:zenlio.agency@gmail.com" className="text-white underline hover:text-[#ccff00]">zenlio.agency@gmail.com</a></p>
+                <p className="text-sm"><span className="text-neutral-400">Email:</span> <a href="mailto:contact@zenlio.agency" className="text-white underline hover:text-[#ccff00]">contact@zenlio.agency</a></p>
                 <p className="text-xs text-neutral-400 pt-1">
                   We commit to acknowledging your inquiry within 48 hours and resolving it within 30 days of receipt.
                 </p>

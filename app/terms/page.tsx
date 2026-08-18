@@ -136,7 +136,7 @@ export default function TermsPage() {
               </p>
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-2 backdrop-blur-md">
                 <p className="text-sm font-semibold text-white">Contact Information:</p>
-                <p className="text-sm"><span className="text-neutral-400">Email:</span> <a href="mailto:zenlio.agency@gmail.com" className="text-white underline hover:text-[#ccff00]">zenlio.agency@gmail.com</a></p>
+                <p className="text-sm"><span className="text-neutral-400">Email:</span> <a href="mailto:contact@zenlio.agency" className="text-white underline hover:text-[#ccff00]">contact@zenlio.agency</a></p>
               </div>
             </section>
 

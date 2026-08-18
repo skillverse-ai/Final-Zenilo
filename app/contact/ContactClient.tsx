@@ -322,7 +322,7 @@ export default function ContactClient() {
             {
               icon: MailIcon,
               label: "Email",
-              value: "zenlio.agency@gmail.com",
+              value: "contact@zenlio.agency",
             },
           ]}
         >

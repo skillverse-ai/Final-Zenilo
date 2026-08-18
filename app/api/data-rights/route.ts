@@ -88,8 +88,8 @@ export async function POST(request: Request) {
 
     // 2. Resend Setup
     const apiKey = process.env.RESEND_API_KEY;
-    const contactEmail = process.env.CONTACT_EMAIL || 'zenlio.agency@gmail.com';
-    const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+    const contactEmail = process.env.CONTACT_EMAIL || 'contact@zenlio.agency';
+    const senderEmail = process.env.SENDER_EMAIL || 'Zenlio <contact@zenlio.agency>';
 
     if (!apiKey) {
       const errorMsg = 'RESEND_API_KEY is not defined in environment variables';

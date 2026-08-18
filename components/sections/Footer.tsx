@@ -111,9 +111,9 @@ export function Footer() {
               <p className="text-sm text-neutral-400 max-w-sm font-sans leading-relaxed">
                 Empowering businesses with custom websites, intelligent AI automation, and scalable systems designed for growth.
               </p>
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=zenlio.agency@gmail.com" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-primary transition-colors flex items-center gap-2 mt-1 font-sans">
+              <a href="mailto:contact@zenlio.agency" className="text-sm text-neutral-400 hover:text-primary transition-colors flex items-center gap-2 mt-1 font-sans">
                 <MailIcon className="w-4 h-4" />
-                zenlio.agency@gmail.com
+                contact@zenlio.agency
               </a>
             </div>
             

@@ -40,7 +40,7 @@ export default function Home() {
     "description": "Outcome-focused automation and high-performance web systems for small teams ready to scale without expanding headcount.",
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "zenlio.agency@gmail.com",
+      "email": "contact@zenlio.agency",
       "contactType": "Grievance & Customer Support"
     },
     "address": {
