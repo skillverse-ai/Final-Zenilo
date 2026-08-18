@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { checkRateLimit } from '@/lib/rate-limit';
+import { generateAdminEmailHtml, generateVisitorEmailHtml } from './emailTemplates';
 
 // Basic email validation regex
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -124,40 +125,28 @@ Selected Add-ons: ${sanitizedAddons.length > 0 ? sanitizedAddons.join(', ') : 'N
     const consentPurpose = sanitizeInput(consent.purpose || 'To respond to user inquiry submitted via contact form');
     const consentVersion = sanitizeInput(consent.version || '1.0-August-2026');
 
-    const emailText = `New contact form submission from the Zenlio website.
-
-Name:
-${sanitizedName}
-
-Email:
-${sanitizedEmail}
-
-Phone:
-${sanitizedPhone}
-${sanitizedPlan ? `\nSelection Details:\n${selectionDetails}` : ''}
-Message:
-${sanitizedMessage}
-
-Submitted:
-${submissionDate}
-
---------------------------------------------------
-[DPDP Act 2023 Consent Audit Record]
-- Explicit Consent Given: YES (Opt-In Checkbox)
-- Consent Purpose: ${consentPurpose}
-- Consent Version: ${consentVersion}
-- Server Logging Timestamp (UTC): ${consentTimestamp}`;
+    const emailHtml = generateAdminEmailHtml({
+      name: sanitizedName,
+      email: sanitizedEmail,
+      phone: sanitizedPhone,
+      plan: sanitizedPlan,
+      selectionDetails,
+      message: sanitizedMessage,
+      submissionDate,
+      consentPurpose,
+      consentVersion,
+      consentTimestamp
+    });
 
     // 3. Send Email
     let response = await resend.emails.send({
       from: senderEmail,
       to: contactEmail,
       subject: 'New Contact Form Submission — Zenlio',
-      text: emailText,
+      html: emailHtml,
+      text: 'Please view this email in an HTML-compatible client.',
       replyTo: sanitizedEmail,
     });
-
-
 
     if (response.error) {
       console.error("CONTACT FORM ERROR:", response.error);
@@ -169,27 +158,21 @@ ${submissionDate}
 
     // 4. Send Confirmation Copy to the Visitor (Auto-Responder)
     try {
-      const visitorEmailText = `Hi ${sanitizedName},
-
-Thank you for reaching out to Zenlio! We have received your message and our team will get back to you soon.
-
-Here is a copy of your submission:
-
-Name: ${sanitizedName}
-Email: ${sanitizedEmail}
-Phone: ${sanitizedPhone}
-${sanitizedPlan ? `\nSelection Details:\n${selectionDetails}` : ''}
-Message:
-${sanitizedMessage}
-
-Best regards,
-The Zenlio Team`;
+      const visitorEmailHtml = generateVisitorEmailHtml({
+        name: sanitizedName,
+        email: sanitizedEmail,
+        phone: sanitizedPhone,
+        plan: sanitizedPlan,
+        selectionDetails,
+        message: sanitizedMessage
+      });
 
       const visitorResponse = await resend.emails.send({
         from: senderEmail,
         to: sanitizedEmail,
         subject: 'Thank you for contacting Zenlio',
-        text: visitorEmailText,
+        html: visitorEmailHtml,
+        text: 'Thank you for contacting Zenlio! We have received your message and will get back to you soon.',
       });
 
       if (visitorResponse.error) {
