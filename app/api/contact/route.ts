@@ -153,7 +153,7 @@ ${submissionDate}
       to: contactEmail,
       subject: 'New Contact Form Submission — Zenlio',
       text: emailText,
-      reply_to: sanitizedEmail,
+      replyTo: sanitizedEmail,
     });
 
     // Sandbox fallback: If Resend restricts sending to the registered account email only
@@ -173,7 +173,7 @@ ${submissionDate}
             to: fallbackEmail,
             subject: 'New Contact Form Submission — Zenlio (Sandbox Mode)',
             text: emailText,
-            reply_to: sanitizedEmail,
+            replyTo: sanitizedEmail,
           });
         }
       }
