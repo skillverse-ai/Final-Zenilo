@@ -169,7 +169,7 @@ ${submissionDate}
           console.warn(`[Resend Sandbox Fallback]: Re-routing email to registered address: ${fallbackEmail}`);
           
           response = await resend.emails.send({
-            from: senderEmail,
+            from: 'onboarding@resend.dev', // MUST use sandbox sender to bypass unverified domain error
             to: fallbackEmail,
             subject: 'New Contact Form Submission — Zenlio (Sandbox Mode)',
             text: emailText,
