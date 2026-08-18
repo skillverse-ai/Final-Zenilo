@@ -5,6 +5,7 @@ import { CookieConsentProvider } from "@/components/cookie-consent/CookieConsent
 import { CookieConsentBanner } from "@/components/cookie-consent/CookieConsentBanner";
 import { CookiePreferencesModal } from "@/components/cookie-consent/CookiePreferencesModal";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const grift = localFont({
@@ -99,6 +100,7 @@ export default function RootLayout({
             <CookiePreferencesModal />
           </CookieConsentProvider>
         </SmoothScrollProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
