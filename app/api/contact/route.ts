@@ -100,7 +100,7 @@ Selected Add-ons: ${sanitizedAddons.length > 0 ? sanitizedAddons.join(', ') : 'N
     const apiKey = process.env.RESEND_API_KEY;
     const contactEmailRaw = process.env.CONTACT_EMAIL || 'zenlio.agency@gmail.com';
     const contactEmail = contactEmailRaw.split(',').map(email => email.trim()).filter(Boolean);
-    const senderEmail = process.env.SENDER_EMAIL || 'Zenlio <no-reply@zenlio.agency>';
+    const senderEmail = process.env.SENDER_EMAIL || 'Zenlio <contact@zenlio.agency>';
 
     if (!apiKey) {
       const errorMsg = 'RESEND_API_KEY is not defined in environment variables';
