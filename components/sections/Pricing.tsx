@@ -138,9 +138,14 @@ const inrPlans = [
       "Smart Lead Capture Engine",
     ],
     addons: [
-      { id: "whatsapp", name: "WhatsApp" },
-      { id: "appointment-up", name: "Appointment upgrade" },
-      { id: "reviews", name: "Reviews" }
+      { id: "whatsapp", name: "WhatsApp Instant Response" },
+      { id: "appointment-upgrade", name: "Smart Appointment System upgrade" },
+      { id: "reviews", name: "Review & Testimonial Engine" },
+      { id: "lead-follow-up", name: "Lead Follow-Up Sequence" },
+      { id: "website-intel", name: "Website Intelligence Report (standalone)" },
+      { id: "ai-lead", name: "AI Lead Qualification (Capped)" },
+      { id: "quote-gen", name: "Dynamic Quote Generator" },
+      { id: "sales-agent", name: "AI Website Sales Agent (Strict usage cap)" }
     ],
   },
   {
@@ -164,10 +169,12 @@ const inrPlans = [
       "Review & Testimonial Engine",
     ],
     addons: [
-      { id: "lead-followup", name: "Lead Follow-Up Sequence" },
-      { id: "ai-lead-capped", name: "AI Lead Qualification (capped)" },
+      { id: "appointment-upgrade", name: "Smart Appointment System upgrade" },
+      { id: "lead-follow-up", name: "Lead Follow-Up Sequence" },
+      { id: "website-intel", name: "Website Intelligence Report (standalone)" },
+      { id: "ai-lead", name: "AI Lead Qualification (Capped)" },
       { id: "quote-gen", name: "Dynamic Quote Generator" },
-      { id: "sales-agent", name: "AI Website Sales Agent" }
+      { id: "sales-agent", name: "AI Website Sales Agent (Strict usage cap)" }
     ]
   },
   {
@@ -190,9 +197,10 @@ const inrPlans = [
       "Website Intelligence Report — monthly, lite",
     ],
     addons: [
-      { id: "ai-lead", name: "AI Lead Qualification" },
+      { id: "appointment-upgrade", name: "Smart Appointment System upgrade" },
+      { id: "ai-lead", name: "AI Lead Qualification (Capped)" },
       { id: "quote-gen", name: "Dynamic Quote Generator" },
-      { id: "sales-agent-capped", name: "AI Website Sales Agent (capped)" }
+      { id: "sales-agent", name: "AI Website Sales Agent (Strict usage cap)" }
     ]
   }
 ];
