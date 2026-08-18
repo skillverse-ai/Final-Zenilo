@@ -153,7 +153,7 @@ ${submissionDate}
       to: contactEmail,
       subject: 'New Contact Form Submission — Zenlio',
       text: emailText,
-      replyTo: sanitizedEmail,
+      reply_to: sanitizedEmail,
     });
 
     // Sandbox fallback: If Resend restricts sending to the registered account email only
@@ -169,11 +169,11 @@ ${submissionDate}
           console.warn(`[Resend Sandbox Fallback]: Re-routing email to registered address: ${fallbackEmail}`);
           
           response = await resend.emails.send({
-            from: senderEmail,
+            from: 'onboarding@resend.dev',
             to: fallbackEmail,
             subject: 'New Contact Form Submission — Zenlio (Sandbox Mode)',
             text: emailText,
-            replyTo: sanitizedEmail,
+            reply_to: sanitizedEmail,
           });
         }
       }
