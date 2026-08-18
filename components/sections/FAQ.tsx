@@ -63,19 +63,7 @@ export function FAQ() {
                 classname="text-neutral-400 text-lg leading-relaxed normal-case"
                 direction="up"
               />
-              <div className="pt-4">
-                <Button
-                  onClick={() => {
-                    const contactElem = document.getElementById("contact") || document.getElementById("cta");
-                    if (contactElem) contactElem.scrollIntoView({ behavior: "smooth" });
-                    else window.location.href = "#contact";
-                  }}
-                  variant="outline"
-                  className="rounded-full bg-white/5 border-white/10 text-white hover:bg-white/10 hover:text-white"
-                >
-                  Still have questions? Let's chat
-                </Button>
-              </div>
+
             </div>
           </div>
 
