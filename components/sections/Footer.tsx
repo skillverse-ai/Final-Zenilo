@@ -104,7 +104,7 @@ export function Footer() {
             {/* Brand Info (Left Pane) - Spans 4 cols on large screens */}
             <div className="lg:col-span-4 flex flex-col items-start gap-4">
               <Link href="/" onClick={handleLogoClick} className="inline-block transition-opacity hover:opacity-90">
-                <span className="font-[family-name:var(--font-chillax)] text-3xl font-[700] tracking-[-5px] bg-clip-text text-transparent bg-gradient-to-b from-[#F4F4EC] to-[#52525b]">
+                <span className="font-[family-name:var(--font-chillax)] text-3xl font-[700] tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-[#F4F4EC] to-[#52525b]">
                   Zenlio
                 </span>
               </Link>
