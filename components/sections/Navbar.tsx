@@ -82,7 +82,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" onClick={handleLogoClick} className="relative z-10 flex items-center pl-2">
           <img src="/navbar-logo.png" alt="Zenlio Agency logo wordmark" className="h-8 w-auto object-contain shrink-0 scale-[1.8] translate-x-[-14px] translate-y-[18px]" />
-          <span className="font-[family-name:var(--font-chillax)] font-[700] text-3xl leading-none tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-[#F4F4EC] to-neutral-400 translate-y-[0px] -ml-1">Zenlio</span>
+          <span className="font-[family-name:var(--font-chillax)] font-[720] text-3xl leading-none tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-[#F4F4EC] to-neutral-400 translate-y-[0px] -ml-1">Zenlio</span>
         </Link>
 
         {/* Desktop Nav Links */}
