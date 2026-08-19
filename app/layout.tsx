@@ -17,11 +17,11 @@ const grift = localFont({
   variable: "--font-grift",
 });
 
-const newOrder = localFont({
+const chillax = localFont({
   src: [
-    { path: "../public/fonts/New Order Bold.otf", weight: "700", style: "normal" },
+    { path: "../public/fonts/Chillax-Medium.otf", weight: "500", style: "normal" },
   ],
-  variable: "--font-new-order",
+  variable: "--font-chillax",
 });
 
 export const metadata: Metadata = {
@@ -81,7 +81,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${grift.variable} ${newOrder.variable} dark antialiased`}
+      className={`${grift.variable} ${chillax.variable} dark antialiased`}
       suppressHydrationWarning
     >
       <head>

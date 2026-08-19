@@ -82,7 +82,7 @@ export function CookiePreferencesModal() {
           >
             {/* Header */}
             <div className="flex items-center justify-between pb-2">
-              <h2 id="preferences-title" className="text-xl font-bold text-white tracking-tight font-[family-name:var(--font-new-order)]">
+              <h2 id="preferences-title" className="text-xl font-bold text-white tracking-tight font-[family-name:var(--font-chillax)]">
                 Cookie Preferences
               </h2>
               <button

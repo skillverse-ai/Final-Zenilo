@@ -104,7 +104,7 @@ export function Footer() {
             {/* Brand Info (Left Pane) - Spans 4 cols on large screens */}
             <div className="lg:col-span-4 flex flex-col items-start gap-4">
               <Link href="/" onClick={handleLogoClick} className="inline-block transition-opacity hover:opacity-90">
-                <span className="font-[family-name:var(--font-new-order)] text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-[#F4F4EC] to-[#52525b]">
+                <span className="font-[family-name:var(--font-chillax)] text-3xl font-[700] tracking-[-5px] bg-clip-text text-transparent bg-gradient-to-b from-[#F4F4EC] to-[#52525b]">
                   Zenlio
                 </span>
               </Link>
@@ -166,7 +166,7 @@ export function Footer() {
 
           {/* Middle Section: Giant Fading "Zenlio" Text Logo */}
           <div ref={giantTextRef} className="w-full flex justify-center overflow-hidden mb-2 select-none">
-            <h2 className="text-[20vw] font-black tracking-tighter uppercase leading-none font-[family-name:var(--font-new-order)] bg-clip-text text-transparent bg-gradient-to-b from-[#ccff00]/[.55] via-[#ccff00]/[.25] to-transparent pr-[2vw]">
+            <h2 className="text-[20vw] font-black tracking-tighter uppercase leading-none font-[family-name:var(--font-chillax)] bg-clip-text text-transparent bg-gradient-to-b from-[#ccff00]/[.55] via-[#ccff00]/[.25] to-transparent pr-[2vw]">
               Zenlio
             </h2>
           </div>

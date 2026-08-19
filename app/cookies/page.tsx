@@ -28,7 +28,7 @@ export default function CookiesPage() {
         <div className="container max-w-4xl px-6 mx-auto relative z-10 space-y-12">
           {/* Header */}
           <div className="space-y-4">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-[family-name:var(--font-new-order)]">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white font-[family-name:var(--font-chillax)]">
               Cookie Policy
             </h1>
             <p className="text-sm text-neutral-400">

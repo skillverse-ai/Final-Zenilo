@@ -36,7 +36,7 @@ export function CookieConsentBanner() {
           aria-describedby="cookie-desc"
         >
           <div className="space-y-2">
-            <h3 id="cookie-title" className="text-lg font-bold text-white tracking-tight font-[family-name:var(--font-new-order)]">
+            <h3 id="cookie-title" className="text-lg font-bold text-white tracking-tight font-[family-name:var(--font-chillax)]">
               Cookie Consent
             </h3>
             <p id="cookie-desc" className="text-sm text-neutral-400 leading-relaxed">

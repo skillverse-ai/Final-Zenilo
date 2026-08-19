@@ -141,7 +141,7 @@ export function Hero() {
 
           {/* Center Circle */}
           <div className="relative z-10 flex h-36 w-36 flex-col items-center justify-center rounded-full bg-primary text-primary-foreground shadow-2xl overflow-hidden">
-            <span className="absolute left-1 top-1/2 -translate-y-1/2 -rotate-90 font-[family-name:var(--font-new-order)] font-bold text-3xl tracking-tight text-primary-foreground/90 origin-center">
+            <span className="absolute left-1 top-1/2 -translate-y-1/2 -rotate-90 font-[family-name:var(--font-chillax)] font-bold text-3xl tracking-tight text-primary-foreground/90 origin-center">
               Zenlio
             </span>
           </div>
