@@ -53,7 +53,10 @@ export const metadata: Metadata = {
     title: "Zenlio - Web Design & Automation Agency",
     description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
     images: ["https://zenlio.agency/logo.png"],
-  }
+  },
+  verification: {
+    google: "cr5U1dDFDsylw5S3R_1ji292al5MGqnb9hBgubduk28",
+  },
 };
 
 export default function RootLayout({
