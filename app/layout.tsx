@@ -31,12 +31,15 @@ export const metadata: Metadata = {
     template: "%s - Zenlio",
   },
   description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
-  metadataBase: new URL("https://zenlio.agency"),
+  metadataBase: new URL("https://www.zenlio.agency"),
+  alternates: {
+    canonical: "https://www.zenlio.agency",
+  },
   manifest: "/site.webmanifest",
   openGraph: {
     title: "Zenlio - Web Design & Automation Agency",
     description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
-    url: "https://zenlio.agency",
+    url: "https://www.zenlio.agency",
     siteName: "Zenlio",
     locale: "en_US",
     type: "website",
@@ -53,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zenlio - Web Design & Automation Agency",
     description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
-    images: ["https://zenlio.agency/og-image.png"],
+    images: ["https://www.zenlio.agency/og-image.png"],
   },
   verification: {
     google: "cr5U1dDFDsylw5S3R_1ji292al5MGqnb9hBgubduk28",
@@ -79,10 +82,10 @@ export default function RootLayout({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://zenlio.agency/#organization",
+    "@id": "https://www.zenlio.agency/#organization",
     "name": "Zenlio",
-    "url": "https://zenlio.agency",
-    "logo": "https://zenlio.agency/logo.png",
+    "url": "https://www.zenlio.agency",
+    "logo": "https://www.zenlio.agency/logo.png",
     "description": "Outcome-focused automation and high-performance web systems for small teams ready to scale without expanding headcount.",
     "email": "contact@zenlio.agency",
     "address": {
