@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo.png",
-        width: 800,
-        height: 600,
-        alt: "Zenlio Logo",
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Zenlio Open Graph Image",
       }
     ],
   },
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zenlio - Web Design & Automation Agency",
     description: "We build the autonomous systems, AI workflows, and high-performance websites that let your business run itself. Scale without expanding headcount.",
-    images: ["https://zenlio.agency/logo.png"],
+    images: ["https://zenlio.agency/og-image.png"],
   },
   verification: {
     google: "cr5U1dDFDsylw5S3R_1ji292al5MGqnb9hBgubduk28",
