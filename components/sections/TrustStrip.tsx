@@ -30,7 +30,7 @@ export function TrustStrip() {
       {/* Straight, Colored Heading */}
       <div className="w-full max-w-7xl mx-auto px-4 md:px-12 mb-8 relative z-10">
         <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#ccff00] pl-2">
-          The Zenlio Standard
+          SYSTEMIZE YOUR BUSINESS
         </p>
       </div>
 
