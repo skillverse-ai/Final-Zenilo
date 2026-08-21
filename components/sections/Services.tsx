@@ -44,16 +44,16 @@ const services = [
     )
   },
   {
-    title: "Website & AI Automation",
+    title: "Systems & Integrations",
     description: "Connecting your tech stack so data flows seamlessly across your business.",
     features: [
-      "Create a single source of truth for client data while automating onboarding and fulfillment."
+      "Connect your business tools into one seamless system that works together automatically."
     ],
     className: "col-span-1 md:col-span-3 lg:col-span-2 min-h-[400px] lg:min-h-[450px]",
     visual: (
       <img 
         src="/images/website-and-auto.webp" 
-        alt="Website and AI Automation Dashboard" 
+        alt="Systems & Integrations Dashboard" 
         loading="lazy"
         decoding="async"
         className="w-full h-full object-contain object-top scale-105 opacity-80" 
