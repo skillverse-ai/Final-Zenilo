@@ -169,17 +169,17 @@ function ServiceCard({
       )}
 
       {/* Content Area */}
-      <div className="relative p-6 md:p-8 z-20 mt-auto flex flex-col">
-        <p className="text-2xl font-bold text-neutral-100 mb-4 transition-all duration-500">{service.title}</p>
+      <div className="relative p-6 md:p-8 z-20 mt-auto flex flex-col justify-start min-h-[175px] md:min-h-[195px] w-full">
+        <p className="text-2xl font-bold text-neutral-100 mb-3 transition-all duration-500">{service.title}</p>
 
         {service.features.length > 0 && (
-          <ul className="space-y-2 mb-6">
+          <ul className="space-y-2">
             {service.features.map((feature, i) => (
               <li key={i} className="flex items-start text-sm text-neutral-300">
                 <svg className="w-4 h-4 text-primary mr-2 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                {feature}
+                <span>{feature}</span>
               </li>
             ))}
           </ul>
