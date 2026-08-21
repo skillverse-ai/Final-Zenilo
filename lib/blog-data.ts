@@ -106,7 +106,7 @@ export const blogPosts = [
   <li>The highest-leverage fix is almost always the form-to-first-response gap, not a full system overhaul.</li>
 </ul>
 
-<p>This is exactly the gap Zenlio was built to close — we don't just design the website, we build the system behind it so every lead gets tracked, followed up with, and moved forward automatically. If you want to see what that looks like for your business specifically, <a href="/#contact">book a free systems audit</a> and we'll show you exactly where you're losing leads right now.</p>
+<p>This is exactly the gap Zenlio was built to close — we don't just design the website, we build the system behind it so every lead gets tracked, followed up with, and moved forward automatically. Zenlio is a <a href="/#services" class="text-primary hover:underline">web design</a> and AI automation agency building high-performance websites and autonomous systems for <a href="/blog/website-vs-digital-system" class="text-primary hover:underline">service professionals</a>. We help you scale operations and handle leads automatically—without <a href="/contact" class="text-primary hover:underline">expanding your headcount</a>. If you want to see what that looks like for your business specifically, <a href="/#contact">book a free systems audit</a> and we'll show you exactly where you're losing leads right now.</p>
     `,
     faqs: [
       {

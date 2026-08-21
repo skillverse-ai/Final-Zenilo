@@ -75,7 +75,7 @@ export function Hero() {
               transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
               className="max-w-[600px] text-muted-foreground md:text-xl leading-relaxed normal-case"
             >
-              <strong>In short:</strong> Zenlio is a <Link href="/#services" className="underline hover:text-primary transition-colors">web design</Link> and AI automation agency building high-performance websites and autonomous systems for <Link href="/blog/website-vs-digital-system" className="underline hover:text-primary transition-colors">service professionals</Link>. We help you scale operations and handle leads automatically—without <Link href="/contact" className="underline hover:text-primary transition-colors">expanding your headcount</Link>.
+              <strong>In short:</strong> Zenlio is a web design and AI automation agency building high-performance websites and autonomous systems for service professionals. We help you scale operations and handle leads automatically—without expanding your headcount.
             </motion.p>
           </div>
 
