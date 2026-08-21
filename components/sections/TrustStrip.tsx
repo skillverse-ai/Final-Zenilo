@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 
 const keywords = [
-  "n8n",
-  "OpenAI",
-  "WhatsApp Business API",
-  "Google Workspace",
-  "Webflow/Framer",
-  "Stripe",
-  "PageSpeed Insights",
-  "Airtable"
+  "Web Design",
+  "SEO",
+  "Automation",
+  "Lead Generation",
+  "WhatsApp",
+  "Payments",
+  "Analytics",
+  "Support"
 ];
 
 // 4-point star separator
