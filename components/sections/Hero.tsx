@@ -44,7 +44,7 @@ export function Hero() {
       <div className="container px-4 md:px-6 mx-auto flex flex-col lg:flex-row justify-between relative z-10">
 
         {/* Left side: Heading and Text */}
-        <div className="w-full lg:w-1/2 flex flex-col space-y-8">
+        <div className="w-full lg:w-1/2 flex flex-col space-y-8 text-center lg:text-left items-center lg:items-start">
           <div className="space-y-4">
             <motion.div
               initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
@@ -85,7 +85,7 @@ export function Hero() {
             style={{ willChange: "filter, transform, opacity" }}
             viewport={{ amount: 0.3 }}
             transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full"
           >
             <Link href="/contact" className="w-full sm:w-auto">
               <Button size="lg" className="w-full">
@@ -135,7 +135,7 @@ export function Hero() {
       </div>
 
       {/* Right side: Orbit animation (Absolute to right edge of page) */}
-      <div className="absolute right-0 top-0 lg:-top-16 w-full lg:w-[65rem] h-[500px] lg:h-[900px] flex items-center justify-end overflow-hidden opacity-30 lg:opacity-100 z-0 pointer-events-none">
+      <div className="absolute right-0 top-0 lg:-top-16 w-full lg:w-[65rem] h-[500px] lg:h-[900px] hidden lg:flex items-center justify-end overflow-hidden z-0 pointer-events-none">
         {/* translate-x to crop exactly at the edge */}
         <div className="relative w-[32rem] h-[32rem] md:w-[45rem] md:h-[45rem] lg:w-[65rem] lg:h-[65rem] translate-x-[20%] md:translate-x-[25%] lg:translate-x-[50%] flex items-center justify-center">
 
