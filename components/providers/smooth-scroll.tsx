@@ -63,7 +63,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       options={{
         lerp: 0.1, // Smooth scrolling physics interpolation
         smoothWheel: true,
-        syncTouch: true, // Native-like sync on touchpads
+        syncTouch: false, // Disable syncTouch for native mobile scrolling
       }}
     >
       <ScrollTriggerSyncer />

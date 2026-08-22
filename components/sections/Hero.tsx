@@ -40,7 +40,7 @@ export function Hero() {
   const iconsPerOrbit = Math.ceil(iconConfigs.length / orbitCount);
 
   return (
-    <section ref={sectionRef} className="relative w-full overflow-hidden bg-background text-foreground pt-28 lg:pt-32 pb-12 lg:pb-10 min-h-0 lg:min-h-[800px]">
+    <section id="hero" ref={sectionRef} className="relative w-full overflow-hidden bg-background text-foreground pt-28 lg:pt-32 pb-12 lg:pb-10 min-h-0 lg:min-h-[800px]">
       <div className="container px-4 md:px-6 mx-auto flex flex-col lg:flex-row justify-between relative z-10">
 
         {/* Left side: Heading and Text */}

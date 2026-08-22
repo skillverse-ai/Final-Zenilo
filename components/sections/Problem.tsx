@@ -12,7 +12,7 @@ const problems = [
     className: "md:row-span-2 min-h-[400px] lg:min-h-[500px]",
     visual: (
       <img 
-        src="/images/problem-1.webp" 
+        src="/images/zenlio-conversion-rates-dashboard.webp" 
         alt="Graph showing a conversion rates drop-off dashboard on a standard non-optimized website" 
         className="w-full h-full object-cover object-center opacity-80" 
       />
@@ -28,7 +28,7 @@ const problems = [
     className: "md:col-span-1 min-h-[250px] lg:min-h-[280px]",
     visual: (
       <img 
-        src="/images/problem-2.webp" 
+        src="/images/zenlio-manual-bottlenecks-tasks.webp" 
         alt="Task checklist dashboard demonstrating manual team bottlenecks and task delays" 
         className="w-full h-full object-cover object-center opacity-80" 
       />
@@ -40,7 +40,7 @@ const problems = [
     className: "md:col-span-1 min-h-[250px] lg:min-h-[280px]",
     visual: (
       <img 
-        src="/images/problem-3.webp" 
+        src="/images/zenlio-disconnected-software-silos.webp" 
         alt="UI mockups of multiple disconnected software tools showing data silos" 
         className="w-full h-full object-contain scale-[1.25] translate-x-12 translate-y-8 opacity-80" 
       />

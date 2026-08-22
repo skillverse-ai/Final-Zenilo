@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import { Navbar } from "@/components/sections/Navbar";
@@ -25,6 +25,13 @@ const chillax = localFont({
   ],
   variable: "--font-chillax",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: {
@@ -94,7 +101,12 @@ export default function RootLayout({
       "addressLocality": "Hyderabad",
       "addressRegion": "Telangana",
       "addressCountry": "IN"
-    }
+    },
+    "areaServed": [
+      { "@type": "Country", "name": "US" },
+      { "@type": "Country", "name": "CA" },
+      { "@type": "Country", "name": "AU" }
+    ]
   };
 
   return (

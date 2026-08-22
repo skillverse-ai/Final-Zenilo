@@ -63,7 +63,7 @@ export function OrbitingCirclesGlobeSection() {
   const isInView = useInView(sectionRef, { margin: "400px" });
 
   return (
-    <section ref={sectionRef} className="w-full bg-background pt-10 pb-0 overflow-hidden relative">
+    <section id="ecosystem" ref={sectionRef} className="w-full bg-background pt-10 pb-0 overflow-hidden relative">
       
       {/* Premium Background Glow (matching Problem section) */}
       <div className="absolute top-0 inset-x-0 h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -translate-y-1/2" />
@@ -112,7 +112,7 @@ export function OrbitingCirclesGlobeSection() {
           }}
         >
           {/* Center particle globe */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 aspect-square pointer-events-none w-75 md:w-145 z-10">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 aspect-square pointer-events-none w-75 md:w-145 z-10 hidden md:block">
             <ParticleSphereAnimation />
           </div>
 

@@ -22,14 +22,14 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "px-[28px] py-[14px] text-[14px] leading-[1.2]",
-        xs: "h-6 px-2 text-xs",
-        sm: "h-9 px-4 text-sm",
-        lg: "h-11 px-8 text-base",
-        icon: "size-10",
-        "icon-xs": "size-6",
-        "icon-sm": "size-8",
-        "icon-lg": "size-12",
+          "px-[28px] py-[14px] text-[14px] leading-[1.2] min-h-[44px]",
+        xs: "h-6 px-2 text-xs min-h-[44px]",
+        sm: "h-9 px-4 text-sm min-h-[44px]",
+        lg: "h-11 px-8 text-base min-h-[44px]",
+        icon: "size-10 min-h-[44px] min-w-[44px]",
+        "icon-xs": "size-6 min-h-[44px] min-w-[44px]",
+        "icon-sm": "size-8 min-h-[44px] min-w-[44px]",
+        "icon-lg": "size-12 min-h-[44px] min-w-[44px]",
       },
     },
     defaultVariants: {
