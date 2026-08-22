@@ -34,7 +34,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  
+
   const pathname = usePathname();
   const lenis = useLenis();
 
@@ -76,21 +76,22 @@ export function Navbar() {
   };
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-5xl"
-    >
-      <div className="flex items-center justify-between px-6 py-3 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl shadow-lg shadow-black/10 relative overflow-visible">
+    <>
+      {/* Global Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-white/5 pointer-events-none z-[100]">
+        <motion.div
+          className="h-full bg-primary origin-left"
+          style={{ scaleX }}
+        />
+      </div>
 
-        {/* Global Progress Bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/5 pointer-events-none z-0 rounded-b-full overflow-hidden">
-          <motion.div
-            className="h-full bg-primary origin-left"
-            style={{ scaleX }}
-          />
-        </div>
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-[90] w-[95%] max-w-5xl"
+      >
+        <div className="flex items-center justify-between px-6 py-3 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl shadow-lg shadow-black/10 relative overflow-visible">
 
         {/* Logo */}
         <Link href="/" onClick={handleLogoClick} className="relative z-10 flex items-center pl-2">
@@ -101,8 +102,8 @@ export function Navbar() {
         {/* Desktop Nav Links */}
         <nav className="hidden md:flex items-center gap-2">
           {navItems.map((item, index) => (
-            <div 
-              key={item.name} 
+            <div
+              key={item.name}
               className="relative group"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -153,14 +154,14 @@ export function Navbar() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-40 rounded-[24px] border border-white/10 bg-black/80 backdrop-blur-xl shadow-2xl p-2 flex flex-col gap-1 overflow-hidden"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-40 rounded-[20px] border border-white/10 bg-black/80 backdrop-blur-xl shadow-2xl p-2 flex flex-col gap-1 overflow-hidden"
                     >
                       {item.children.map((child) => (
                         <Link
                           key={child.name}
                           href={child.href}
                           onClick={(e) => handleSmoothScroll(e, child.href)}
-                          className="px-3 py-2.5 text-sm font-medium text-gray-300 hover:text-[#ccff00] hover:bg-[#ccff00]/10 rounded-[16px] transition-all flex items-center gap-2"
+                          className="px-3 py-2.5 text-sm font-medium text-gray-300 hover:text-[#ccff00] hover:bg-[#ccff00]/10 rounded-[15px] transition-all flex items-center gap-2"
                         >
                           {child.icon && <child.icon className="w-4 h-4 opacity-50" />}
                           {child.name}
@@ -227,7 +228,7 @@ export function Navbar() {
                         {item.name}
                         <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === item.name ? "rotate-180" : ""}`} />
                       </button>
-                      
+
                       <AnimatePresence>
                         {mobileExpanded === item.name && item.children && (
                           <motion.div
@@ -268,5 +269,6 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </motion.header>
+    </>
   );
 }
