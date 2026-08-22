@@ -323,9 +323,14 @@ export default function ContactClient() {
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-[family-name:var(--font-grift)] font-bold text-white tracking-tight leading-[1.1]">
                   Ready to systemize your growth?
                 </h1>
-                <p className="text-neutral-400 max-w-xl text-base md:text-lg leading-relaxed">
-                  Whether you need a high-converting web presence, custom AI workflows, or an intelligent lead routing system, we build the digital infrastructure that scales your business while you sleep. Tell us what's bottlenecking your operations, and let's fix it.
-                </p>
+                <div className="space-y-4">
+                  <p className="text-neutral-400 max-w-xl text-base md:text-lg leading-relaxed">
+                    We build the digital infrastructure that scales your business while you sleep—from high-converting websites to custom AI workflows.
+                  </p>
+                  <p className="text-neutral-400 max-w-xl text-base md:text-lg leading-relaxed text-white font-medium">
+                    Tell us what's bottlenecking your operations, and let's fix it.
+                  </p>
+                </div>
               </div>
 
               <div className="mt-12 space-y-6">
