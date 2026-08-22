@@ -462,7 +462,7 @@ export default function ContactClient() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute left-0 right-0 top-[calc(100%+8px)] z-[60] bg-background/60 backdrop-blur-xl border border-border/40 rounded-[24px] shadow-lg shadow-black/10 p-3 overflow-hidden"
+                      className="absolute left-0 right-0 top-[calc(100%+8px)] z-[60] bg-[#0C0C0C]/80 backdrop-blur-xl border border-border/40 rounded-[24px] shadow-lg shadow-black/10 p-3 overflow-hidden"
                     >
                       <div className="flex flex-col gap-1">
                         {planOptions.map((plan) => {
