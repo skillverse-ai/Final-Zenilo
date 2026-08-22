@@ -118,17 +118,7 @@ export function Hero() {
               transition={{ duration: 0.4, ease: 'easeOut', delay: 0.1 }}
               className="text-sm text-muted-foreground normal-case mt-2"
             >
-              For businesses that depend on leads, clients and consistent follow-through.
-            </motion.p>
-            <motion.p
-              initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
-              whileInView={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-              style={{ willChange: "filter, transform, opacity" }}
-              viewport={{ amount: 0.3 }}
-              transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
-              className="text-sm text-muted-foreground normal-case mt-1"
-            >
-              Dental clinics, real estate agencies, architects, interior designers & law firms.
+              We build custom systems designed specifically for your business.
             </motion.p>
           </div>
         </div>
