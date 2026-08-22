@@ -2,28 +2,41 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, Info, FileText, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useLenis } from "lenis/react";
 
-const navItems = [
+type NavItem = {
+  name: string;
+  href?: string;
+  children?: { name: string; href: string; icon?: React.ElementType }[];
+};
+
+const navItems: NavItem[] = [
   { name: "Problem", href: "/#problem" },
   { name: "Features", href: "/#services" },
   { name: "Process", href: "/#solution" },
   { name: "Work", href: "/#testimonials" },
   { name: "Pricing", href: "/#pricing" },
-  { name: "Blog", href: "/blog" },
-  { name: "FAQs", href: "/#faq" },
+  {
+    name: "Company",
+    children: [
+      { name: "About", href: "/about", icon: Info },
+      { name: "Blog", href: "/blog", icon: FileText },
+      { name: "FAQs", href: "/faq", icon: HelpCircle },
+    ],
+  },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  
   const pathname = usePathname();
   const lenis = useLenis();
-  const isBlogReader = pathname?.startsWith("/blog/");
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -57,7 +70,7 @@ export function Navbar() {
     if (pathname === "/") {
       e.preventDefault();
       if (lenis) {
-        lenis.scrollTo(0); // Scroll to the absolute top smoothly
+        lenis.scrollTo(0);
       }
     }
   };
@@ -69,10 +82,10 @@ export function Navbar() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-5xl"
     >
-      <div className="flex items-center justify-between px-6 py-3 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl shadow-lg shadow-black/10 relative overflow-hidden">
+      <div className="flex items-center justify-between px-6 py-3 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl shadow-lg shadow-black/10 relative overflow-visible">
 
         {/* Global Progress Bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/5 pointer-events-none z-0">
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/5 pointer-events-none z-0 rounded-b-full overflow-hidden">
           <motion.div
             className="h-full bg-primary origin-left"
             style={{ scaleX }}
@@ -88,26 +101,76 @@ export function Navbar() {
         {/* Desktop Nav Links */}
         <nav className="hidden md:flex items-center gap-2">
           {navItems.map((item, index) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={(e) => handleSmoothScroll(e, item.href)}
+            <div 
+              key={item.name} 
+              className="relative group"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="relative px-4 py-2 text-sm font-medium font-sans text-foreground/80 hover:text-foreground transition-colors"
             >
-              <span className="relative z-10">{item.name}</span>
-              {hoveredIndex === index && (
-                <motion.div
-                  layoutId="navbar-hover"
-                  className="absolute inset-0 bg-muted rounded-full"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  onClick={(e) => handleSmoothScroll(e, item.href!)}
+                  className="relative px-4 py-2 flex items-center text-sm font-medium font-sans text-foreground/80 hover:text-[#ccff00] transition-colors"
+                >
+                  <span className="relative z-10">{item.name}</span>
+                  {hoveredIndex === index && (
+                    <motion.div
+                      layoutId="navbar-hover"
+                      className="absolute inset-0 bg-[#ccff00]/10 rounded-full"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </Link>
+              ) : (
+                <button
+                  className="relative px-4 py-2 flex items-center gap-1 text-sm font-medium font-sans text-foreground/80 hover:text-[#ccff00] transition-colors group"
+                >
+                  <span className="relative z-10">{item.name}</span>
+                  <ChevronDown className="relative z-10 w-3 h-3 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+                  {hoveredIndex === index && (
+                    <motion.div
+                      layoutId="navbar-hover"
+                      className="absolute inset-0 bg-[#ccff00]/10 rounded-full"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </button>
               )}
-            </Link>
+
+              {/* Desktop Dropdown */}
+              {item.children && (
+                <AnimatePresence>
+                  {hoveredIndex === index && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-40 rounded-2xl border border-white/10 bg-black/80 backdrop-blur-xl shadow-2xl p-1.5 flex flex-col gap-0.5"
+                    >
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.name}
+                          href={child.href}
+                          onClick={(e) => handleSmoothScroll(e, child.href)}
+                          className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-[#ccff00] hover:bg-[#ccff00]/10 rounded-xl transition-all flex items-center gap-2"
+                        >
+                          {child.icon && <child.icon className="w-4 h-4 opacity-50" />}
+                          {child.name}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )}
+            </div>
           ))}
         </nav>
 
@@ -143,17 +206,55 @@ export function Navbar() {
           >
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => {
-                    setIsOpen(false);
-                    handleSmoothScroll(e, item.href);
-                  }}
-                  className="px-4 py-3 text-base font-semibold text-foreground/80 hover:text-white hover:bg-white/5 rounded-xl transition-all"
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name} className="flex flex-col">
+                  {item.href ? (
+                    <Link
+                      href={item.href}
+                      onClick={(e) => {
+                        setIsOpen(false);
+                        handleSmoothScroll(e, item.href!);
+                      }}
+                      className="px-4 py-3 text-base font-semibold text-foreground/80 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => setMobileExpanded(mobileExpanded === item.name ? null : item.name)}
+                        className="flex items-center justify-between px-4 py-3 text-base font-semibold text-foreground/80 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                      >
+                        {item.name}
+                        <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === item.name ? "rotate-180" : ""}`} />
+                      </button>
+                      
+                      <AnimatePresence>
+                        {mobileExpanded === item.name && item.children && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="flex flex-col gap-1 px-4 pl-8 py-2 overflow-hidden"
+                          >
+                            {item.children.map((child) => (
+                              <Link
+                                key={child.name}
+                                href={child.href}
+                                onClick={(e) => {
+                                  setIsOpen(false);
+                                  handleSmoothScroll(e, child.href);
+                                }}
+                                className="py-2 text-sm font-medium text-foreground/60 hover:text-white transition-colors"
+                              >
+                                {child.name}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </>
+                  )}
+                </div>
               ))}
               <div className="border-t border-white/5 pt-4 mt-2">
                 <Link href="/contact" onClick={() => setIsOpen(false)} className="w-full block">
