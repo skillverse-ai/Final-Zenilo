@@ -11,16 +11,12 @@ type ContactInfoProps = React.ComponentProps<"div"> & {
 };
 
 type ContactCardProps = React.ComponentProps<"div"> & {
-  title?: string;
-  description?: string;
-  contactInfo?: ContactInfoProps[];
+  leftContent?: React.ReactNode;
   formSectionClassName?: string;
 };
 
 export function ContactCard({
-  title = "Contact With Us",
-  description = "If you have any questions regarding our Services or need help, please fill out the form here. We do our best to respond within 1 business day.",
-  contactInfo,
+  leftContent,
   className,
   formSectionClassName,
   children,
@@ -39,20 +35,8 @@ export function ContactCard({
         )}
       >
       
-      <div className="flex flex-col justify-between lg:col-span-2">
-        <div className="relative h-full space-y-4 p-6 md:p-10">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-[family-name:var(--font-grift)] font-bold text-white tracking-tight">
-            {title}
-          </h1>
-          <p className="text-neutral-400 max-w-xl text-sm md:text-base lg:text-lg leading-relaxed">
-            {description}
-          </p>
-          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 border-t border-white/5">
-            {contactInfo?.map((info, index) => (
-              <ContactInfo key={index} {...info} />
-            ))}
-          </div>
-        </div>
+      <div className="flex flex-col lg:col-span-2 relative h-full p-6 md:p-10 md:pr-16">
+        {leftContent}
       </div>
       
       <div

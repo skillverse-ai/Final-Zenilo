@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { ContactCard } from "@/components/ui/contact-card";
-import { MailIcon, ArrowLeft, Check, ChevronDown } from "lucide-react";
+import { MailIcon, ArrowLeft, Check, ChevronDown, Instagram, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -316,15 +316,63 @@ export default function ContactClient() {
 
         {/* Contact Bento Card */}
         <ContactCard
-          title="Get in touch"
-          description="If you have any questions regarding our Services or need help, please fill out the form here. We do our best to respond within 1 business day."
-          contactInfo={[
-            {
-              icon: MailIcon,
-              label: "Email",
-              value: "contact@zenlio.agency",
-            },
-          ]}
+          leftContent={
+            <div className="flex flex-col h-full">
+              <div className="space-y-6">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-[family-name:var(--font-grift)] font-bold text-white tracking-tight leading-[1.1]">
+                  Ready to systemize your growth?
+                </h1>
+                <p className="text-neutral-400 max-w-xl text-base md:text-lg leading-relaxed">
+                  Whether you need a high-converting web presence, custom AI workflows, or an intelligent lead routing system, we build the digital infrastructure that scales your business while you sleep. Tell us what's bottlenecking your operations, and let's fix it.
+                </p>
+              </div>
+
+              <div className="mt-12 space-y-6">
+                <h3 className="text-sm font-bold uppercase tracking-widest text-primary">What to Expect</h3>
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-white">1</div>
+                    <div>
+                      <h4 className="text-white font-medium mb-1">Discovery Call</h4>
+                      <p className="text-sm text-neutral-400">We map your current workflows and identify the biggest bottlenecks.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-white">2</div>
+                    <div>
+                      <h4 className="text-white font-medium mb-1">Custom Blueprint</h4>
+                      <p className="text-sm text-neutral-400">We design a tailored architecture for your website and AI automations.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-white">3</div>
+                    <div>
+                      <h4 className="text-white font-medium mb-1">Execution & Handoff</h4>
+                      <p className="text-sm text-neutral-400">We build, integrate, and train you on your new operating system.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-auto pt-12 flex flex-col gap-6">
+                <div className="flex items-center gap-3">
+                  <a href="https://www.instagram.com/zenlio.agency/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#ccff00] hover:bg-[#ccff00]/10 transition-colors">
+                    <Instagram className="w-4 h-4" />
+                  </a>
+                  <a href="https://www.linkedin.com/in/zenlio-agency-21a06642b/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#ccff00] hover:bg-[#ccff00]/10 transition-colors">
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                </div>
+                
+                <div>
+                  <a href="mailto:contact@zenlio.agency" className="text-neutral-400 hover:text-white transition-colors text-base font-medium flex items-center gap-2">
+                    <MailIcon className="w-4 h-4 text-primary" />
+                    contact@zenlio.agency
+                  </a>
+                </div>
+              </div>
+            </div>
+          }
         >
           <form onSubmit={handleSubmit} noValidate className="w-full space-y-4">
             <div className="flex flex-col gap-1.5">
