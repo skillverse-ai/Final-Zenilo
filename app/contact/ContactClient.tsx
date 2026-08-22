@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { ContactCard } from "@/components/ui/contact-card";
-import { MailIcon, ArrowLeft, Check, ChevronDown, Instagram, Linkedin } from "lucide-react";
+import { MailIcon, ArrowLeft, Check, ChevronDown } from "lucide-react";
+import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -357,10 +358,10 @@ export default function ContactClient() {
               <div className="mt-auto pt-12 flex flex-col gap-6">
                 <div className="flex items-center gap-3">
                   <a href="https://www.instagram.com/zenlio.agency/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#ccff00] hover:bg-[#ccff00]/10 transition-colors">
-                    <Instagram className="w-4 h-4" />
+                    <FaInstagram className="w-4 h-4" />
                   </a>
                   <a href="https://www.linkedin.com/in/zenlio-agency-21a06642b/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-[#ccff00] hover:bg-[#ccff00]/10 transition-colors">
-                    <Linkedin className="w-4 h-4" />
+                    <FaLinkedinIn className="w-4 h-4" />
                   </a>
                 </div>
                 
