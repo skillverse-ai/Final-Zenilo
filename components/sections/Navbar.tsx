@@ -155,7 +155,7 @@ export function Navbar() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[180px] rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl p-3 flex flex-col gap-1 overflow-hidden"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[180px] rounded-[32px] border border-border/40 bg-background/60 backdrop-blur-xl shadow-lg shadow-black/10 p-3 flex flex-col gap-1 overflow-hidden"
                     >
                       {item.children.map((child) => (
                         <Link
@@ -164,7 +164,7 @@ export function Navbar() {
                           onClick={(e) => handleSmoothScroll(e, child.href)}
                           className="group px-4 py-3 text-[16px] font-medium text-white hover:text-[#ccff00] hover:bg-[#ccff00]/10 rounded-[20px] transition-all flex items-center gap-3.5"
                         >
-                          {child.icon && <child.icon className="w-5 h-5 text-neutral-400 group-hover:text-[#ccff00] transition-colors" strokeWidth={1.5} />}
+                          {child.icon && <child.icon className="w-5 h-5 text-[#ccff00] transition-colors" strokeWidth={1.5} />}
                           {child.name}
                         </Link>
                       ))}
