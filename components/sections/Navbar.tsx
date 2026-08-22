@@ -155,7 +155,7 @@ export function Navbar() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[180px] rounded-[32px] border border-border/40 bg-background/60 backdrop-blur-xl shadow-lg shadow-black/10 p-3 flex flex-col gap-1 overflow-hidden"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[180px] rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl p-3 flex flex-col gap-1 overflow-hidden"
                     >
                       {item.children.map((child) => (
                         <Link

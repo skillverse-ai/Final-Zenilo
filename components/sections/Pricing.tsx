@@ -417,7 +417,7 @@ function PricingCard({ pkg, index, currency, openDropdownId, setOpenDropdownId }
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -5 }}
                           transition={{ duration: 0.15 }}
-                          className="absolute left-0 right-0 top-[110%] z-[60] bg-background/60 backdrop-blur-xl border border-border/40 rounded-[24px] shadow-lg shadow-black/10 max-h-60 overflow-y-auto custom-scrollbar p-3"
+                          className="absolute left-0 right-0 top-[110%] z-[60] bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[24px] shadow-2xl max-h-60 overflow-y-auto custom-scrollbar p-3"
                           data-lenis-prevent="true"
                           data-lenis-prevent-wheel="true"
                         >
