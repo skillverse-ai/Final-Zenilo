@@ -478,7 +478,7 @@ export default function ContactClient() {
                               className={`flex items-center justify-between px-4 py-3 rounded-[16px] cursor-pointer transition-all duration-200 text-left ${
                                 isSelected 
                                   ? "bg-[#ccff00]/10 text-[#ccff00]" 
-                                  : "text-neutral-300 hover:bg-white/5 hover:text-white"
+                                  : "text-neutral-300 hover:bg-[#ccff00]/10 hover:text-[#ccff00]"
                               }`}
                             >
                               <span className="text-[15px] font-medium truncate">
