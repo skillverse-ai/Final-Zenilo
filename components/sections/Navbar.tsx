@@ -155,16 +155,16 @@ export function Navbar() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-40 rounded-[20px] border border-white/10 bg-black/80 backdrop-blur-xl shadow-2xl p-2 flex flex-col gap-1 overflow-hidden"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[180px] rounded-[32px] border border-white/5 bg-[#18181b] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] p-3 flex flex-col gap-1 overflow-hidden"
                     >
                       {item.children.map((child) => (
                         <Link
                           key={child.name}
                           href={child.href}
                           onClick={(e) => handleSmoothScroll(e, child.href)}
-                          className="px-3 py-2.5 text-sm font-medium text-gray-300 hover:text-[#ccff00] hover:bg-[#ccff00]/10 rounded-[15px] transition-all flex items-center gap-2"
+                          className="group px-4 py-3 text-[16px] font-medium text-white hover:text-[#ccff00] hover:bg-[#ccff00]/10 rounded-[20px] transition-all flex items-center gap-3.5"
                         >
-                          {child.icon && <child.icon className="w-4 h-4 opacity-50" />}
+                          {child.icon && <child.icon className="w-5 h-5 text-neutral-400 group-hover:text-[#ccff00] transition-colors" strokeWidth={1.5} />}
                           {child.name}
                         </Link>
                       ))}

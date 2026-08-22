@@ -321,7 +321,7 @@ export default function ContactClient() {
             <div className="flex flex-col h-full">
               <div className="space-y-6">
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-[family-name:var(--font-grift)] font-bold text-white tracking-tight leading-[1.1]">
-                  Ready to systemize your growth?
+                  Ready to systemize your <span className="text-[#ccff00]">growth?</span>
                 </h1>
                 <div className="space-y-4">
                   <p className="text-neutral-400 max-w-xl text-base md:text-lg leading-relaxed">
@@ -462,9 +462,9 @@ export default function ContactClient() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute left-0 right-0 top-[calc(100%+8px)] z-[60] bg-[#0a0a0a]/80 backdrop-blur-2xl border border-white/10 rounded-[12px] shadow-[0_16px_40px_rgba(0,0,0,0.9)] p-1.5"
+                      className="absolute left-0 right-0 top-[calc(100%+8px)] z-[60] bg-[#18181b] border border-white/5 rounded-[24px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] p-3 overflow-hidden"
                     >
-                      <div className="flex flex-col gap-0.5">
+                      <div className="flex flex-col gap-1">
                         {planOptions.map((plan) => {
                           const isSelected = getDropdownValue(selectedPlanKey) === plan.id;
                           return (
@@ -475,13 +475,13 @@ export default function ContactClient() {
                                 handlePlanSelect(plan.id);
                                 setPlanDropdownOpen(false);
                               }}
-                              className={`flex items-center justify-between px-3 py-2.5 rounded-md cursor-pointer transition-all duration-200 text-left ${
+                              className={`flex items-center justify-between px-4 py-3 rounded-[16px] cursor-pointer transition-all duration-200 text-left ${
                                 isSelected 
                                   ? "bg-[#ccff00]/10 text-[#ccff00]" 
                                   : "text-neutral-300 hover:bg-white/5 hover:text-white"
                               }`}
                             >
-                              <span className="text-[13px] font-medium truncate">
+                              <span className="text-[15px] font-medium truncate">
                                 {plan.label}
                               </span>
                               {isSelected && <Check className="w-4 h-4 text-[#ccff00] shrink-0 ml-3" />}
