@@ -76,22 +76,23 @@ export function Navbar() {
   };
 
   return (
-    <>
-      {/* Global Progress Bar */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-white/5 pointer-events-none z-[100]">
-        <motion.div
-          className="h-full bg-primary origin-left"
-          style={{ scaleX }}
-        />
-      </div>
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-5xl"
+    >
+      <div className="flex items-center justify-between px-6 py-3 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl shadow-lg shadow-black/10 relative overflow-visible">
 
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-[90] w-[95%] max-w-5xl"
-      >
-        <div className="flex items-center justify-between px-6 py-3 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl shadow-lg shadow-black/10 relative overflow-visible">
+        {/* Global Progress Bar */}
+        <div className="absolute inset-0 rounded-full overflow-hidden pointer-events-none z-0">
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/5">
+            <motion.div
+              className="h-full bg-[#ccff00] origin-left shadow-[0_0_8px_rgba(204,255,0,0.4)]"
+              style={{ scaleX }}
+            />
+          </div>
+        </div>
 
         {/* Logo */}
         <Link href="/" onClick={handleLogoClick} className="relative z-10 flex items-center pl-2">
@@ -269,6 +270,5 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </motion.header>
-    </>
   );
 }
