@@ -9,7 +9,7 @@ const features = [
     title: "Discovery & Audit",
     description: "We map your current website, tools, and workflows to find exactly where leads are slipping through and where your time is going to waste.",
     icon: Search,
-    image: "/images/step1.webp",
+    image: "/images/zenlio-discovery-audit-process.webp",
   },
   {
     id: "strategy",
@@ -17,7 +17,7 @@ const features = [
     title: "Strategy & System Design",
     description: "Site structure, automation flows, and CRM logic get mapped as one system - before a single page gets designed or a line of code gets written.",
     icon: PenTool,
-    image: "/images/step2.webp",
+    image: "/images/zenlio-strategy-system-design.webp",
   },
   {
     id: "build",
@@ -25,7 +25,7 @@ const features = [
     title: "Build Phase",
     description: "Website and automations are built in parallel, not handed off in sequence, so nothing launches half-connected or waiting on the other half.",
     icon: Code,
-    image: "/images/step3.webp",
+    image: "/images/zenlio-build-phase-development.webp",
   },
   {
     id: "test",
@@ -33,7 +33,7 @@ const features = [
     title: "Test & Launch",
     description: "Every form, automation, and integration gets stress-tested against real scenarios - not just clicked through once - before it ever reaches a live lead.",
     icon: Rocket,
-    image: "/images/step4.webp",
+    image: "/images/zenlio-test-launch-automation.webp",
   },
   {
     id: "support",
@@ -41,7 +41,7 @@ const features = [
     title: "Support & Optimize",
     description: "We stay on after launch to monitor performance and refine the system as your lead volume and business grow.",
     icon: Activity,
-    image: "/images/step5.webp",
+    image: "/images/zenlio-support-optimize-growth.webp",
   },
 ];
 

@@ -43,6 +43,22 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      { source: "/hero", destination: "/#hero", permanent: true },
+      { source: "/problem", destination: "/#problem", permanent: true },
+      { source: "/services", destination: "/#services", permanent: true },
+      { source: "/features", destination: "/#services", permanent: true },
+      { source: "/solution", destination: "/#solution", permanent: true },
+      { source: "/process", destination: "/#solution", permanent: true },
+      { source: "/testimonials", destination: "/#testimonials", permanent: true },
+      { source: "/work", destination: "/#testimonials", permanent: true },
+      { source: "/pricing", destination: "/#pricing", permanent: true },
+      { source: "/faq", destination: "/#faq", permanent: true },
+      { source: "/ecosystem", destination: "/#ecosystem", permanent: true },
+      { source: "/cta", destination: "/#cta", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

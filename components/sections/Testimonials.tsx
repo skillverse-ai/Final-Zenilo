@@ -11,28 +11,28 @@ const originalProjects = [
     title: "SkillVerse AI",
     description: "Learn, Build, and Master AI Tools for a Future-Proof Career. Real skills, real projects, real income.",
     link: "https://skillverseai.vercel.app",
-    image: "/images/project-1.webp",
+    image: "/images/zenlio-skillverse-ai-portfolio.webp",
   },
   {
     id: 2,
     title: "Shivam Dental Care",
     description: "Experience world-class, painless dental care in Hyderabad. Serving healthy smiles since 2002.",
     link: "https://shivam-dental-18.vercel.app",
-    image: "/images/project-2.webp",
+    image: "/images/zenlio-shivam-dental-portfolio.webp",
   },
   {
     id: 3,
     title: "Fitness 19",
     description: "High-Octane Brutalist Fitness & Gym. Pitch black, neon accents, high intensity, and raw power.",
     link: "https://fitness19.vercel.app",
-    image: "/images/project-3.webp",
+    image: "/images/zenlio-fitness-19-portfolio.webp",
   },
   {
     id: 4,
     title: "iCraft Designz",
     description: "Quiet Luxury Interior Studio. Premium residential and commercial architectural spaces.",
     link: "https://jishnutask1.ai.studio",
-    image: "/images/project-4.webp",
+    image: "/images/zenlio-icraft-designz-portfolio.webp",
   }
 ];
 

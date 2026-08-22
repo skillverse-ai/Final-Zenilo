@@ -16,7 +16,7 @@ const services = [
     className: "col-span-1 md:col-span-3 min-h-[300px] lg:min-h-[400px]",
     visual: (
       <img 
-        src="/images/website-laptop.webp" 
+        src="/images/zenlio-website-design-development.webp" 
         alt="Website Design Laptop" 
         loading="lazy"
         decoding="async"
@@ -52,7 +52,7 @@ const services = [
     className: "col-span-1 md:col-span-3 lg:col-span-2 min-h-[400px] lg:min-h-[450px]",
     visual: (
       <img 
-        src="/images/website-and-auto.webp" 
+        src="/images/zenlio-systems-integrations-dashboard.webp" 
         alt="Systems & Integrations Dashboard" 
         loading="lazy"
         decoding="async"

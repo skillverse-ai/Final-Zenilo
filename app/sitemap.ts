@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://zenlio.agency';
 
   // Base routes
-  const baseRoutes = ['', '/blog', '/contact', '/privacy', '/cookies', '/data-rights'].map((route) => ({
+  const baseRoutes = ['', '/blog', '/contact', '/privacy', '/cookies', '/data-rights', '/terms'].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: (route === '' || route === '/blog') ? 'daily' as const : 'monthly' as const,

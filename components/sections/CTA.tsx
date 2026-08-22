@@ -7,7 +7,7 @@ import TextAnimation from "@/components/ui/scroll-text";
 
 export function CTA() {
   return (
-    <section className="w-full bg-[#ccff00] text-black py-24 relative overflow-hidden rounded-b-[2rem] md:rounded-b-[3rem] z-20">
+    <section id="cta" className="w-full bg-[#ccff00] text-black py-24 relative overflow-hidden rounded-b-[2rem] md:rounded-b-[3rem] z-20">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-15 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-black/20 rounded-full" />
@@ -35,11 +35,18 @@ export function CTA() {
             classname="text-xl text-black/80 max-w-xl mx-auto font-medium normal-case"
             direction="up"
           />
-          <Link href="/contact" className="inline-block mt-4">
-            <Button size="lg" className="rounded-full px-8 font-semibold bg-black text-white hover:bg-neutral-900 shadow-xl border-none">
-              Contact Us
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto justify-center">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full rounded-full px-8 font-semibold bg-black text-white hover:bg-neutral-900 shadow-xl border-none">
+                Contact Us
+              </Button>
+            </Link>
+            <Link href="/#pricing" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="w-full rounded-full px-8 font-semibold border-black text-black hover:bg-black/5">
+                See Pricing
+              </Button>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>
