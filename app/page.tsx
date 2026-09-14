@@ -34,6 +34,7 @@ export default function Home() {
     "url": "https://zenlio.agency",
     "logo": "https://zenlio.agency/logo.png",
     "sameAs": [
+      "https://www.instagram.com/zenlio.agency/",
       "https://www.linkedin.com/company/zenlio",
       "https://twitter.com/zenlio"
     ],

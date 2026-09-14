@@ -23,7 +23,7 @@ const originalProjects = [
   {
     id: 3,
     title: "Fitness 19",
-    description: "High-Octane Brutalist Fitness & Gym. Pitch black, neon accents, high intensity, and raw power.",
+    description: "High-performance gym and fitness club. Dynamic training schedules, elite personal coaching, and flexible memberships.",
     link: "https://fitness19.vercel.app",
     image: "/images/zenlio-fitness-19-portfolio.webp",
   },
