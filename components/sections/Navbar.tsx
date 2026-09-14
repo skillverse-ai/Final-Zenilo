@@ -101,7 +101,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-2">
+        <nav className="hidden lg:flex items-center gap-2">
           {navItems.map((item, index) => (
             <div
               key={item.name}
@@ -177,7 +177,7 @@ export function Navbar() {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-4 relative z-10">
+        <div className="hidden lg:flex items-center gap-4 relative z-10">
           <Link href="/contact">
             <Button size="sm" className="rounded-full px-6 font-semibold font-sans">
               Contact Us
@@ -188,7 +188,7 @@ export function Navbar() {
         {/* Mobile/Tablet Hamburger Toggle Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex md:hidden p-2 text-foreground/80 hover:text-white transition-colors relative z-50 rounded-full bg-white/5 border border-white/10"
+          className="flex lg:hidden p-2 text-foreground/80 hover:text-white transition-colors relative z-50 rounded-full bg-white/5 border border-white/10"
           aria-label="Toggle navigation menu"
         >
           {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -200,13 +200,13 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0, y: -20 }}
+            initial={{ opacity: 0, height: 0, y: -10 }}
             animate={{ opacity: 1, height: "auto", y: 0 }}
-            exit={{ opacity: 0, height: 0, y: -20 }}
+            exit={{ opacity: 0, height: 0, y: -10 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden mt-2 w-full rounded-3xl border border-border/40 bg-background/95 backdrop-blur-xl shadow-2xl overflow-hidden flex flex-col p-6 z-40 relative"
+            className="lg:hidden mt-3 w-full rounded-[28px] border border-white/10 bg-[#0C0C0C]/90 backdrop-blur-2xl shadow-2xl shadow-black/80 overflow-hidden flex flex-col p-5 z-40 relative"
           >
-            <nav className="flex flex-col gap-2">
+            <nav className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <div key={item.name} className="flex flex-col">
                   {item.href ? (
@@ -216,7 +216,7 @@ export function Navbar() {
                         setIsOpen(false);
                         handleSmoothScroll(e, item.href!);
                       }}
-                      className="px-4 py-3 text-base font-semibold text-foreground/80 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                      className="px-4 py-3 text-[15px] font-medium font-sans text-neutral-300 hover:text-[#ccff00] hover:bg-[#ccff00]/10 rounded-full transition-all duration-200"
                     >
                       {item.name}
                     </Link>
@@ -224,10 +224,10 @@ export function Navbar() {
                     <>
                       <button
                         onClick={() => setMobileExpanded(mobileExpanded === item.name ? null : item.name)}
-                        className="flex items-center justify-between px-4 py-3 text-base font-semibold text-foreground/80 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                        className="flex items-center justify-between px-4 py-3 text-[15px] font-medium font-sans text-neutral-300 hover:text-[#ccff00] hover:bg-[#ccff00]/10 rounded-full transition-all duration-200 w-full group"
                       >
-                        {item.name}
-                        <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === item.name ? "rotate-180" : ""}`} />
+                        <span>{item.name}</span>
+                        <ChevronDown className={`w-4 h-4 text-neutral-400 group-hover:text-[#ccff00] transition-transform duration-300 ${mobileExpanded === item.name ? "rotate-180 text-[#ccff00]" : ""}`} />
                       </button>
 
                       <AnimatePresence>
@@ -236,7 +236,8 @@ export function Navbar() {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="flex flex-col gap-1 px-4 pl-8 py-2 overflow-hidden"
+                            transition={{ duration: 0.2 }}
+                            className="flex flex-col gap-1 pl-3 py-1 overflow-hidden"
                           >
                             {item.children.map((child) => (
                               <Link
@@ -246,9 +247,12 @@ export function Navbar() {
                                   setIsOpen(false);
                                   handleSmoothScroll(e, child.href);
                                 }}
-                                className="py-2 text-sm font-medium text-foreground/60 hover:text-white transition-colors"
+                                className="group px-4 py-2.5 text-[14px] font-medium font-sans text-neutral-300 hover:text-[#ccff00] hover:bg-[#ccff00]/10 rounded-full transition-all flex items-center gap-3"
                               >
-                                {child.name}
+                                {child.icon && (
+                                  <child.icon className="w-4 h-4 text-[#ccff00] transition-colors" strokeWidth={1.5} />
+                                )}
+                                <span>{child.name}</span>
                               </Link>
                             ))}
                           </motion.div>
@@ -258,9 +262,9 @@ export function Navbar() {
                   )}
                 </div>
               ))}
-              <div className="border-t border-white/5 pt-4 mt-2">
+              <div className="border-t border-white/10 pt-4 mt-2">
                 <Link href="/contact" onClick={() => setIsOpen(false)} className="w-full block">
-                  <Button size="lg" className="w-full rounded-xl font-bold font-sans">
+                  <Button size="lg" className="w-full rounded-full font-bold font-sans h-12 text-base shadow-lg shadow-[#ccff00]/15">
                     Contact Us
                   </Button>
                 </Link>

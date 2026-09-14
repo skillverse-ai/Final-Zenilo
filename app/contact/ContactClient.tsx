@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -17,7 +18,7 @@ const planTemplates: Record<string, {
 }> = {
   "core-os": {
     name: "Core OS",
-    build: "$1,200",
+    build: "$1,199",
     recurring: "$89/mo",
     addonsMap: {
       "whatsapp": "WhatsApp",
@@ -26,7 +27,7 @@ const planTemplates: Record<string, {
   },
   "growth-os": {
     name: "Growth OS",
-    build: "$2,800",
+    build: "$2,499",
     recurring: "$229/mo",
     addonsMap: {
       "ai-lead": "AI Lead Qualification",
@@ -42,7 +43,7 @@ const planTemplates: Record<string, {
   },
   "authority-os": {
     name: "Authority OS",
-    build: "$6,000",
+    build: "$4,299",
     recurring: "$499/mo",
     addonsMap: {
       "remaining-premium": "Any remaining premium automation",
@@ -81,9 +82,9 @@ const planTemplates: Record<string, {
     }
   },
   "custom": {
-    name: "Zenlio Enterprise OS",
-    build: "$10,000–$30,000+",
-    recurring: "$800–$2,500+/mo",
+    name: "Zenlio Custom OS",
+    build: "",
+    recurring: "",
   }
 };
 
@@ -95,12 +96,13 @@ const generatePrefilledMessage = (
     ? `\n\nSelected add-ons:\n${selectedAddonsList.map(a => `* ${a}`).join("\n")}`
     : "";
 
+  const priceSection = plan.build && plan.recurring
+    ? `\n\nBuild: ${plan.build}\nRecurring: ${plan.recurring}`
+    : "";
+
   return `Hi Zenlio,
 
-I'm interested in the ${plan.name} plan.
-
-Build: ${plan.build}
-Recurring: ${plan.recurring}${addonsSection}
+I'm interested in the ${plan.name} plan.${priceSection}${addonsSection}
 
 I'd like to discuss the project and next steps.`;
 };
@@ -128,7 +130,7 @@ export default function ContactClient() {
     { id: 'core-os', label: 'Core OS' },
     { id: 'growth-os', label: 'Growth OS' },
     { id: 'authority-os', label: 'Authority OS' },
-    { id: 'custom', label: 'Zenlio Enterprise OS' }
+    { id: 'custom', label: 'Zenlio Custom OS' }
   ];
 
   useEffect(() => {
@@ -157,8 +159,8 @@ export default function ContactClient() {
   const selectedPlanInfo = selectedPlanKey ? planTemplates[selectedPlanKey] : null;
   const resolvedAddons = selectedPlanInfo && selectedPlanInfo.addonsMap
     ? selectedAddonKeys
-        .map(key => selectedPlanInfo.addonsMap![key])
-        .filter(Boolean)
+      .map(key => selectedPlanInfo.addonsMap![key])
+      .filter(Boolean)
     : [];
 
   const getDropdownValue = (key: string | null): string => {
@@ -175,12 +177,12 @@ export default function ContactClient() {
 
     setSelectedPlanKey(value);
     setSelectedAddonKeys([]);
-    
-    const currentPrefill = selectedPlanKey 
+
+    const currentPrefill = selectedPlanKey
       ? generatePrefilledMessage(
-          planTemplates[selectedPlanKey], 
-          selectedAddonKeys.map(k => planTemplates[selectedPlanKey].addonsMap?.[k] || "").filter(Boolean)
-        ) 
+        planTemplates[selectedPlanKey],
+        selectedAddonKeys.map(k => planTemplates[selectedPlanKey].addonsMap?.[k] || "").filter(Boolean)
+      )
       : "";
     if (!formData.message.trim() || formData.message === currentPrefill) {
       const nextPrefill = generatePrefilledMessage(planTemplates[value], []);
@@ -209,7 +211,7 @@ export default function ContactClient() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Custom Validation
     const newErrors: { [key: string]: string } = {};
     if (!formData.name.trim()) newErrors.name = "Name is required.";
@@ -225,7 +227,7 @@ export default function ContactClient() {
     if (!consentGiven) {
       newErrors.consent = "You must consent to the processing of your data to submit.";
     }
-    
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
@@ -293,13 +295,13 @@ export default function ContactClient() {
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 blur-[150px] rounded-full pointer-events-none" />
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="w-full max-w-5xl relative z-10 space-y-6"
       >
-        
+
         {/* Back to Home Link */}
         <div className="flex justify-start">
           <Link href="/">
@@ -369,7 +371,7 @@ export default function ContactClient() {
                     <FaLinkedinIn className="w-4 h-4" />
                   </a>
                 </div>
-                
+
                 <div>
                   <a href="mailto:contact@zenlio.agency" className="text-neutral-400 hover:text-white transition-colors text-base font-medium flex items-center gap-2">
                     <MailIcon className="w-4 h-4 text-primary" />
@@ -391,8 +393,8 @@ export default function ContactClient() {
                 placeholder="John Doe"
                 className={cn(
                   "bg-white/5 border rounded-[12px] px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-colors w-full backdrop-blur-md",
-                  errors.name 
-                    ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
+                  errors.name
+                    ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50"
                     : "border-white/10 focus:border-primary/50 focus:ring-primary/50"
                 )}
               />
@@ -402,7 +404,7 @@ export default function ContactClient() {
                 </motion.span>
               )}
             </div>
-            
+
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">Email</label>
               <input
@@ -413,8 +415,8 @@ export default function ContactClient() {
                 placeholder="john@example.com"
                 className={cn(
                   "bg-white/5 border rounded-[12px] px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-colors w-full backdrop-blur-md",
-                  errors.email 
-                    ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
+                  errors.email
+                    ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50"
                     : "border-white/10 focus:border-primary/50 focus:ring-primary/50"
                 )}
               />
@@ -427,13 +429,12 @@ export default function ContactClient() {
 
             <div className="flex flex-col gap-1.5 relative z-50">
               <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">Select Your Plan</label>
-              
-              <button 
+
+              <button
                 type="button"
                 onClick={() => setPlanDropdownOpen(!planDropdownOpen)}
-                className={`w-full flex items-center justify-between text-left group p-3.5 rounded-[12px] transition-all border ${
-                  planDropdownOpen || selectedPlanKey ? "bg-primary/5 border-primary/30" : "bg-white/5 border-white/10 hover:border-white/20"
-                }`}
+                className={`w-full flex items-center justify-between text-left group p-3.5 rounded-[12px] transition-all border ${planDropdownOpen || selectedPlanKey ? "bg-primary/5 border-primary/30" : "bg-white/5 border-white/10 hover:border-white/20"
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <span className={`text-[13px] font-medium ${selectedPlanKey ? "text-white" : "text-neutral-400"}`}>
@@ -450,14 +451,14 @@ export default function ContactClient() {
               <AnimatePresence>
                 {planDropdownOpen && (
                   <>
-                    <div 
-                      className="fixed inset-0 z-40" 
+                    <div
+                      className="fixed inset-0 z-40"
                       onClick={(e) => {
                         e.stopPropagation();
                         setPlanDropdownOpen(false);
                       }}
                     />
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
@@ -475,11 +476,10 @@ export default function ContactClient() {
                                 handlePlanSelect(plan.id);
                                 setPlanDropdownOpen(false);
                               }}
-                              className={`flex items-center justify-between px-4 py-3 rounded-[16px] cursor-pointer transition-all duration-200 text-left ${
-                                isSelected 
-                                  ? "bg-[#ccff00]/10 text-[#ccff00]" 
+                              className={`flex items-center justify-between px-4 py-3 rounded-[16px] cursor-pointer transition-all duration-200 text-left ${isSelected
+                                  ? "bg-[#ccff00]/10 text-[#ccff00]"
                                   : "text-neutral-300 hover:bg-[#ccff00]/10 hover:text-[#ccff00]"
-                              }`}
+                                }`}
                             >
                               <span className="text-[15px] font-medium truncate">
                                 {plan.label}
@@ -507,19 +507,23 @@ export default function ContactClient() {
                 <div className="text-xs font-bold uppercase tracking-wider text-primary">
                   Your Selection
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 border-b border-white/5 pb-2.5 mb-1">
+                <div className={`grid grid-cols-1 ${selectedPlanInfo.build ? 'sm:grid-cols-3' : 'sm:grid-cols-1'} gap-3 border-b border-white/5 pb-2.5 mb-1`}>
                   <div>
                     <span className="text-[10px] uppercase font-bold text-neutral-500 block">Plan</span>
                     <span className="font-semibold text-white">{selectedPlanInfo.name}</span>
                   </div>
-                  <div>
-                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">Build</span>
-                    <span className="font-semibold text-white">{selectedPlanInfo.build}</span>
-                  </div>
-                  <div>
-                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">Recurring</span>
-                    <span className="font-semibold text-white">{selectedPlanInfo.recurring}</span>
-                  </div>
+                  {selectedPlanInfo.build && (
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-neutral-500 block">Build</span>
+                      <span className="font-semibold text-white">{selectedPlanInfo.build}</span>
+                    </div>
+                  )}
+                  {selectedPlanInfo.recurring && (
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-neutral-500 block">Recurring</span>
+                      <span className="font-semibold text-white">{selectedPlanInfo.recurring}</span>
+                    </div>
+                  )}
                 </div>
                 {resolvedAddons.length > 0 && (
                   <div className="space-y-1.5">
@@ -549,8 +553,8 @@ export default function ContactClient() {
                 placeholder="How can we help systemize your growth?"
                 className={cn(
                   "bg-white/5 border rounded-[12px] px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 transition-colors w-full h-24 resize-none backdrop-blur-md",
-                  errors.message 
-                    ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50" 
+                  errors.message
+                    ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/50"
                     : "border-white/10 focus:border-primary/50 focus:ring-primary/50"
                 )}
               />

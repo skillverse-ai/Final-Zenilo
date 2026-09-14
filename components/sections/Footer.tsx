@@ -141,15 +141,16 @@ export function Footer() {
                   <li><Link href="/#solution" onClick={(e) => handleSmoothScroll(e, "/#solution")} className="hover:text-white text-neutral-400 transition-colors">Process</Link></li>
                   <li><Link href="/#testimonials" onClick={(e) => handleSmoothScroll(e, "/#testimonials")} className="hover:text-white text-neutral-400 transition-colors">Work</Link></li>
                   <li><Link href="/#pricing" onClick={(e) => handleSmoothScroll(e, "/#pricing")} className="hover:text-white text-neutral-400 transition-colors">Pricing</Link></li>
-                  <li><Link href="/#faq" onClick={(e) => handleSmoothScroll(e, "/#faq")} className="hover:text-white text-neutral-400 transition-colors">FAQs</Link></li>
                 </ul>
               </div>
 
-              {/* Col 2: About */}
+              {/* Col 2: Company */}
               <div className="flex flex-col items-start">
-                <h3 className="text-xs font-semibold text-neutral-500 mb-3 tracking-wider">About</h3>
+                <h3 className="text-xs font-semibold text-neutral-500 mb-3 tracking-wider">Company</h3>
                 <ul className="space-y-2 text-sm">
+                  <li><Link href="/about" className="hover:text-white text-neutral-400 transition-colors">About</Link></li>
                   <li><Link href="/blog" className="hover:text-white text-neutral-400 transition-colors">Blog</Link></li>
+                  <li><Link href="/faq" className="hover:text-white text-neutral-400 transition-colors">FAQs</Link></li>
                 </ul>
               </div>
 
