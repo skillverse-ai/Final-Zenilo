@@ -182,6 +182,32 @@ Selected Add-ons: ${sanitizedAddons.length > 0 ? sanitizedAddons.join(', ') : 'N
       console.warn('[Resend Error]: Failed to send auto-response email to visitor:', visitorErr);
     }
 
+    // 5. Forward to GoHighLevel Webhook (if configured)
+    const ghlWebhookUrl = process.env.GHL_WEBHOOK_URL;
+    if (ghlWebhookUrl) {
+      try {
+        await fetch(ghlWebhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: sanitizedName,
+            email: sanitizedEmail,
+            phone: sanitizedPhone,
+            message: sanitizedMessage,
+            plan: sanitizedPlan,
+            selectionDetails,
+            tag: 'contact form',
+            tags: ['contact form'],
+            source: 'Zenlio Contact Form',
+            submittedAt: new Date().toISOString(),
+          }),
+        });
+        console.log('[GHL Sync]: Successfully forwarded lead to GoHighLevel webhook.');
+      } catch (ghlErr) {
+        console.warn('[GHL Sync Warning]: Could not forward to GoHighLevel webhook:', ghlErr);
+      }
+    }
+
     // Log the consent audit record to server stdout
     console.log('[DPDP Consent Record Saved]:', {
       email: sanitizedEmail,

@@ -132,6 +132,13 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* GoHighLevel External Tracking */}
+        <Script
+          id="ghl-external-tracking"
+          strategy="afterInteractive"
+          src="https://link.yourmarketingai.com/js/external-tracking.js"
+          data-tracking-id="tk_1438c1c0d47b47ad821c17e84bb29993"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

@@ -111,6 +111,7 @@ export default function ContactClient() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
   const [websiteHoneypot, setWebsiteHoneypot] = useState("");
@@ -250,6 +251,8 @@ export default function ContactClient() {
           buildPrice: selectedPlanInfo ? selectedPlanInfo.build : "",
           monthlyPrice: selectedPlanInfo ? selectedPlanInfo.recurring : "",
           selectedAddOns: resolvedAddons,
+          tag: "contact form",
+          tags: ["contact form"],
           timestamp: new Date().toISOString(),
           consent: {
             given: true,
@@ -266,7 +269,7 @@ export default function ContactClient() {
           type: "success",
           message: "Thank you! Your message has been sent successfully. We'll get back to you soon.",
         });
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", message: "" });
         setWebsiteHoneypot("");
         setConsentGiven(false);
         setSelectedPlanKey(null);
@@ -382,10 +385,19 @@ export default function ContactClient() {
             </div>
           }
         >
-          <form onSubmit={handleSubmit} noValidate className="w-full space-y-4">
+          <form
+            id="contact-form"
+            name="contact-form"
+            data-name="contact-form"
+            data-formid="contact-form"
+            onSubmit={handleSubmit}
+            noValidate
+            className="w-full space-y-4"
+          >
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">Name</label>
+              <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-neutral-300">Name</label>
               <input
+                id="name"
                 type="text"
                 name="name"
                 value={formData.name}
@@ -406,8 +418,9 @@ export default function ContactClient() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">Email</label>
+              <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-neutral-300">Email</label>
               <input
+                id="email"
                 type="email"
                 name="email"
                 value={formData.email}
@@ -425,6 +438,22 @@ export default function ContactClient() {
                   {errors.email}
                 </motion.span>
               )}
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center justify-between">
+                <label htmlFor="phone" className="text-xs font-bold uppercase tracking-wider text-neutral-300">Phone</label>
+                <span className="text-[10px] text-neutral-500 uppercase tracking-wider font-semibold">Optional</span>
+              </div>
+              <input
+                id="phone"
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="+1 (555) 000-0000"
+                className="bg-white/5 border border-white/10 rounded-[12px] px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-colors w-full backdrop-blur-md"
+              />
             </div>
 
             <div className="flex flex-col gap-1.5 relative z-50">
@@ -544,8 +573,9 @@ export default function ContactClient() {
             )}
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">Message</label>
+              <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-neutral-300">Message</label>
               <textarea
+                id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
@@ -599,11 +629,44 @@ export default function ContactClient() {
               />
             </div>
 
+            {/* GoHighLevel Tag & Field Mapping */}
+            <input
+              type="text"
+              id="ghl-tag"
+              name="tag"
+              value="contact form"
+              readOnly
+              tabIndex={-1}
+              aria-hidden="true"
+              className="sr-only"
+            />
+            <input
+              type="text"
+              id="ghl-tags"
+              name="tags"
+              value="contact form"
+              readOnly
+              tabIndex={-1}
+              aria-hidden="true"
+              className="sr-only"
+            />
+            <input
+              type="text"
+              id="ghl-plan"
+              name="plan"
+              value={selectedPlanInfo ? selectedPlanInfo.name : ""}
+              readOnly
+              tabIndex={-1}
+              aria-hidden="true"
+              className="sr-only"
+            />
+
             <Button
               type="submit"
               disabled={isSubmitting}
               size="lg"
               className="w-full text-base font-bold"
+              data-submission-type="submit"
             >
               <span>{isSubmitting ? "Sending..." : "Submit"}</span>
             </Button>
