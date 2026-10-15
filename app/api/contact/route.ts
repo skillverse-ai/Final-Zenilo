@@ -182,7 +182,69 @@ Selected Add-ons: ${sanitizedAddons.length > 0 ? sanitizedAddons.join(', ') : 'N
       console.warn('[Resend Error]: Failed to send auto-response email to visitor:', visitorErr);
     }
 
-    // 5. Forward to GoHighLevel Webhook (if configured)
+    // 5. Sync directly with GoHighLevel / LeadConnector External Tracking
+    try {
+      const nameParts = sanitizedName.split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
+
+      const ghlPayload = {
+        type: 'external_form_submission',
+        timestamp: Date.now(),
+        trackingId: 'tk_1438c1c0d47b47ad821c17e84bb29993',
+        sessionId: `srv_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`,
+        formId: 'contact-form',
+        formData: {
+          full_name: sanitizedName,
+          first_name: firstName,
+          last_name: lastName,
+          name: sanitizedName,
+          email: sanitizedEmail,
+          phone: sanitizedPhone !== 'Not provided' ? sanitizedPhone : '',
+          message: sanitizedMessage,
+          plan: sanitizedPlan,
+          tag: 'contact form',
+          tags: 'contact form',
+          Timezone: 'UTC'
+        },
+        formLabels: {
+          full_name: 'Full Name',
+          first_name: 'First Name',
+          last_name: 'Last Name',
+          email: 'Email',
+          phone: 'Phone',
+          message: 'Message',
+          plan: 'Plan',
+          tag: 'Tag',
+          tags: 'Tags'
+        },
+        url: 'https://www.zenlio.agency/contact',
+        path: '/contact',
+        title: 'Book a Free AI Strategy Call & Systems Audit | Zenlio',
+        referrer: '',
+        userAgent: request.headers.get('user-agent') || 'Server'
+      };
+
+      const ghlRes = await fetch('https://backend.leadconnectorhq.com/external-tracking/events', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Origin': 'https://www.zenlio.agency'
+        },
+        body: JSON.stringify(ghlPayload)
+      });
+
+      if (!ghlRes.ok) {
+        console.warn('[GHL Sync Warning]: Non-200 response from LeadConnector:', ghlRes.status);
+      } else {
+        const ghlData = await ghlRes.json();
+        console.log('[GHL Sync Success]: Dispatched to LeadConnector:', ghlData);
+      }
+    } catch (lcErr) {
+      console.warn('[GHL Sync Error]: Failed to dispatch to LeadConnector:', lcErr);
+    }
+
+    // 5b. Forward to GoHighLevel Webhook (if configured)
     const ghlWebhookUrl = process.env.GHL_WEBHOOK_URL;
     if (ghlWebhookUrl) {
       try {
@@ -191,6 +253,7 @@ Selected Add-ons: ${sanitizedAddons.length > 0 ? sanitizedAddons.join(', ') : 'N
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: sanitizedName,
+            full_name: sanitizedName,
             email: sanitizedEmail,
             phone: sanitizedPhone,
             message: sanitizedMessage,
@@ -202,9 +265,9 @@ Selected Add-ons: ${sanitizedAddons.length > 0 ? sanitizedAddons.join(', ') : 'N
             submittedAt: new Date().toISOString(),
           }),
         });
-        console.log('[GHL Sync]: Successfully forwarded lead to GoHighLevel webhook.');
+        console.log('[GHL Webhook Sync]: Successfully forwarded lead to GoHighLevel webhook.');
       } catch (ghlErr) {
-        console.warn('[GHL Sync Warning]: Could not forward to GoHighLevel webhook:', ghlErr);
+        console.warn('[GHL Webhook Warning]: Could not forward to GoHighLevel webhook:', ghlErr);
       }
     }
 

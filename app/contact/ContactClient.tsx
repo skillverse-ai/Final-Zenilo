@@ -265,6 +265,36 @@ export default function ContactClient() {
       const data = await response.json();
 
       if (response.ok && data.success) {
+        // Explicitly trigger client-side LeadConnector tracker if available
+        if (typeof window !== "undefined" && (window as any)._lcTracking?.tracker?.apiClient) {
+          try {
+            const lc = (window as any)._lcTracking.tracker;
+            const nameParts = formData.name.trim().split(' ');
+            lc.apiClient.submitForm({
+              type: "external_form_submission",
+              timestamp: Date.now(),
+              formId: "contact-form",
+              formData: {
+                full_name: formData.name,
+                name: formData.name,
+                first_name: nameParts[0] || "",
+                last_name: nameParts.slice(1).join(" ") || "",
+                email: formData.email,
+                phone: formData.phone || "",
+                message: formData.message,
+                plan: selectedPlanInfo ? selectedPlanInfo.name : "",
+                tag: "contact form",
+                tags: "contact form",
+              },
+              url: window.location.href,
+              path: window.location.pathname,
+              title: document.title,
+            });
+          } catch (lcErr) {
+            console.warn("[GHL Client Sync Warning]:", lcErr);
+          }
+        }
+
         setStatus({
           type: "success",
           message: "Thank you! Your message has been sent successfully. We'll get back to you soon.",
@@ -630,6 +660,36 @@ export default function ContactClient() {
             </div>
 
             {/* GoHighLevel Tag & Field Mapping */}
+            <input
+              type="text"
+              id="ghl-full-name"
+              name="full_name"
+              value={formData.name}
+              readOnly
+              tabIndex={-1}
+              aria-hidden="true"
+              className="sr-only"
+            />
+            <input
+              type="text"
+              id="ghl-first-name"
+              name="first_name"
+              value={formData.name.trim().split(' ')[0] || ''}
+              readOnly
+              tabIndex={-1}
+              aria-hidden="true"
+              className="sr-only"
+            />
+            <input
+              type="text"
+              id="ghl-last-name"
+              name="last_name"
+              value={formData.name.trim().split(' ').slice(1).join(' ') || ''}
+              readOnly
+              tabIndex={-1}
+              aria-hidden="true"
+              className="sr-only"
+            />
             <input
               type="text"
               id="ghl-tag"
